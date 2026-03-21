@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Events API
+  description: >-
+    The Honeycomb Events API is the lowest-level interface for sending event
+    data to Honeycomb. It supports both single event creation and batch event
+    submission, allowing developers to send structured telemetry data directly
+    to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or
+    Beeline SDKs for most instrumentation use cases, the Events API provides
+    direct control for custom integrations and specialized data pipelines. Also
+    includes Kinesis Events for processing streaming events from Amazon Kinesis.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Events API Documentation
+  url: https://api-docs.honeycomb.io/api/events
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Events
+    description: >-
+      Send individual and batch events to Honeycomb datasets.
+  - name: Kinesis Events
+    description: >-
+      Process streaming events from Amazon Kinesis into Honeycomb.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/events/{datasetSlug}:
+    post:
+      operationId: createEvent
+      summary: Create an event
+      description: >-
+        Sends a single event to the specified dataset. Using this endpoint for
+        anything more than testing is highly discouraged. Sending events in
+        batches via the batch endpoint is much more efficient and should be
+        preferred.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: >-
+                The event data as a JSON object with custom fields.
+              additionalProperties: true
+      responses:
+        '200':
+          description: Event accepted for processing
+        '400':
+          description: Bad request - malformed event data
+        '401':
+          description: Unauthorized - invalid API key
+  /1/batch/{datasetSlug}:
+    post:
+      operationId: createEvents
+      summary: Create events (batch)
+      description: >-
+        Sends a batch of events to the specified dataset. This is the
+        recommended way to send events to Honeycomb. The request body is
+        limited to 1MB of raw (potentially compressed) data. Dataset names
+        are case insensitive.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: >-
+                An array of event objects to send as a batch.
+              items:
+                $ref: '#/components/schemas/BatchEvent'
+      responses:
+        '200':
+          description: Batch results returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BatchEventResponse'
+        '400':
+          description: Bad request - malformed batch data
+        '401':
+          description: Unauthorized - invalid API key
+  /1/kinesis_events/{datasetSlug}:
+    post:
+      operationId: createKinesisEvents
+      summary: Create Kinesis events
+      description: >-
+        Processes streaming events from Amazon Kinesis into the specified
+        Honeycomb dataset.
+      tags:
+        - Kinesis Events
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: >-
+                Kinesis event data in the expected format.
+              properties:
+                records:
+                  type: array
+                  description: >-
+                    Array of Kinesis records to process.
+                  items:
+                    type: object
+                    properties:
+                      data:
+                        type: string
+                        description: >-
+                          Base64-encoded event data.
+      responses:
+        '200':
+          description: Kinesis events processed
+        '400':
+          description: Bad request - malformed Kinesis data
+        '401':
+          description: Unauthorized - invalid API key
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Ingest API key (recommended) or Configuration API key with
+        Send Events permission.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset. Dataset names are case insensitive
+        and may contain URL-encoded spaces or special characters but not
+        URL-encoded slashes.
+      schema:
+        type: string
+  schemas:
+    BatchEvent:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: >-
+            The event's timestamp in ISO8601 or RFC3339 format. Defaults to
+            server time if not provided.
+        samplerate:
+          type: integer
+          description: >-
+            An integer representing the sampling denominator. For example, a
+            value of 10 means one in ten events was kept.
+          minimum: 1
+        data:
+          type: object
+          description: >-
+            The event's custom fields as a JSON object.
+          additionalProperties: true
+      required:
+        - data
+    BatchEventResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: >-
+            The HTTP status code for this individual event. 202 indicates
+            successful queuing for processing.
+        error:
+          type: string
+          description: >-
+            An error message if the event failed processing. Possible values
+            include 'Request body should not be empty', 'Event has too many
+            columns', and 'Request body is malformed and cannot be read'.

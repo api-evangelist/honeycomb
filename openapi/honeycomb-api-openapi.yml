@@ -1,0 +1,3049 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb API
+  description: >-
+    The Honeycomb API is a REST API that provides programmatic access to the
+    Honeycomb observability platform. It enables developers to manage datasets
+    and columns, configure SLOs and burn alerts, set up triggers and recipients,
+    manage boards and markers, administer environments, API keys, and access
+    auth, query annotations, calculated fields, marker settings, reporting,
+    dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Auth
+    description: >-
+      Validate authentication for a key, determine what authorizations have been
+      granted to a key, and determine the Team and Environment it belongs to.
+  - name: Datasets
+    description: >-
+      Manage datasets, which represent collections of related events from the
+      same source.
+  - name: Columns
+    description: >-
+      Manage columns (fields) in the events you send to Honeycomb datasets.
+  - name: Dataset Definitions
+    description: >-
+      Manage dataset definitions that configure how columns are interpreted and
+      displayed.
+  - name: Calculated Fields
+    description: >-
+      Manage calculated fields (derived columns) that compute values from
+      expressions applied to event fields.
+  - name: Boards
+    description: >-
+      Manage boards, which are collections of queries, SLO panels, and text
+      panels displayed together.
+  - name: Markers
+    description: >-
+      Manage markers that indicate points in time on graphs where notable events
+      occurred such as deploys or outages.
+  - name: Marker Settings
+    description: >-
+      Manage marker settings that group similar markers together with consistent
+      visual styling.
+  - name: Triggers
+    description: >-
+      Configure alerting rules that fire when query results meet specified
+      conditions.
+  - name: Recipients
+    description: >-
+      Manage notification destinations for triggers and burn alerts including
+      PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+  - name: SLOs
+    description: >-
+      Define and monitor Service Level Objectives for your organization.
+  - name: Burn Alerts
+    description: >-
+      Manage burn alerts that notify you when issues impact your SLO budget.
+  - name: Reporting
+    description: >-
+      Access historical SLO performance reporting data.
+  - name: Environments
+    description: >-
+      Manage environments within a Honeycomb team for separating telemetry data
+      across stages.
+  - name: Key Management
+    description: >-
+      Manage API keys for a team, including listing, creating, updating, and
+      deleting keys.
+  - name: Query Annotations
+    description: >-
+      Associate names and descriptions to queries for collaboration features.
+  - name: Service Maps
+    description: >-
+      Visualize relationships between services using dependency requests.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/auth:
+    get:
+      operationId: getAuth
+      summary: Authenticate API key
+      description: >-
+        Validates authentication for a key and returns the team and environment
+        that the key belongs to.
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthInfo'
+        '401':
+          description: Unauthorized - invalid API key
+  /1/auth/permissions:
+    get:
+      operationId: listAuthorizations
+      summary: List authorizations
+      description: >-
+        Determines what authorizations have been granted to the API key.
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: List of authorizations for the key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPermissions'
+        '401':
+          description: Unauthorized - invalid API key
+  /1/datasets:
+    get:
+      operationId: listDatasets
+      summary: List all datasets
+      description: >-
+        Returns a list of all datasets in the environment associated with the
+        API key.
+      tags:
+        - Datasets
+      responses:
+        '200':
+          description: A list of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDataset
+      summary: Create a dataset
+      description: >-
+        Creates a dataset in the environment associated with the API key. If a
+        dataset already exists with that name or slug, the existing dataset is
+        returned.
+      tags:
+        - Datasets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetCreateRequest'
+      responses:
+        '201':
+          description: Dataset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '200':
+          description: Existing dataset returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+  /1/datasets/{datasetSlug}:
+    get:
+      operationId: getDataset
+      summary: Get a dataset
+      description: >-
+        Returns a single dataset by its slug.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: Dataset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDataset
+      summary: Update a dataset
+      description: >-
+        Updates a dataset's properties.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetUpdateRequest'
+      responses:
+        '200':
+          description: Dataset updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/columns/{datasetSlug}:
+    get:
+      operationId: listColumns
+      summary: List all columns
+      description: >-
+        Returns a list of all columns in the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of columns
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    post:
+      operationId: createColumn
+      summary: Create a column
+      description: >-
+        Creates a new column in the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnCreateRequest'
+      responses:
+        '201':
+          description: Column created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/columns/{datasetSlug}/{columnId}:
+    get:
+      operationId: getColumn
+      summary: Get a column
+      description: >-
+        Returns a single column by its ID.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      responses:
+        '200':
+          description: Column details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+    put:
+      operationId: updateColumn
+      summary: Update a column
+      description: >-
+        Updates the properties of a column in the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnUpdateRequest'
+      responses:
+        '200':
+          description: Column updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+    delete:
+      operationId: deleteColumn
+      summary: Delete a column
+      description: >-
+        Deletes a column from the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      responses:
+        '204':
+          description: Column deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+  /1/dataset_definitions/{datasetSlug}:
+    get:
+      operationId: getDatasetDefinition
+      summary: Get dataset definition
+      description: >-
+        Returns the dataset definition for the specified dataset, which
+        configures how columns are interpreted and displayed.
+      tags:
+        - Dataset Definitions
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: Dataset definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDatasetDefinition
+      summary: Update dataset definition
+      description: >-
+        Updates the dataset definition for the specified dataset.
+      tags:
+        - Dataset Definitions
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetDefinition'
+      responses:
+        '200':
+          description: Dataset definition updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/calculated_fields/{datasetSlug}:
+    get:
+      operationId: listCalculatedFields
+      summary: List calculated fields
+      description: >-
+        Returns a list of all calculated fields (derived columns) in the
+        specified dataset.
+      tags:
+        - Calculated Fields
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of calculated fields
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createCalculatedField
+      summary: Create a calculated field
+      description: >-
+        Creates a new calculated field (derived column) in the specified dataset
+        or across the environment.
+      tags:
+        - Calculated Fields
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatedFieldCreateRequest'
+      responses:
+        '201':
+          description: Calculated field created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+  /1/calculated_fields/{datasetSlug}/{calculatedFieldId}:
+    get:
+      operationId: getCalculatedField
+      summary: Get a calculated field
+      description: >-
+        Returns a single calculated field by its ID.
+      tags:
+        - Calculated Fields
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/calculatedFieldId'
+      responses:
+        '200':
+          description: Calculated field details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+    put:
+      operationId: updateCalculatedField
+      summary: Update a calculated field
+      description: >-
+        Updates the expression or properties of a calculated field.
+      tags:
+        - Calculated Fields
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/calculatedFieldId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatedFieldUpdateRequest'
+      responses:
+        '200':
+          description: Calculated field updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+    delete:
+      operationId: deleteCalculatedField
+      summary: Delete a calculated field
+      description: >-
+        Deletes a calculated field from the specified dataset.
+      tags:
+        - Calculated Fields
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/calculatedFieldId'
+      responses:
+        '204':
+          description: Calculated field deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+  /1/boards:
+    get:
+      operationId: listBoards
+      summary: List all boards
+      description: >-
+        Returns a list of all boards accessible in the current environment.
+      tags:
+        - Boards
+      responses:
+        '200':
+          description: A list of boards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBoard
+      summary: Create a board
+      description: >-
+        Creates a new board for organizing queries, SLO panels, and text panels.
+      tags:
+        - Boards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardCreateRequest'
+      responses:
+        '201':
+          description: Board created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+  /1/boards/{boardId}:
+    get:
+      operationId: getBoard
+      summary: Get a board
+      description: >-
+        Returns a single board by its ID, including all queries and panels.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      responses:
+        '200':
+          description: Board details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+    put:
+      operationId: updateBoard
+      summary: Update a board
+      description: >-
+        Updates a board's properties, queries, and panels.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardUpdateRequest'
+      responses:
+        '200':
+          description: Board updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+    delete:
+      operationId: deleteBoard
+      summary: Delete a board
+      description: >-
+        Deletes a board.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      responses:
+        '204':
+          description: Board deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+  /1/markers/{datasetSlug}:
+    get:
+      operationId: listMarkers
+      summary: List all markers
+      description: >-
+        Returns a list of all markers for the specified dataset.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of markers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMarker
+      summary: Create a marker
+      description: >-
+        Creates a new marker on the specified dataset to indicate a point in
+        time where a notable event occurred.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerCreateRequest'
+      responses:
+        '201':
+          description: Marker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+  /1/markers/{datasetSlug}/{markerId}:
+    put:
+      operationId: updateMarker
+      summary: Update a marker
+      description: >-
+        Updates a marker's properties.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerUpdateRequest'
+      responses:
+        '200':
+          description: Marker updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker not found
+    delete:
+      operationId: deleteMarker
+      summary: Delete a marker
+      description: >-
+        Deletes a marker from the specified dataset.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerId'
+      responses:
+        '204':
+          description: Marker deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker not found
+  /1/marker_settings/{datasetSlug}:
+    get:
+      operationId: listMarkerSettings
+      summary: List all marker settings
+      description: >-
+        Returns a list of all marker settings for the specified dataset.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of marker settings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMarkerSetting
+      summary: Create a marker setting
+      description: >-
+        Creates a new marker setting that groups similar markers together with
+        consistent visual styling.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerSettingCreateRequest'
+      responses:
+        '201':
+          description: Marker setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+  /1/marker_settings/{datasetSlug}/{markerSettingId}:
+    put:
+      operationId: updateMarkerSetting
+      summary: Update a marker setting
+      description: >-
+        Updates a marker setting's properties.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerSettingId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerSettingUpdateRequest'
+      responses:
+        '200':
+          description: Marker setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker setting not found
+    delete:
+      operationId: deleteMarkerSetting
+      summary: Delete a marker setting
+      description: >-
+        Deletes a marker setting from the specified dataset.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerSettingId'
+      responses:
+        '204':
+          description: Marker setting deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker setting not found
+  /1/triggers/{datasetSlug}:
+    get:
+      operationId: listTriggers
+      summary: List all triggers
+      description: >-
+        Returns a list of all triggers for the specified dataset.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of triggers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createTrigger
+      summary: Create a trigger
+      description: >-
+        Creates a new trigger that fires when query results meet specified
+        threshold conditions.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerCreateRequest'
+      responses:
+        '201':
+          description: Trigger created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+  /1/triggers/{datasetSlug}/{triggerId}:
+    get:
+      operationId: getTrigger
+      summary: Get a trigger
+      description: >-
+        Returns a single trigger by its ID.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      responses:
+        '200':
+          description: Trigger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+    put:
+      operationId: updateTrigger
+      summary: Update a trigger
+      description: >-
+        Updates a trigger's query, threshold, or notification settings.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerUpdateRequest'
+      responses:
+        '200':
+          description: Trigger updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+    delete:
+      operationId: deleteTrigger
+      summary: Delete a trigger
+      description: >-
+        Deletes a trigger from the specified dataset.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      responses:
+        '204':
+          description: Trigger deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+  /1/recipients:
+    get:
+      operationId: listRecipients
+      summary: List all recipients
+      description: >-
+        Returns a list of all notification recipients configured for the team.
+        Recipients are team-wide and not environment-specific.
+      tags:
+        - Recipients
+      responses:
+        '200':
+          description: A list of recipients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRecipient
+      summary: Create a recipient
+      description: >-
+        Creates a new notification recipient. Supported types include PagerDuty,
+        Email, Webhook, Microsoft Teams, and Slack.
+      tags:
+        - Recipients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientCreateRequest'
+      responses:
+        '201':
+          description: Recipient created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+  /1/recipients/{recipientId}:
+    get:
+      operationId: getRecipient
+      summary: Get a recipient
+      description: >-
+        Returns a single recipient by its ID.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      responses:
+        '200':
+          description: Recipient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    put:
+      operationId: updateRecipient
+      summary: Update a recipient
+      description: >-
+        Updates a recipient's notification target or configuration.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientUpdateRequest'
+      responses:
+        '200':
+          description: Recipient updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    delete:
+      operationId: deleteRecipient
+      summary: Delete a recipient
+      description: >-
+        Deletes a notification recipient.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      responses:
+        '204':
+          description: Recipient deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+  /1/slos/{datasetSlug}:
+    get:
+      operationId: listSLOs
+      summary: List all SLOs
+      description: >-
+        Returns a list of all Service Level Objectives for the specified dataset.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of SLOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSLO
+      summary: Create an SLO
+      description: >-
+        Creates a new Service Level Objective for the specified dataset.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCreateRequest'
+      responses:
+        '201':
+          description: SLO created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+  /1/slos/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLO
+      summary: Get an SLO
+      description: >-
+        Returns a single SLO by its ID.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    put:
+      operationId: updateSLO
+      summary: Update an SLO
+      description: >-
+        Updates an SLO's target percentage, time period, or associated query.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOUpdateRequest'
+      responses:
+        '200':
+          description: SLO updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    delete:
+      operationId: deleteSLO
+      summary: Delete an SLO
+      description: >-
+        Deletes a Service Level Objective.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '204':
+          description: SLO deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+  /1/burn_alerts/{datasetSlug}:
+    get:
+      operationId: listBurnAlerts
+      summary: List all burn alerts
+      description: >-
+        Returns a list of all burn alerts for the specified dataset.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of burn alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBurnAlert
+      summary: Create a burn alert
+      description: >-
+        Creates a new burn alert that notifies when issues impact your SLO
+        budget.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertCreateRequest'
+      responses:
+        '201':
+          description: Burn alert created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+  /1/burn_alerts/{datasetSlug}/{burnAlertId}:
+    get:
+      operationId: getBurnAlert
+      summary: Get a burn alert
+      description: >-
+        Returns a single burn alert by its ID.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '200':
+          description: Burn alert details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    put:
+      operationId: updateBurnAlert
+      summary: Update a burn alert
+      description: >-
+        Updates a burn alert's configuration or notification recipients.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertUpdateRequest'
+      responses:
+        '200':
+          description: Burn alert updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    delete:
+      operationId: deleteBurnAlert
+      summary: Delete a burn alert
+      description: >-
+        Deletes a burn alert.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '204':
+          description: Burn alert deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+  /1/slo_report/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLOReport
+      summary: Get SLO report
+      description: >-
+        Returns historical SLO performance reporting data for the specified SLO.
+      tags:
+        - Reporting
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO report data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOReport'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+  /1/environments:
+    get:
+      operationId: listEnvironments
+      summary: List all environments
+      description: >-
+        Returns a list of all environments within the team.
+      tags:
+        - Environments
+      responses:
+        '200':
+          description: A list of environments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createEnvironment
+      summary: Create an environment
+      description: >-
+        Creates a new environment for separating telemetry data across stages
+        such as development, staging, and production.
+      tags:
+        - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentCreateRequest'
+      responses:
+        '201':
+          description: Environment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+  /1/environments/{environmentId}:
+    get:
+      operationId: getEnvironment
+      summary: Get an environment
+      description: >-
+        Returns a single environment by its ID.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/environmentId'
+      responses:
+        '200':
+          description: Environment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+    put:
+      operationId: updateEnvironment
+      summary: Update an environment
+      description: >-
+        Updates an environment's properties.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/environmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentUpdateRequest'
+      responses:
+        '200':
+          description: Environment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete an environment
+      description: >-
+        Deletes an environment.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/environmentId'
+      responses:
+        '204':
+          description: Environment deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+  /1/api_keys:
+    get:
+      operationId: listApiKeys
+      summary: List all API keys
+      description: >-
+        Returns a list of all API keys for the team.
+      tags:
+        - Key Management
+      responses:
+        '200':
+          description: A list of API keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createApiKey
+      summary: Create an API key
+      description: >-
+        Creates a new API key for the team with specified permissions and
+        environment scope.
+      tags:
+        - Key Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreateRequest'
+      responses:
+        '201':
+          description: API key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          description: Unauthorized
+  /1/api_keys/{keyId}:
+    get:
+      operationId: getApiKey
+      summary: Get an API key
+      description: >-
+        Returns a single API key by its ID.
+      tags:
+        - Key Management
+      parameters:
+        - $ref: '#/components/parameters/keyId'
+      responses:
+        '200':
+          description: API key details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          description: Unauthorized
+        '404':
+          description: API key not found
+    put:
+      operationId: updateApiKey
+      summary: Update an API key
+      description: >-
+        Updates an API key's name, permissions, or configuration.
+      tags:
+        - Key Management
+      parameters:
+        - $ref: '#/components/parameters/keyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyUpdateRequest'
+      responses:
+        '200':
+          description: API key updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          description: Unauthorized
+        '404':
+          description: API key not found
+    delete:
+      operationId: deleteApiKey
+      summary: Delete an API key
+      description: >-
+        Deletes an API key.
+      tags:
+        - Key Management
+      parameters:
+        - $ref: '#/components/parameters/keyId'
+      responses:
+        '204':
+          description: API key deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: API key not found
+  /1/query_annotations/{datasetSlug}:
+    get:
+      operationId: listQueryAnnotations
+      summary: List query annotations
+      description: >-
+        Returns a list of all query annotations for the specified dataset.
+      tags:
+        - Query Annotations
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of query annotations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createQueryAnnotation
+      summary: Create a query annotation
+      description: >-
+        Creates a new query annotation to associate a name and description to a
+        query for collaboration.
+      tags:
+        - Query Annotations
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryAnnotationCreateRequest'
+      responses:
+        '201':
+          description: Query annotation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+  /1/query_annotations/{datasetSlug}/{queryAnnotationId}:
+    get:
+      operationId: getQueryAnnotation
+      summary: Get a query annotation
+      description: >-
+        Returns a single query annotation by its ID.
+      tags:
+        - Query Annotations
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/queryAnnotationId'
+      responses:
+        '200':
+          description: Query annotation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+    put:
+      operationId: updateQueryAnnotation
+      summary: Update a query annotation
+      description: >-
+        Updates a query annotation's name or description.
+      tags:
+        - Query Annotations
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/queryAnnotationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryAnnotationUpdateRequest'
+      responses:
+        '200':
+          description: Query annotation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+    delete:
+      operationId: deleteQueryAnnotation
+      summary: Delete a query annotation
+      description: >-
+        Deletes a query annotation.
+      tags:
+        - Query Annotations
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/queryAnnotationId'
+      responses:
+        '204':
+          description: Query annotation deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+  /1/service_map:
+    post:
+      operationId: createServiceMapRequest
+      summary: Create a service map dependency request
+      description: >-
+        Creates a new dependency request to generate a service map visualizing
+        relationships between services.
+      tags:
+        - Service Maps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceMapRequest'
+      responses:
+        '201':
+          description: Service map request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMapResult'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key. Must have appropriate permissions for
+        the endpoint being called.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    columnId:
+      name: columnId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the column.
+      schema:
+        type: string
+    calculatedFieldId:
+      name: calculatedFieldId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the calculated field.
+      schema:
+        type: string
+    boardId:
+      name: boardId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the board.
+      schema:
+        type: string
+    markerId:
+      name: markerId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the marker.
+      schema:
+        type: string
+    markerSettingId:
+      name: markerSettingId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the marker setting.
+      schema:
+        type: string
+    triggerId:
+      name: triggerId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the trigger.
+      schema:
+        type: string
+    recipientId:
+      name: recipientId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the recipient.
+      schema:
+        type: string
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the SLO.
+      schema:
+        type: string
+    burnAlertId:
+      name: burnAlertId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the burn alert.
+      schema:
+        type: string
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the environment.
+      schema:
+        type: string
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the API key.
+      schema:
+        type: string
+    queryAnnotationId:
+      name: queryAnnotationId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the query annotation.
+      schema:
+        type: string
+  schemas:
+    AuthInfo:
+      type: object
+      properties:
+        team:
+          type: object
+          description: >-
+            The team associated with the API key.
+          properties:
+            slug:
+              type: string
+              description: >-
+                The slug identifier for the team.
+            name:
+              type: string
+              description: >-
+                The display name of the team.
+        environment:
+          type: object
+          description: >-
+            The environment associated with the API key, if applicable.
+          properties:
+            slug:
+              type: string
+              description: >-
+                The slug identifier for the environment.
+            name:
+              type: string
+              description: >-
+                The display name of the environment.
+    AuthPermissions:
+      type: object
+      properties:
+        api_key_access:
+          type: object
+          description: >-
+            The permissions and access levels granted to the API key.
+          additionalProperties:
+            type: boolean
+    Dataset:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            The name of the dataset.
+        slug:
+          type: string
+          description: >-
+            The URL-safe slug identifier for the dataset.
+        description:
+          type: string
+          description: >-
+            A description of the dataset.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted timestamp of when the dataset was created.
+        last_written_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted timestamp of the last event written to the dataset.
+        regular_columns_count:
+          type: integer
+          description: >-
+            The number of regular columns in the dataset.
+    DatasetCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            The name of the dataset to create.
+        description:
+          type: string
+          description: >-
+            An optional description for the dataset.
+    DatasetUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: >-
+            An updated description for the dataset.
+        expand_json_depth:
+          type: integer
+          description: >-
+            The depth to which nested JSON payloads should be unpacked into
+            individual columns.
+    DatasetDefinition:
+      type: object
+      properties:
+        duration_ms:
+          type: string
+          description: >-
+            The column name that represents duration in milliseconds.
+        error:
+          type: string
+          description: >-
+            The column name that represents errors.
+        name:
+          type: string
+          description: >-
+            The column name that represents the event name.
+        parent_id:
+          type: string
+          description: >-
+            The column name used for parent span ID in tracing.
+        route:
+          type: string
+          description: >-
+            The column name that represents the route.
+        service_name:
+          type: string
+          description: >-
+            The column name that represents the service name.
+        span_id:
+          type: string
+          description: >-
+            The column name used for span ID in tracing.
+        trace_id:
+          type: string
+          description: >-
+            The column name used for trace ID in tracing.
+        user:
+          type: string
+          description: >-
+            The column name that represents the user.
+    Column:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the column.
+        key_name:
+          type: string
+          description: >-
+            The name of the column.
+        type:
+          type: string
+          description: >-
+            The data type of the column.
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        description:
+          type: string
+          description: >-
+            A description of the column.
+        hidden:
+          type: boolean
+          description: >-
+            If true, the column is excluded from autocomplete and raw data field
+            lists.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column was last updated.
+        last_written:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column last received event data.
+    ColumnCreateRequest:
+      type: object
+      required:
+        - key_name
+      properties:
+        key_name:
+          type: string
+          description: >-
+            The name for the new column.
+        type:
+          type: string
+          description: >-
+            The data type for the column.
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        description:
+          type: string
+          description: >-
+            An optional description for the column.
+        hidden:
+          type: boolean
+          description: >-
+            If true, hides the column from autocomplete and raw data field lists.
+    ColumnUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: >-
+            An updated description for the column.
+        type:
+          type: string
+          description: >-
+            An updated data type for the column.
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        hidden:
+          type: boolean
+          description: >-
+            If true, hides the column from autocomplete and raw data field lists.
+    CalculatedField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the calculated field.
+        alias:
+          type: string
+          description: >-
+            The alias name used to reference this calculated field in queries.
+        expression:
+          type: string
+          description: >-
+            The expression used to compute the calculated field value.
+        description:
+          type: string
+          description: >-
+            A description of the calculated field.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the calculated field was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the calculated field was last updated.
+    CalculatedFieldCreateRequest:
+      type: object
+      required:
+        - alias
+        - expression
+      properties:
+        alias:
+          type: string
+          description: >-
+            The alias name for the calculated field.
+        expression:
+          type: string
+          description: >-
+            The expression to compute the field value.
+        description:
+          type: string
+          description: >-
+            An optional description for the calculated field.
+    CalculatedFieldUpdateRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: >-
+            An updated expression for the calculated field.
+        description:
+          type: string
+          description: >-
+            An updated description for the calculated field.
+    Board:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the board.
+        name:
+          type: string
+          description: >-
+            The display name of the board.
+        description:
+          type: string
+          description: >-
+            A description of the board.
+        style:
+          type: string
+          description: >-
+            The visual layout style of the board.
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          description: >-
+            The column layout for the board's visual mode.
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          description: >-
+            The list of query objects displayed on the board.
+          items:
+            $ref: '#/components/schemas/BoardQuery'
+        links:
+          type: object
+          description: >-
+            Links related to the board.
+          properties:
+            board_url:
+              type: string
+              format: uri
+              description: >-
+                URL to view the board in the Honeycomb UI.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the board was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the board was last updated.
+    BoardQuery:
+      type: object
+      properties:
+        query_id:
+          type: string
+          description: >-
+            The ID of the query specification.
+        dataset:
+          type: string
+          description: >-
+            The dataset slug to run the query against.
+        query_annotation_id:
+          type: string
+          description: >-
+            The ID of an associated query annotation.
+        caption:
+          type: string
+          description: >-
+            A display caption for the query on the board.
+        query_style:
+          type: string
+          description: >-
+            The visualization style for the query.
+          enum:
+            - graph
+            - table
+            - combo
+        graph_settings:
+          type: object
+          description: >-
+            Settings for graph rendering.
+    BoardCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the board.
+        description:
+          type: string
+          description: >-
+            An optional description for the board.
+        style:
+          type: string
+          description: >-
+            The visual layout style.
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          description: >-
+            The column layout for visual mode.
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          description: >-
+            The list of queries to display on the board.
+          items:
+            $ref: '#/components/schemas/BoardQuery'
+    BoardUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the board.
+        description:
+          type: string
+          description: >-
+            An updated description for the board.
+        style:
+          type: string
+          description: >-
+            An updated visual layout style.
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          description: >-
+            An updated column layout for visual mode.
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          description: >-
+            An updated list of queries to display on the board.
+          items:
+            $ref: '#/components/schemas/BoardQuery'
+    Marker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the marker.
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for when the marker starts.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for when the marker ends. If omitted, the
+            marker represents a single point in time.
+        message:
+          type: string
+          description: >-
+            A message describing the marker event.
+        type:
+          type: string
+          description: >-
+            The type of the marker, used to group related markers.
+        url:
+          type: string
+          format: uri
+          description: >-
+            A URL associated with the marker event.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker was last updated.
+    MarkerCreateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for the marker start. Defaults to current
+            time if not provided.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for the marker end.
+        message:
+          type: string
+          description: >-
+            A message describing the marker event.
+        type:
+          type: string
+          description: >-
+            The type of the marker, used to group related markers.
+        url:
+          type: string
+          format: uri
+          description: >-
+            A URL associated with the marker event.
+    MarkerUpdateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          description: >-
+            Updated Unix timestamp in seconds for the marker start.
+        end_time:
+          type: integer
+          description: >-
+            Updated Unix timestamp in seconds for the marker end.
+        message:
+          type: string
+          description: >-
+            An updated message describing the marker event.
+        type:
+          type: string
+          description: >-
+            An updated type for the marker.
+        url:
+          type: string
+          format: uri
+          description: >-
+            An updated URL associated with the marker event.
+    MarkerSetting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the marker setting.
+        type:
+          type: string
+          description: >-
+            The marker type this setting applies to.
+        color:
+          type: string
+          description: >-
+            The color used to display markers of this type.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker setting was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker setting was last updated.
+    MarkerSettingCreateRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: >-
+            The marker type this setting applies to.
+        color:
+          type: string
+          description: >-
+            The color used to display markers of this type.
+    MarkerSettingUpdateRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            An updated marker type.
+        color:
+          type: string
+          description: >-
+            An updated color for the marker setting.
+    Trigger:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the trigger.
+        name:
+          type: string
+          description: >-
+            The display name of the trigger.
+        description:
+          type: string
+          description: >-
+            A description of the trigger.
+        disabled:
+          type: boolean
+          description: >-
+            Whether the trigger is currently disabled.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          description: >-
+            The threshold configuration that determines when the trigger fires.
+          properties:
+            op:
+              type: string
+              description: >-
+                The comparison operator.
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+              description: >-
+                The threshold value to compare against.
+            exceeded_limit:
+              type: integer
+              description: >-
+                Number of times threshold must be exceeded before firing.
+        frequency:
+          type: integer
+          description: >-
+            How frequently in seconds the trigger is evaluated.
+        recipients:
+          type: array
+          description: >-
+            List of recipients to notify when the trigger fires.
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the trigger was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the trigger was last updated.
+    TriggerCreateRequest:
+      type: object
+      required:
+        - name
+        - query
+        - threshold
+        - recipients
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the trigger.
+        description:
+          type: string
+          description: >-
+            An optional description for the trigger.
+        disabled:
+          type: boolean
+          description: >-
+            Whether the trigger should be disabled upon creation.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          required:
+            - op
+            - value
+          properties:
+            op:
+              type: string
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+        frequency:
+          type: integer
+          description: >-
+            How frequently in seconds to evaluate the trigger.
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    TriggerUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the trigger.
+        description:
+          type: string
+          description: >-
+            An updated description for the trigger.
+        disabled:
+          type: boolean
+          description: >-
+            Whether the trigger should be disabled.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          properties:
+            op:
+              type: string
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+        frequency:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the recipient.
+        type:
+          type: string
+          description: >-
+            The notification channel type.
+          enum:
+            - email
+            - pagerduty
+            - slack
+            - webhook
+            - msteams
+        target:
+          type: string
+          description: >-
+            The target address or identifier for the recipient, such as an
+            email address or webhook URL.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the recipient was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the recipient was last updated.
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The ID of the recipient to notify.
+    RecipientCreateRequest:
+      type: object
+      required:
+        - type
+        - target
+      properties:
+        type:
+          type: string
+          description: >-
+            The notification channel type.
+          enum:
+            - email
+            - pagerduty
+            - slack
+            - webhook
+            - msteams
+        target:
+          type: string
+          description: >-
+            The target address or identifier for the recipient.
+    RecipientUpdateRequest:
+      type: object
+      properties:
+        target:
+          type: string
+          description: >-
+            An updated target address or identifier for the recipient.
+    SLO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the SLO.
+        name:
+          type: string
+          description: >-
+            The display name of the SLO.
+        description:
+          type: string
+          description: >-
+            A description of the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: >-
+            The target percentage for the SLO, such as 99.9.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days over which the SLO is evaluated.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the SLO was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the SLO was last updated.
+    SLOCreateRequest:
+      type: object
+      required:
+        - name
+        - sli
+        - target_percentage
+        - time_period_days
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the SLO.
+        description:
+          type: string
+          description: >-
+            An optional description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: >-
+            The target percentage for the SLO.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days for the SLO.
+    SLOUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the SLO.
+        description:
+          type: string
+          description: >-
+            An updated description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+    SLOReport:
+      type: object
+      properties:
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO this report is for.
+        budget_remaining:
+          type: number
+          description: >-
+            The remaining error budget as a percentage.
+        budget_used:
+          type: number
+          description: >-
+            The used error budget as a percentage.
+        compliance:
+          type: number
+          description: >-
+            The current compliance percentage.
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days for the report.
+    BurnAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the burn alert.
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO this burn alert monitors.
+        alert_type:
+          type: string
+          description: >-
+            The type of burn alert.
+          enum:
+            - budget_rate
+            - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+          description: >-
+            For exhaustion_time alerts, the number of minutes before the budget
+            is exhausted that triggers the alert.
+        budget_rate_window_minutes:
+          type: integer
+          description: >-
+            For budget_rate alerts, the window in minutes over which to measure
+            the budget burn rate.
+        budget_rate_decrease_percent:
+          type: number
+          description: >-
+            For budget_rate alerts, the percentage decrease in budget that
+            triggers the alert.
+        recipients:
+          type: array
+          description: >-
+            List of recipients to notify when the burn alert fires.
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the burn alert was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the burn alert was last updated.
+    BurnAlertCreateRequest:
+      type: object
+      required:
+        - slo_id
+        - alert_type
+        - recipients
+      properties:
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO to monitor.
+        alert_type:
+          type: string
+          enum:
+            - budget_rate
+            - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    BurnAlertUpdateRequest:
+      type: object
+      properties:
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the environment.
+        name:
+          type: string
+          description: >-
+            The display name of the environment.
+        slug:
+          type: string
+          description: >-
+            The URL-safe slug identifier for the environment.
+        description:
+          type: string
+          description: >-
+            A description of the environment.
+        color:
+          type: string
+          description: >-
+            A color associated with the environment for UI display.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the environment was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the environment was last updated.
+    EnvironmentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the environment.
+        description:
+          type: string
+          description: >-
+            An optional description for the environment.
+        color:
+          type: string
+          description: >-
+            An optional color for the environment.
+    EnvironmentUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the environment.
+        description:
+          type: string
+          description: >-
+            An updated description for the environment.
+        color:
+          type: string
+          description: >-
+            An updated color for the environment.
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the API key.
+        name:
+          type: string
+          description: >-
+            The display name of the API key.
+        type:
+          type: string
+          description: >-
+            The type of API key.
+          enum:
+            - configuration
+            - ingest
+        disabled:
+          type: boolean
+          description: >-
+            Whether the API key is disabled.
+        permissions:
+          type: object
+          description: >-
+            The permissions granted to this API key.
+          additionalProperties:
+            type: boolean
+        environment_id:
+          type: string
+          description: >-
+            The environment this key is scoped to, if applicable.
+        secret:
+          type: string
+          description: >-
+            The API key secret, only returned upon creation.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the API key was created.
+    ApiKeyCreateRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the API key.
+        type:
+          type: string
+          description: >-
+            The type of API key to create.
+          enum:
+            - configuration
+            - ingest
+        permissions:
+          type: object
+          description: >-
+            The permissions to grant to this API key.
+          additionalProperties:
+            type: boolean
+        environment_id:
+          type: string
+          description: >-
+            The environment to scope this key to.
+    ApiKeyUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the API key.
+        disabled:
+          type: boolean
+          description: >-
+            Whether to disable the API key.
+        permissions:
+          type: object
+          description: >-
+            Updated permissions for the API key.
+          additionalProperties:
+            type: boolean
+    QuerySpec:
+      type: object
+      description: >-
+        A query specification defining what data to retrieve and how to
+        aggregate it.
+      properties:
+        calculations:
+          type: array
+          description: >-
+            The calculations to perform on the query data.
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                description: >-
+                  The aggregation operation.
+                enum:
+                  - COUNT
+                  - SUM
+                  - AVG
+                  - COUNT_DISTINCT
+                  - MAX
+                  - MIN
+                  - P001
+                  - P01
+                  - P05
+                  - P10
+                  - P25
+                  - P50
+                  - P75
+                  - P90
+                  - P95
+                  - P99
+                  - P999
+                  - HEATMAP
+                  - RATE_AVG
+                  - RATE_SUM
+                  - RATE_MAX
+              column:
+                type: string
+                description: >-
+                  The column to perform the calculation on.
+        filters:
+          type: array
+          description: >-
+            Filters to apply to the query.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+                description: >-
+                  The column to filter on.
+              op:
+                type: string
+                description: >-
+                  The filter operator.
+                enum:
+                  - '='
+                  - '!='
+                  - '>'
+                  - '>='
+                  - '<'
+                  - '<='
+                  - starts-with
+                  - does-not-start-with
+                  - contains
+                  - does-not-contain
+                  - exists
+                  - does-not-exist
+                  - in
+                  - not-in
+              value:
+                description: >-
+                  The value to compare against.
+        breakdowns:
+          type: array
+          description: >-
+            Columns to group results by.
+          items:
+            type: string
+        orders:
+          type: array
+          description: >-
+            Ordering for the results.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              order:
+                type: string
+                enum:
+                  - ascending
+                  - descending
+        time_range:
+          type: integer
+          description: >-
+            The time range in seconds to query over.
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp for the query start time.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp for the query end time.
+        granularity:
+          type: integer
+          description: >-
+            The granularity of results in seconds.
+        limit:
+          type: integer
+          description: >-
+            The maximum number of results to return.
+    QueryAnnotation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the query annotation.
+        name:
+          type: string
+          description: >-
+            The name of the query annotation.
+        description:
+          type: string
+          description: >-
+            A description associated with the query.
+        query_id:
+          type: string
+          description: >-
+            The ID of the query this annotation is associated with.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the query annotation was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the query annotation was last updated.
+    QueryAnnotationCreateRequest:
+      type: object
+      required:
+        - name
+        - query_id
+      properties:
+        name:
+          type: string
+          description: >-
+            The name for the query annotation.
+        description:
+          type: string
+          description: >-
+            An optional description for the annotation.
+        query_id:
+          type: string
+          description: >-
+            The ID of the query to annotate.
+    QueryAnnotationUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated name for the query annotation.
+        description:
+          type: string
+          description: >-
+            An updated description for the annotation.
+    ServiceMapRequest:
+      type: object
+      properties:
+        time_range:
+          type: integer
+          description: >-
+            The time range in seconds to generate the service map for.
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp for the service map start time.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp for the service map end time.
+        dataset:
+          type: string
+          description: >-
+            The dataset slug to generate the service map from.
+    ServiceMapResult:
+      type: object
+      properties:
+        services:
+          type: array
+          description: >-
+            List of services in the service map.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: >-
+                  The name of the service.
+        dependencies:
+          type: array
+          description: >-
+            List of dependencies between services.
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                description: >-
+                  The source service name.
+              target:
+                type: string
+                description: >-
+                  The target service name.

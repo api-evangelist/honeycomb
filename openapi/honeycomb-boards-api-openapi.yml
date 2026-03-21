@@ -1,0 +1,290 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Boards API
+  description: >-
+    The Honeycomb Boards API allows developers to programmatically create
+    and manage boards, which are collections of queries displayed together
+    as a dashboard-like view. Boards provide a way to organize and share
+    related queries for monitoring and debugging workflows. The API supports
+    listing, creating, updating, and deleting boards, making it possible to
+    automate the setup of observability dashboards across environments.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Boards API Documentation
+  url: https://api-docs.honeycomb.io/api/boards
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Boards
+    description: >-
+      Manage boards for organizing queries, SLO panels, text panels, and views.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/boards:
+    get:
+      operationId: listBoards
+      summary: List all boards
+      description: >-
+        Returns a list of all boards accessible in the current environment.
+      tags:
+        - Boards
+      responses:
+        '200':
+          description: A list of boards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBoard
+      summary: Create a board
+      description: >-
+        Creates a new board for organizing queries, SLO panels, and text
+        panels. Boards support preset filters (limited to 5 per board) to
+        apply consistent filtering across the board.
+      tags:
+        - Boards
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardCreateRequest'
+      responses:
+        '201':
+          description: Board created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+  /1/boards/{boardId}:
+    get:
+      operationId: getBoard
+      summary: Get a board
+      description: >-
+        Returns a single board by its ID, including all queries and panels.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      responses:
+        '200':
+          description: Board details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+    put:
+      operationId: updateBoard
+      summary: Update a board
+      description: >-
+        Updates a board's properties, queries, and panels.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardUpdateRequest'
+      responses:
+        '200':
+          description: Board updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+    delete:
+      operationId: deleteBoard
+      summary: Delete a board
+      description: >-
+        Deletes a board.
+      tags:
+        - Boards
+      parameters:
+        - $ref: '#/components/parameters/boardId'
+      responses:
+        '204':
+          description: Board deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Board not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with Manage Boards permission.
+  parameters:
+    boardId:
+      name: boardId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the board.
+      schema:
+        type: string
+  schemas:
+    Board:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the board.
+        name:
+          type: string
+          description: >-
+            The display name of the board.
+        description:
+          type: string
+          description: >-
+            A description of the board.
+        style:
+          type: string
+          description: >-
+            The visual layout style of the board.
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          description: >-
+            The column layout for the board's visual mode.
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          description: >-
+            The list of query objects displayed on the board.
+          items:
+            $ref: '#/components/schemas/BoardQuery'
+        links:
+          type: object
+          description: >-
+            Links related to the board.
+          properties:
+            board_url:
+              type: string
+              format: uri
+              description: >-
+                URL to view the board in the Honeycomb UI.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the board was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the board was last updated.
+    BoardQuery:
+      type: object
+      properties:
+        query_id:
+          type: string
+          description: >-
+            The ID of the query specification.
+        dataset:
+          type: string
+          description: >-
+            The dataset slug to run the query against.
+        query_annotation_id:
+          type: string
+          description: >-
+            The ID of an associated query annotation.
+        caption:
+          type: string
+          description: >-
+            A display caption for the query on the board.
+        query_style:
+          type: string
+          description: >-
+            The visualization style for the query.
+          enum:
+            - graph
+            - table
+            - combo
+        graph_settings:
+          type: object
+          description: >-
+            Settings for graph rendering.
+    BoardCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the board.
+        description:
+          type: string
+          description: >-
+            An optional description for the board.
+        style:
+          type: string
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoardQuery'
+    BoardUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the board.
+        description:
+          type: string
+          description: >-
+            An updated description for the board.
+        style:
+          type: string
+          enum:
+            - list
+            - visual
+        column_layout:
+          type: string
+          enum:
+            - multi
+            - single
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoardQuery'

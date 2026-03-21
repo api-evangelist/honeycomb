@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://honeycomb.io/schemas/honeycomb/event.json",
+  "title": "Honeycomb Event",
+  "description": "Represents a telemetry event sent to Honeycomb via the Events API. Events are the fundamental unit of data in Honeycomb, containing structured key-value pairs that describe an operation or occurrence in your system.",
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The event's timestamp in ISO8601 or RFC3339 format. Defaults to the server's current time if not provided."
+    },
+    "samplerate": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "An integer representing the sampling denominator. A value of 10 means one in ten events was kept during sampling."
+    },
+    "data": {
+      "type": "object",
+      "description": "The event payload containing custom fields as key-value pairs. Fields become columns in the Honeycomb dataset.",
+      "additionalProperties": true,
+      "properties": {
+        "trace.trace_id": {
+          "type": "string",
+          "description": "The trace identifier linking related spans together."
+        },
+        "trace.span_id": {
+          "type": "string",
+          "description": "The unique identifier for this span within a trace."
+        },
+        "trace.parent_id": {
+          "type": "string",
+          "description": "The span ID of the parent span in a trace."
+        },
+        "service_name": {
+          "type": "string",
+          "description": "The name of the service that generated this event."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the operation or event."
+        },
+        "duration_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The duration of the operation in milliseconds."
+        },
+        "error": {
+          "type": ["string", "boolean"],
+          "description": "Indicates whether the operation resulted in an error."
+        },
+        "http.method": {
+          "type": "string",
+          "description": "The HTTP method of the request.",
+          "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
+        },
+        "http.status_code": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599,
+          "description": "The HTTP response status code."
+        },
+        "http.route": {
+          "type": "string",
+          "description": "The matched route pattern for the HTTP request."
+        },
+        "http.url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The full URL of the HTTP request."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "BatchEventResponse": {
+      "type": "object",
+      "description": "Response for an individual event within a batch submission.",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "The HTTP status code for this individual event. 202 indicates successful queuing."
+        },
+        "error": {
+          "type": "string",
+          "description": "An error message if the event failed processing."
+        }
+      }
+    }
+  }
+}

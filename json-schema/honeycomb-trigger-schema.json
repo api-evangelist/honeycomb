@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://honeycomb.io/schemas/honeycomb/trigger.json",
+  "title": "Honeycomb Trigger",
+  "description": "Represents a trigger alerting rule in Honeycomb that fires when query results meet specified threshold conditions, notifying configured recipients via PagerDuty, Email, Webhook, Microsoft Teams, or Slack.",
+  "type": "object",
+  "required": ["name", "query", "threshold", "recipients"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the trigger."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The display name of the trigger."
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of what the trigger monitors."
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether the trigger is currently disabled."
+    },
+    "query": {
+      "type": "object",
+      "description": "The query specification that defines the data to evaluate."
+    },
+    "threshold": {
+      "$ref": "#/$defs/Threshold"
+    },
+    "frequency": {
+      "type": "integer",
+      "minimum": 60,
+      "description": "How frequently in seconds the trigger is evaluated."
+    },
+    "recipients": {
+      "type": "array",
+      "description": "List of recipients to notify when the trigger fires.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/RecipientRef"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the trigger was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the trigger was last updated."
+    }
+  },
+  "$defs": {
+    "Threshold": {
+      "type": "object",
+      "description": "The threshold configuration that determines when the trigger fires.",
+      "required": ["op", "value"],
+      "properties": {
+        "op": {
+          "type": "string",
+          "description": "The comparison operator for the threshold.",
+          "enum": [">", ">=", "<", "<="]
+        },
+        "value": {
+          "type": "number",
+          "description": "The threshold value to compare against."
+        },
+        "exceeded_limit": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of consecutive times the threshold must be exceeded before the trigger fires."
+        }
+      }
+    },
+    "RecipientRef": {
+      "type": "object",
+      "description": "A reference to a notification recipient.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the recipient to notify."
+        }
+      }
+    },
+    "Recipient": {
+      "type": "object",
+      "description": "A notification recipient that can be targeted by triggers and burn alerts.",
+      "required": ["type", "target"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the recipient."
+        },
+        "type": {
+          "type": "string",
+          "description": "The notification channel type.",
+          "enum": ["email", "pagerduty", "slack", "webhook", "msteams"]
+        },
+        "target": {
+          "type": "string",
+          "description": "The target address or identifier for the recipient, such as an email address or webhook URL."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 formatted time the recipient was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 formatted time the recipient was last updated."
+        }
+      }
+    }
+  }
+}

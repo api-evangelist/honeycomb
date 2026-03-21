@@ -1,0 +1,573 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb SLOs API
+  description: >-
+    The Honeycomb SLOs API enables developers to define and monitor Service
+    Level Objectives programmatically. It supports creating, listing,
+    updating, and deleting SLO objects for an organization. Combined with
+    the Burn Alerts API for notifications and the Reporting API for
+    historical SLO performance analysis, it provides a complete interface
+    for managing reliability targets and tracking error budgets over time.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb SLOs API Documentation
+  url: https://api-docs.honeycomb.io/api/slos
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: SLOs
+    description: >-
+      Define and monitor Service Level Objectives for your organization.
+  - name: Burn Alerts
+    description: >-
+      Manage burn alerts that notify you when issues impact your SLO budget.
+  - name: Reporting
+    description: >-
+      Access historical SLO performance reporting data.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/slos/{datasetSlug}:
+    get:
+      operationId: listSLOs
+      summary: List all SLOs
+      description: >-
+        Returns a list of all Service Level Objectives for the specified dataset.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of SLOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSLO
+      summary: Create an SLO
+      description: >-
+        Creates a new Service Level Objective for the specified dataset. The
+        API key must have the Manage SLOs permission.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCreateRequest'
+      responses:
+        '201':
+          description: SLO created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '400':
+          description: Bad request - invalid SLO configuration
+        '401':
+          description: Unauthorized
+  /1/slos/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLO
+      summary: Get an SLO
+      description: >-
+        Returns a single SLO by its ID.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    put:
+      operationId: updateSLO
+      summary: Update an SLO
+      description: >-
+        Updates an SLO's target percentage, time period, or associated query.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOUpdateRequest'
+      responses:
+        '200':
+          description: SLO updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    delete:
+      operationId: deleteSLO
+      summary: Delete an SLO
+      description: >-
+        Deletes a Service Level Objective.
+      tags:
+        - SLOs
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '204':
+          description: SLO deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+  /1/burn_alerts/{datasetSlug}:
+    get:
+      operationId: listBurnAlerts
+      summary: List all burn alerts
+      description: >-
+        Returns a list of all burn alerts for the specified dataset.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of burn alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBurnAlert
+      summary: Create a burn alert
+      description: >-
+        Creates a new burn alert that notifies when issues impact your SLO
+        budget. Supported alert types are budget_rate and exhaustion_time.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertCreateRequest'
+      responses:
+        '201':
+          description: Burn alert created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+  /1/burn_alerts/{datasetSlug}/{burnAlertId}:
+    get:
+      operationId: getBurnAlert
+      summary: Get a burn alert
+      description: >-
+        Returns a single burn alert by its ID.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '200':
+          description: Burn alert details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    put:
+      operationId: updateBurnAlert
+      summary: Update a burn alert
+      description: >-
+        Updates a burn alert's configuration or notification recipients.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertUpdateRequest'
+      responses:
+        '200':
+          description: Burn alert updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    delete:
+      operationId: deleteBurnAlert
+      summary: Delete a burn alert
+      description: >-
+        Deletes a burn alert.
+      tags:
+        - Burn Alerts
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '204':
+          description: Burn alert deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+  /1/slo_report/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLOReport
+      summary: Get SLO report
+      description: >-
+        Returns historical SLO performance reporting data including budget
+        remaining, budget used, and compliance percentage.
+      tags:
+        - Reporting
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO report data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOReport'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with Manage SLOs permission.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset.
+      schema:
+        type: string
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the SLO.
+      schema:
+        type: string
+    burnAlertId:
+      name: burnAlertId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the burn alert.
+      schema:
+        type: string
+  schemas:
+    SLO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the SLO.
+        name:
+          type: string
+          description: >-
+            The display name of the SLO.
+        description:
+          type: string
+          description: >-
+            A description of the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: >-
+            The target percentage for the SLO, such as 99.9.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days over which the SLO is evaluated.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the SLO was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the SLO was last updated.
+    SLOCreateRequest:
+      type: object
+      required:
+        - name
+        - sli
+        - target_percentage
+        - time_period_days
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the SLO.
+        description:
+          type: string
+          description: >-
+            An optional description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: >-
+            The target percentage for the SLO.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days for the SLO.
+    SLOUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            An updated display name for the SLO.
+        description:
+          type: string
+          description: >-
+            An updated description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+    SLOReport:
+      type: object
+      properties:
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO this report is for.
+        budget_remaining:
+          type: number
+          description: >-
+            The remaining error budget as a percentage.
+        budget_used:
+          type: number
+          description: >-
+            The used error budget as a percentage.
+        compliance:
+          type: number
+          description: >-
+            The current compliance percentage.
+        time_period_days:
+          type: integer
+          description: >-
+            The time period in days for the report.
+    BurnAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the burn alert.
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO this burn alert monitors.
+        alert_type:
+          type: string
+          description: >-
+            The type of burn alert.
+          enum:
+            - budget_rate
+            - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+          description: >-
+            For exhaustion_time alerts, the number of minutes before the budget
+            is exhausted that triggers the alert.
+        budget_rate_window_minutes:
+          type: integer
+          description: >-
+            For budget_rate alerts, the window in minutes over which to measure
+            the budget burn rate.
+        budget_rate_decrease_percent:
+          type: number
+          description: >-
+            For budget_rate alerts, the percentage decrease in budget that
+            triggers the alert.
+        recipients:
+          type: array
+          description: >-
+            List of recipients to notify when the burn alert fires.
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the burn alert was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the burn alert was last updated.
+    BurnAlertCreateRequest:
+      type: object
+      required:
+        - slo_id
+        - alert_type
+        - recipients
+      properties:
+        slo_id:
+          type: string
+          description: >-
+            The ID of the SLO to monitor.
+        alert_type:
+          type: string
+          enum:
+            - budget_rate
+            - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+          description: >-
+            Required for exhaustion_time alerts.
+        budget_rate_window_minutes:
+          type: integer
+          description: >-
+            Required for budget_rate alerts.
+        budget_rate_decrease_percent:
+          type: number
+          description: >-
+            Required for budget_rate alerts.
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    BurnAlertUpdateRequest:
+      type: object
+      properties:
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The ID of the recipient to notify.
+    QuerySpec:
+      type: object
+      description: >-
+        A query specification defining the SLI measurement.
+      properties:
+        calculations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                  - COUNT
+                  - SUM
+                  - AVG
+                  - COUNT_DISTINCT
+                  - MAX
+                  - MIN
+                  - P001
+                  - P01
+                  - P05
+                  - P10
+                  - P25
+                  - P50
+                  - P75
+                  - P90
+                  - P95
+                  - P99
+                  - P999
+              column:
+                type: string
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              value: {}
+        breakdowns:
+          type: array
+          items:
+            type: string
+        time_range:
+          type: integer

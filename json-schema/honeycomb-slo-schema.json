@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://honeycomb.io/schemas/honeycomb/slo.json",
+  "title": "Honeycomb SLO",
+  "description": "Represents a Service Level Objective in Honeycomb, including the SLI query, target percentage, time period, and associated burn alerts for monitoring error budget consumption.",
+  "type": "object",
+  "required": ["name", "sli", "target_percentage", "time_period_days"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the SLO."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The display name of the SLO."
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of what the SLO measures."
+    },
+    "sli": {
+      "type": "object",
+      "description": "The Service Level Indicator query specification that defines how to measure the SLO."
+    },
+    "target_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The target percentage for the SLO, such as 99.9 for three nines availability."
+    },
+    "time_period_days": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The rolling time period in days over which the SLO is evaluated."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the SLO was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the SLO was last updated."
+    }
+  },
+  "$defs": {
+    "BurnAlert": {
+      "type": "object",
+      "description": "A burn alert that notifies recipients when the SLO error budget is being consumed too quickly.",
+      "required": ["slo_id", "alert_type", "recipients"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the burn alert."
+        },
+        "slo_id": {
+          "type": "string",
+          "description": "The ID of the SLO this burn alert monitors."
+        },
+        "alert_type": {
+          "type": "string",
+          "description": "The type of burn alert.",
+          "enum": ["budget_rate", "exhaustion_time"]
+        },
+        "exhaustion_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "For exhaustion_time alerts, the number of minutes before budget exhaustion that triggers the alert."
+        },
+        "budget_rate_window_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "For budget_rate alerts, the window in minutes over which to measure the burn rate."
+        },
+        "budget_rate_decrease_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "For budget_rate alerts, the percentage decrease in budget that triggers the alert."
+        },
+        "recipients": {
+          "type": "array",
+          "description": "List of recipients to notify when the burn alert fires.",
+          "items": {
+            "$ref": "#/$defs/RecipientRef"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 formatted time the burn alert was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO8601 formatted time the burn alert was last updated."
+        }
+      }
+    },
+    "RecipientRef": {
+      "type": "object",
+      "description": "A reference to a notification recipient.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the recipient to notify."
+        }
+      }
+    },
+    "SLOReport": {
+      "type": "object",
+      "description": "Historical SLO performance report data.",
+      "properties": {
+        "slo_id": {
+          "type": "string",
+          "description": "The ID of the SLO this report is for."
+        },
+        "budget_remaining": {
+          "type": "number",
+          "description": "The remaining error budget as a percentage."
+        },
+        "budget_used": {
+          "type": "number",
+          "description": "The used error budget as a percentage."
+        },
+        "compliance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "The current compliance percentage."
+        },
+        "time_period_days": {
+          "type": "integer",
+          "description": "The time period in days for the report."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://honeycomb.io/schemas/honeycomb/query.json",
+  "title": "Honeycomb Query Specification",
+  "description": "Defines a query specification for retrieving and aggregating data in Honeycomb. Queries are used across boards, triggers, SLOs, and query annotations.",
+  "type": "object",
+  "properties": {
+    "calculations": {
+      "type": "array",
+      "description": "The calculations (aggregations) to perform on the query data.",
+      "items": {
+        "$ref": "#/$defs/Calculation"
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Filters to apply to events before aggregation.",
+      "items": {
+        "$ref": "#/$defs/Filter"
+      }
+    },
+    "filter_combination": {
+      "type": "string",
+      "description": "How to combine multiple filters. Defaults to AND.",
+      "enum": ["AND", "OR"]
+    },
+    "breakdowns": {
+      "type": "array",
+      "description": "Column names to group results by.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "orders": {
+      "type": "array",
+      "description": "Ordering rules for the query results.",
+      "items": {
+        "$ref": "#/$defs/Order"
+      }
+    },
+    "havings": {
+      "type": "array",
+      "description": "Post-aggregation filters applied to calculated results.",
+      "items": {
+        "$ref": "#/$defs/Having"
+      }
+    },
+    "time_range": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The relative time range in seconds to query over."
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the absolute query start time."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the absolute query end time."
+    },
+    "granularity": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The time granularity of results in seconds."
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Maximum number of result rows to return."
+    }
+  },
+  "$defs": {
+    "Calculation": {
+      "type": "object",
+      "description": "An aggregation calculation to perform.",
+      "required": ["op"],
+      "properties": {
+        "op": {
+          "type": "string",
+          "description": "The aggregation operation to perform.",
+          "enum": [
+            "COUNT",
+            "SUM",
+            "AVG",
+            "COUNT_DISTINCT",
+            "MAX",
+            "MIN",
+            "P001",
+            "P01",
+            "P05",
+            "P10",
+            "P25",
+            "P50",
+            "P75",
+            "P90",
+            "P95",
+            "P99",
+            "P999",
+            "HEATMAP",
+            "RATE_AVG",
+            "RATE_SUM",
+            "RATE_MAX"
+          ]
+        },
+        "column": {
+          "type": "string",
+          "description": "The column to perform the calculation on. Not required for COUNT."
+        }
+      }
+    },
+    "Filter": {
+      "type": "object",
+      "description": "A filter condition applied to events.",
+      "required": ["column", "op"],
+      "properties": {
+        "column": {
+          "type": "string",
+          "description": "The column name to filter on."
+        },
+        "op": {
+          "type": "string",
+          "description": "The comparison operator.",
+          "enum": [
+            "=",
+            "!=",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "starts-with",
+            "does-not-start-with",
+            "contains",
+            "does-not-contain",
+            "exists",
+            "does-not-exist",
+            "in",
+            "not-in"
+          ]
+        },
+        "value": {
+          "description": "The value to compare against. Not required for exists/does-not-exist operators."
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "description": "An ordering rule for query results.",
+      "properties": {
+        "column": {
+          "type": "string",
+          "description": "The column to order by."
+        },
+        "op": {
+          "type": "string",
+          "description": "The aggregation operation to order by, if ordering by a calculation."
+        },
+        "order": {
+          "type": "string",
+          "description": "The sort direction.",
+          "enum": ["ascending", "descending"]
+        }
+      }
+    },
+    "Having": {
+      "type": "object",
+      "description": "A post-aggregation filter applied to calculated results.",
+      "properties": {
+        "calculate_op": {
+          "type": "string",
+          "description": "The calculation operation this having clause applies to."
+        },
+        "column": {
+          "type": "string",
+          "description": "The column the calculation is performed on."
+        },
+        "op": {
+          "type": "string",
+          "description": "The comparison operator.",
+          "enum": [">", ">=", "<", "<=", "=", "!="]
+        },
+        "value": {
+          "type": "number",
+          "description": "The value to compare the calculated result against."
+        }
+      }
+    }
+  }
+}

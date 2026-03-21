@@ -1,0 +1,505 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Datasets API
+  description: >-
+    The Honeycomb Datasets API provides management capabilities for datasets,
+    which represent collections of related events from the same source. It
+    allows developers to list, create, and update datasets programmatically.
+    The related Columns API enables management of fields within datasets,
+    including listing, creating, updating, and deleting columns that define
+    the structure of event data stored in Honeycomb.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Datasets API Documentation
+  url: https://api-docs.honeycomb.io/api/datasets
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Datasets
+    description: >-
+      Manage datasets, which represent collections of related events from the
+      same source.
+  - name: Columns
+    description: >-
+      Manage columns (fields) within datasets that define the structure of
+      event data.
+  - name: Dataset Definitions
+    description: >-
+      Manage dataset definitions that configure how columns are interpreted
+      and displayed in the UI.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/datasets:
+    get:
+      operationId: listDatasets
+      summary: List all datasets
+      description: >-
+        Returns a list of all datasets in the environment associated with the
+        API key.
+      tags:
+        - Datasets
+      responses:
+        '200':
+          description: A list of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDataset
+      summary: Create a dataset
+      description: >-
+        Creates a dataset in the environment associated with the API key. If a
+        dataset already exists with that name or slug, the existing dataset is
+        returned.
+      tags:
+        - Datasets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetCreateRequest'
+      responses:
+        '201':
+          description: Dataset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '200':
+          description: Existing dataset returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+  /1/datasets/{datasetSlug}:
+    get:
+      operationId: getDataset
+      summary: Get a dataset
+      description: >-
+        Returns a single dataset by its slug.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: Dataset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDataset
+      summary: Update a dataset
+      description: >-
+        Updates a dataset's properties such as description and JSON expansion
+        depth.
+      tags:
+        - Datasets
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetUpdateRequest'
+      responses:
+        '200':
+          description: Dataset updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/columns/{datasetSlug}:
+    get:
+      operationId: listColumns
+      summary: List all columns
+      description: >-
+        Returns a list of all columns in the specified dataset. The API key
+        must have the Manage Queries and Columns permission.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of columns
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    post:
+      operationId: createColumn
+      summary: Create a column
+      description: >-
+        Creates a new column in the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnCreateRequest'
+      responses:
+        '201':
+          description: Column created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/columns/{datasetSlug}/{columnId}:
+    get:
+      operationId: getColumn
+      summary: Get a column
+      description: >-
+        Returns a single column by its ID.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      responses:
+        '200':
+          description: Column details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+    put:
+      operationId: updateColumn
+      summary: Update a column
+      description: >-
+        Updates a column's description, type, or visibility.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnUpdateRequest'
+      responses:
+        '200':
+          description: Column updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Column'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+    delete:
+      operationId: deleteColumn
+      summary: Delete a column
+      description: >-
+        Deletes a column from the specified dataset.
+      tags:
+        - Columns
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/columnId'
+      responses:
+        '204':
+          description: Column deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Column not found
+  /1/dataset_definitions/{datasetSlug}:
+    get:
+      operationId: getDatasetDefinition
+      summary: Get dataset definition
+      description: >-
+        Returns the dataset definition which configures how columns are
+        interpreted and displayed, such as mapping trace_id, span_id,
+        parent_id, service_name, and other semantic fields.
+      tags:
+        - Dataset Definitions
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: Dataset definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDatasetDefinition
+      summary: Update dataset definition
+      description: >-
+        Updates the dataset definition for the specified dataset.
+      tags:
+        - Dataset Definitions
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetDefinition'
+      responses:
+        '200':
+          description: Dataset definition updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with appropriate permissions.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset.
+      schema:
+        type: string
+    columnId:
+      name: columnId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the column.
+      schema:
+        type: string
+  schemas:
+    Dataset:
+      type: object
+      properties:
+        name:
+          type: string
+          description: >-
+            The name of the dataset.
+        slug:
+          type: string
+          description: >-
+            The URL-safe slug identifier for the dataset.
+        description:
+          type: string
+          description: >-
+            A description of the dataset.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted timestamp of when the dataset was created.
+        last_written_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted timestamp of the last event written to the dataset.
+        regular_columns_count:
+          type: integer
+          description: >-
+            The number of regular columns in the dataset.
+    DatasetCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: >-
+            The name of the dataset to create.
+        description:
+          type: string
+          description: >-
+            An optional description for the dataset.
+    DatasetUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: >-
+            An updated description for the dataset.
+        expand_json_depth:
+          type: integer
+          description: >-
+            The depth to which nested JSON payloads should be unpacked into
+            individual columns.
+    Column:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the column.
+        key_name:
+          type: string
+          description: >-
+            The name of the column.
+        type:
+          type: string
+          description: >-
+            The data type of the column.
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        description:
+          type: string
+          description: >-
+            A description of the column.
+        hidden:
+          type: boolean
+          description: >-
+            If true, the column is excluded from autocomplete and raw data
+            field lists.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column was last updated.
+        last_written:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the column last received event data.
+    ColumnCreateRequest:
+      type: object
+      required:
+        - key_name
+      properties:
+        key_name:
+          type: string
+          description: >-
+            The name for the new column.
+        type:
+          type: string
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        description:
+          type: string
+          description: >-
+            An optional description for the column.
+        hidden:
+          type: boolean
+          description: >-
+            If true, hides the column from autocomplete.
+    ColumnUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: >-
+            An updated description for the column.
+        type:
+          type: string
+          enum:
+            - string
+            - float
+            - integer
+            - boolean
+        hidden:
+          type: boolean
+          description: >-
+            If true, hides the column from autocomplete.
+    DatasetDefinition:
+      type: object
+      properties:
+        duration_ms:
+          type: string
+          description: >-
+            The column name that represents duration in milliseconds.
+        error:
+          type: string
+          description: >-
+            The column name that represents errors.
+        name:
+          type: string
+          description: >-
+            The column name that represents the event name.
+        parent_id:
+          type: string
+          description: >-
+            The column name used for parent span ID in tracing.
+        route:
+          type: string
+          description: >-
+            The column name that represents the route.
+        service_name:
+          type: string
+          description: >-
+            The column name that represents the service name.
+        span_id:
+          type: string
+          description: >-
+            The column name used for span ID in tracing.
+        trace_id:
+          type: string
+          description: >-
+            The column name used for trace ID in tracing.
+        user:
+          type: string
+          description: >-
+            The column name that represents the user.

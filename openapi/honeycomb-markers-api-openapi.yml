@@ -1,0 +1,374 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Markers API
+  description: >-
+    The Honeycomb Markers API enables developers to create and manage markers
+    that indicate points in time on graphs where notable events occurred,
+    such as deploys, configuration changes, or outages. Marker Settings
+    allow grouping similar markers together with consistent visual styling.
+    The API supports listing, creating, updating, and deleting both markers
+    and marker settings, making it straightforward to integrate deployment
+    pipelines and incident workflows with Honeycomb visualizations.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Markers API Documentation
+  url: https://api-docs.honeycomb.io/api/markers
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Markers
+    description: >-
+      Manage markers that indicate points in time on graphs where notable events
+      occurred.
+  - name: Marker Settings
+    description: >-
+      Manage marker settings that group similar markers with consistent visual
+      styling.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/markers/{datasetSlug}:
+    get:
+      operationId: listMarkers
+      summary: List all markers
+      description: >-
+        Returns a list of all markers for the specified dataset.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of markers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMarker
+      summary: Create a marker
+      description: >-
+        Creates a new marker on the specified dataset to indicate a point in
+        time where a notable event occurred. The API key must have the Manage
+        Markers permission.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerCreateRequest'
+      responses:
+        '201':
+          description: Marker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+  /1/markers/{datasetSlug}/{markerId}:
+    put:
+      operationId: updateMarker
+      summary: Update a marker
+      description: >-
+        Updates a marker's message, type, URL, or timestamps.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerUpdateRequest'
+      responses:
+        '200':
+          description: Marker updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marker'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker not found
+    delete:
+      operationId: deleteMarker
+      summary: Delete a marker
+      description: >-
+        Deletes a marker from the specified dataset.
+      tags:
+        - Markers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerId'
+      responses:
+        '204':
+          description: Marker deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker not found
+  /1/marker_settings/{datasetSlug}:
+    get:
+      operationId: listMarkerSettings
+      summary: List all marker settings
+      description: >-
+        Returns a list of all marker settings for the specified dataset.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of marker settings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createMarkerSetting
+      summary: Create a marker setting
+      description: >-
+        Creates a new marker setting that groups similar markers together with
+        consistent visual styling, such as a shared color for deploy markers.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerSettingCreateRequest'
+      responses:
+        '201':
+          description: Marker setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+  /1/marker_settings/{datasetSlug}/{markerSettingId}:
+    put:
+      operationId: updateMarkerSetting
+      summary: Update a marker setting
+      description: >-
+        Updates a marker setting's type or color.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerSettingId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkerSettingUpdateRequest'
+      responses:
+        '200':
+          description: Marker setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkerSetting'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker setting not found
+    delete:
+      operationId: deleteMarkerSetting
+      summary: Delete a marker setting
+      description: >-
+        Deletes a marker setting from the specified dataset.
+      tags:
+        - Marker Settings
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/markerSettingId'
+      responses:
+        '204':
+          description: Marker setting deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Marker setting not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with Manage Markers permission.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset.
+      schema:
+        type: string
+    markerId:
+      name: markerId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the marker.
+      schema:
+        type: string
+    markerSettingId:
+      name: markerSettingId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the marker setting.
+      schema:
+        type: string
+  schemas:
+    Marker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the marker.
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for when the marker starts.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for when the marker ends. If omitted, the
+            marker represents a single point in time.
+        message:
+          type: string
+          description: >-
+            A message describing the marker event.
+        type:
+          type: string
+          description: >-
+            The type of the marker, used to group related markers and apply
+            marker settings.
+        url:
+          type: string
+          format: uri
+          description: >-
+            A URL associated with the marker event.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker was last updated.
+    MarkerCreateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds. Defaults to current time if not provided.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp in seconds for the marker end.
+        message:
+          type: string
+          description: >-
+            A message describing the marker event.
+        type:
+          type: string
+          description: >-
+            The type of the marker.
+        url:
+          type: string
+          format: uri
+          description: >-
+            A URL associated with the marker event.
+    MarkerUpdateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+        end_time:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+    MarkerSetting:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the marker setting.
+        type:
+          type: string
+          description: >-
+            The marker type this setting applies to.
+        color:
+          type: string
+          description: >-
+            The color used to display markers of this type.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker setting was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the marker setting was last updated.
+    MarkerSettingCreateRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: >-
+            The marker type this setting applies to.
+        color:
+          type: string
+          description: >-
+            The color used to display markers of this type.
+    MarkerSettingUpdateRequest:
+      type: object
+      properties:
+        type:
+          type: string
+        color:
+          type: string

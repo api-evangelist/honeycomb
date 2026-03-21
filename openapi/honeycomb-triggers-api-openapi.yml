@@ -1,0 +1,548 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Triggers API
+  description: >-
+    The Honeycomb Triggers API allows developers to programmatically configure
+    alerting rules that fire when query results meet specified conditions.
+    Triggers work in conjunction with the Recipients API, which manages
+    notification destinations including PagerDuty, Email, Webhook, Microsoft
+    Teams, and Slack. The API supports listing, creating, updating, and
+    deleting triggers, enabling automated setup of alerting workflows for
+    production observability.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Triggers API Documentation
+  url: https://api-docs.honeycomb.io/api/triggers
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Triggers
+    description: >-
+      Configure alerting rules that fire when query results meet specified
+      threshold conditions.
+  - name: Recipients
+    description: >-
+      Manage notification destinations for triggers and burn alerts including
+      PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/triggers/{datasetSlug}:
+    get:
+      operationId: listTriggers
+      summary: List all triggers
+      description: >-
+        Returns a list of all triggers for the specified dataset.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of triggers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createTrigger
+      summary: Create a trigger
+      description: >-
+        Creates a new trigger that fires when query results meet specified
+        threshold conditions. Recipients should be created first via the
+        Recipients API and referenced by ID.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerCreateRequest'
+      responses:
+        '201':
+          description: Trigger created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '400':
+          description: Bad request - invalid trigger configuration
+        '401':
+          description: Unauthorized
+  /1/triggers/{datasetSlug}/{triggerId}:
+    get:
+      operationId: getTrigger
+      summary: Get a trigger
+      description: >-
+        Returns a single trigger by its ID.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      responses:
+        '200':
+          description: Trigger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+    put:
+      operationId: updateTrigger
+      summary: Update a trigger
+      description: >-
+        Updates a trigger's query, threshold, or notification settings.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerUpdateRequest'
+      responses:
+        '200':
+          description: Trigger updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trigger'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+    delete:
+      operationId: deleteTrigger
+      summary: Delete a trigger
+      description: >-
+        Deletes a trigger from the specified dataset.
+      tags:
+        - Triggers
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/triggerId'
+      responses:
+        '204':
+          description: Trigger deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Trigger not found
+  /1/recipients:
+    get:
+      operationId: listRecipients
+      summary: List all recipients
+      description: >-
+        Returns a list of all notification recipients configured for the team.
+        Recipients are team-wide and not environment-specific. The API key
+        must have the Manage Recipients permission.
+      tags:
+        - Recipients
+      responses:
+        '200':
+          description: A list of recipients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRecipient
+      summary: Create a recipient
+      description: >-
+        Creates a new notification recipient. Supported types include PagerDuty,
+        Email, Webhook, Microsoft Teams, and Slack.
+      tags:
+        - Recipients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientCreateRequest'
+      responses:
+        '201':
+          description: Recipient created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+  /1/recipients/{recipientId}:
+    get:
+      operationId: getRecipient
+      summary: Get a recipient
+      description: >-
+        Returns a single recipient by its ID.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      responses:
+        '200':
+          description: Recipient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    put:
+      operationId: updateRecipient
+      summary: Update a recipient
+      description: >-
+        Updates a recipient's notification target or configuration.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientUpdateRequest'
+      responses:
+        '200':
+          description: Recipient updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    delete:
+      operationId: deleteRecipient
+      summary: Delete a recipient
+      description: >-
+        Deletes a notification recipient.
+      tags:
+        - Recipients
+      parameters:
+        - $ref: '#/components/parameters/recipientId'
+      responses:
+        '204':
+          description: Recipient deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with Manage Triggers and Manage
+        Recipients permissions.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset.
+      schema:
+        type: string
+    triggerId:
+      name: triggerId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the trigger.
+      schema:
+        type: string
+    recipientId:
+      name: recipientId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the recipient.
+      schema:
+        type: string
+  schemas:
+    Trigger:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the trigger.
+        name:
+          type: string
+          description: >-
+            The display name of the trigger.
+        description:
+          type: string
+          description: >-
+            A description of the trigger.
+        disabled:
+          type: boolean
+          description: >-
+            Whether the trigger is currently disabled.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          description: >-
+            The threshold configuration that determines when the trigger fires.
+          properties:
+            op:
+              type: string
+              description: >-
+                The comparison operator.
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+              description: >-
+                The threshold value to compare against.
+            exceeded_limit:
+              type: integer
+              description: >-
+                Number of times threshold must be exceeded before firing.
+        frequency:
+          type: integer
+          description: >-
+            How frequently in seconds the trigger is evaluated.
+        recipients:
+          type: array
+          description: >-
+            List of recipients to notify when the trigger fires.
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the trigger was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the trigger was last updated.
+    TriggerCreateRequest:
+      type: object
+      required:
+        - name
+        - query
+        - threshold
+        - recipients
+      properties:
+        name:
+          type: string
+          description: >-
+            The display name for the trigger.
+        description:
+          type: string
+          description: >-
+            An optional description for the trigger.
+        disabled:
+          type: boolean
+          description: >-
+            Whether the trigger should be disabled upon creation.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          required:
+            - op
+            - value
+          properties:
+            op:
+              type: string
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+        frequency:
+          type: integer
+          description: >-
+            How frequently in seconds to evaluate the trigger.
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    TriggerUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        disabled:
+          type: boolean
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          properties:
+            op:
+              type: string
+              enum:
+                - '>'
+                - '>='
+                - '<'
+                - '<='
+            value:
+              type: number
+        frequency:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the recipient.
+        type:
+          type: string
+          description: >-
+            The notification channel type.
+          enum:
+            - email
+            - pagerduty
+            - slack
+            - webhook
+            - msteams
+        target:
+          type: string
+          description: >-
+            The target address or identifier for the recipient.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the recipient was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the recipient was last updated.
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The ID of the recipient to notify.
+    RecipientCreateRequest:
+      type: object
+      required:
+        - type
+        - target
+      properties:
+        type:
+          type: string
+          enum:
+            - email
+            - pagerduty
+            - slack
+            - webhook
+            - msteams
+        target:
+          type: string
+          description: >-
+            The target address or identifier for the recipient.
+    RecipientUpdateRequest:
+      type: object
+      properties:
+        target:
+          type: string
+          description: >-
+            An updated target address or identifier.
+    QuerySpec:
+      type: object
+      description: >-
+        A query specification defining the alert condition.
+      properties:
+        calculations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                  - COUNT
+                  - SUM
+                  - AVG
+                  - COUNT_DISTINCT
+                  - MAX
+                  - MIN
+                  - P001
+                  - P01
+                  - P05
+                  - P10
+                  - P25
+                  - P50
+                  - P75
+                  - P90
+                  - P95
+                  - P99
+                  - P999
+              column:
+                type: string
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              value: {}
+        breakdowns:
+          type: array
+          items:
+            type: string
+        time_range:
+          type: integer
+          description: >-
+            The time range in seconds for the trigger query.
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            The ID of the recipient to notify.

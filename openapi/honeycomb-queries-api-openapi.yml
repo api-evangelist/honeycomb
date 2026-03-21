@@ -1,0 +1,474 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Queries API
+  description: >-
+    The Honeycomb Queries API allows developers to programmatically create
+    and manage query specifications within Honeycomb. Queries are used to
+    identify and reference queries across other parts of the API, including
+    boards, triggers, and query annotations. Developers can run queries
+    asynchronously by creating a Query Result that references a Query ID,
+    then polling the query result endpoint until the data is ready. The
+    Query Data API complements this by providing access to query results.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+externalDocs:
+  description: Honeycomb Queries API Documentation
+  url: https://api-docs.honeycomb.io/api/queries
+servers:
+  - url: https://api.honeycomb.io
+    description: Honeycomb Production API
+tags:
+  - name: Queries
+    description: >-
+      Create and retrieve query specifications that define what data to
+      retrieve and how to aggregate it.
+  - name: Query Results
+    description: >-
+      Create and poll for asynchronous query results.
+  - name: Query Data
+    description: >-
+      Access completed query result data.
+security:
+  - ApiKeyAuth: []
+paths:
+  /1/queries/{datasetSlug}:
+    post:
+      operationId: createQuery
+      summary: Create a query
+      description: >-
+        Creates a query specification that validates the query parameters are
+        valid and returns a query ID that can be used to create query results,
+        reference in boards, triggers, and query annotations.
+      tags:
+        - Queries
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuerySpec'
+      responses:
+        '201':
+          description: Query created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+        '400':
+          description: Bad request - invalid query parameters
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+  /1/queries/{datasetSlug}/{queryId}:
+    get:
+      operationId: getQuery
+      summary: Get a query
+      description: >-
+        Returns a single query specification by its ID.
+      tags:
+        - Queries
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/queryId'
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query not found
+  /1/query_results/{datasetSlug}:
+    post:
+      operationId: createQueryResult
+      summary: Create a query result
+      description: >-
+        Creates an asynchronous query result by referencing a Query ID. After
+        creation, poll the query result endpoint until the data is complete.
+      tags:
+        - Query Results
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query_id
+              properties:
+                query_id:
+                  type: string
+                  description: >-
+                    The ID of the query specification to execute.
+                disable_series:
+                  type: boolean
+                  description: >-
+                    If true, omits the time series data from the result.
+                limit:
+                  type: integer
+                  description: >-
+                    The maximum number of result rows to return.
+      responses:
+        '201':
+          description: Query result created and processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset or query not found
+  /1/query_results/{datasetSlug}/{queryResultId}:
+    get:
+      operationId: getQueryResult
+      summary: Get a query result
+      description: >-
+        Returns the status and data of an asynchronous query result. Poll this
+        endpoint until the complete flag is true to get the final results.
+      tags:
+        - Query Results
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+        - $ref: '#/components/parameters/queryResultId'
+      responses:
+        '200':
+          description: Query result status and data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query result not found
+  /1/query_data/{datasetSlug}:
+    post:
+      operationId: createQueryData
+      summary: Run a query and get data
+      description: >-
+        Submits a query specification and returns the result data directly.
+        This is a convenience endpoint that combines query creation and result
+        retrieval.
+      tags:
+        - Query Data
+      parameters:
+        - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuerySpec'
+      responses:
+        '200':
+          description: Query data results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryData'
+        '400':
+          description: Bad request - invalid query
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: >-
+        Honeycomb Configuration API key with Manage Queries and Columns
+        permission.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: >-
+        The slug identifier for the dataset.
+      schema:
+        type: string
+    queryId:
+      name: queryId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the query.
+      schema:
+        type: string
+    queryResultId:
+      name: queryResultId
+      in: path
+      required: true
+      description: >-
+        The unique identifier for the query result.
+      schema:
+        type: string
+  schemas:
+    QuerySpec:
+      type: object
+      description: >-
+        A query specification defining what data to retrieve and how to
+        aggregate it.
+      properties:
+        calculations:
+          type: array
+          description: >-
+            The calculations (aggregations) to perform.
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                description: >-
+                  The aggregation operation.
+                enum:
+                  - COUNT
+                  - SUM
+                  - AVG
+                  - COUNT_DISTINCT
+                  - MAX
+                  - MIN
+                  - P001
+                  - P01
+                  - P05
+                  - P10
+                  - P25
+                  - P50
+                  - P75
+                  - P90
+                  - P95
+                  - P99
+                  - P999
+                  - HEATMAP
+                  - RATE_AVG
+                  - RATE_SUM
+                  - RATE_MAX
+              column:
+                type: string
+                description: >-
+                  The column to aggregate on.
+        filters:
+          type: array
+          description: >-
+            Filters to apply before aggregation.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+                description: >-
+                  The column to filter on.
+              op:
+                type: string
+                description: >-
+                  The filter comparison operator.
+                enum:
+                  - '='
+                  - '!='
+                  - '>'
+                  - '>='
+                  - '<'
+                  - '<='
+                  - starts-with
+                  - does-not-start-with
+                  - contains
+                  - does-not-contain
+                  - exists
+                  - does-not-exist
+                  - in
+                  - not-in
+              value:
+                description: >-
+                  The value to compare against.
+        filter_combination:
+          type: string
+          description: >-
+            How to combine filters.
+          enum:
+            - AND
+            - OR
+        breakdowns:
+          type: array
+          description: >-
+            Columns to group results by.
+          items:
+            type: string
+        orders:
+          type: array
+          description: >-
+            Ordering rules for the results.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              order:
+                type: string
+                enum:
+                  - ascending
+                  - descending
+        time_range:
+          type: integer
+          description: >-
+            The relative time range in seconds to query over.
+        start_time:
+          type: integer
+          description: >-
+            Unix timestamp for the query start time.
+        end_time:
+          type: integer
+          description: >-
+            Unix timestamp for the query end time.
+        granularity:
+          type: integer
+          description: >-
+            The time granularity of results in seconds.
+        limit:
+          type: integer
+          description: >-
+            Maximum number of results to return.
+        havings:
+          type: array
+          description: >-
+            Post-aggregation filters.
+          items:
+            type: object
+            properties:
+              calculate_op:
+                type: string
+              column:
+                type: string
+              op:
+                type: string
+              value:
+                type: number
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the query.
+        calculations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+              column:
+                type: string
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              value: {}
+        breakdowns:
+          type: array
+          items:
+            type: string
+        orders:
+          type: array
+          items:
+            type: object
+        time_range:
+          type: integer
+        granularity:
+          type: integer
+        limit:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            ISO8601 formatted time the query was created.
+    QueryResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the query result.
+        query_id:
+          type: string
+          description: >-
+            The ID of the query specification that was executed.
+        complete:
+          type: boolean
+          description: >-
+            Whether the query has finished processing.
+        data:
+          type: object
+          description: >-
+            The result data, populated when complete is true.
+          properties:
+            results:
+              type: array
+              description: >-
+                The aggregated result rows.
+              items:
+                type: object
+                additionalProperties: true
+            series:
+              type: array
+              description: >-
+                Time series data points.
+              items:
+                type: object
+                additionalProperties: true
+        links:
+          type: object
+          description: >-
+            Links related to the query result.
+          properties:
+            query_url:
+              type: string
+              format: uri
+              description: >-
+                URL to view the query in the Honeycomb UI.
+            graph_image_url:
+              type: string
+              format: uri
+              description: >-
+                URL to a rendered graph image of the query result.
+    QueryData:
+      type: object
+      properties:
+        results:
+          type: array
+          description: >-
+            The aggregated result rows.
+          items:
+            type: object
+            additionalProperties: true
+        series:
+          type: array
+          description: >-
+            Time series data points.
+          items:
+            type: object
+            additionalProperties: true

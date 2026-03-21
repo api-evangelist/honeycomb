@@ -1,0 +1,248 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "honeycomb": "https://api.honeycomb.io/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Dataset": {
+      "@id": "honeycomb:Dataset",
+      "@context": {
+        "name": "schema:name",
+        "slug": "honeycomb:slug",
+        "description": "schema:description",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "last_written_at": {
+          "@id": "honeycomb:lastWrittenAt",
+          "@type": "xsd:dateTime"
+        },
+        "regular_columns_count": {
+          "@id": "honeycomb:regularColumnsCount",
+          "@type": "xsd:integer"
+        },
+        "columns": {
+          "@id": "honeycomb:columns",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Column": {
+      "@id": "honeycomb:Column",
+      "@context": {
+        "key_name": "schema:name",
+        "type": "honeycomb:columnType",
+        "description": "schema:description",
+        "hidden": "honeycomb:hidden",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "last_written": {
+          "@id": "honeycomb:lastWritten",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Event": {
+      "@id": "honeycomb:Event",
+      "@context": {
+        "time": {
+          "@id": "dcterms:date",
+          "@type": "xsd:dateTime"
+        },
+        "samplerate": {
+          "@id": "honeycomb:sampleRate",
+          "@type": "xsd:integer"
+        },
+        "data": "honeycomb:eventData"
+      }
+    },
+
+    "Query": {
+      "@id": "honeycomb:Query",
+      "@context": {
+        "calculations": {
+          "@id": "honeycomb:calculations",
+          "@container": "@set"
+        },
+        "filters": {
+          "@id": "honeycomb:filters",
+          "@container": "@set"
+        },
+        "breakdowns": {
+          "@id": "honeycomb:breakdowns",
+          "@container": "@set"
+        },
+        "time_range": {
+          "@id": "honeycomb:timeRange",
+          "@type": "xsd:integer"
+        },
+        "granularity": {
+          "@id": "honeycomb:granularity",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "Board": {
+      "@id": "honeycomb:Board",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "style": "honeycomb:boardStyle",
+        "column_layout": "honeycomb:columnLayout",
+        "queries": {
+          "@id": "honeycomb:boardQueries",
+          "@container": "@set"
+        },
+        "board_url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Marker": {
+      "@id": "honeycomb:Marker",
+      "@context": {
+        "start_time": {
+          "@id": "honeycomb:startTime",
+          "@type": "xsd:integer"
+        },
+        "end_time": {
+          "@id": "honeycomb:endTime",
+          "@type": "xsd:integer"
+        },
+        "message": "schema:description",
+        "type": "honeycomb:markerType",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Trigger": {
+      "@id": "honeycomb:Trigger",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "disabled": "honeycomb:disabled",
+        "frequency": {
+          "@id": "honeycomb:frequency",
+          "@type": "xsd:integer"
+        },
+        "recipients": {
+          "@id": "honeycomb:recipients",
+          "@container": "@set"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "SLO": {
+      "@id": "honeycomb:SLO",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "target_percentage": {
+          "@id": "honeycomb:targetPercentage",
+          "@type": "xsd:decimal"
+        },
+        "time_period_days": {
+          "@id": "honeycomb:timePeriodDays",
+          "@type": "xsd:integer"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Recipient": {
+      "@id": "honeycomb:Recipient",
+      "@context": {
+        "type": "honeycomb:recipientType",
+        "target": "honeycomb:recipientTarget",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Environment": {
+      "@id": "honeycomb:Environment",
+      "@context": {
+        "name": "schema:name",
+        "slug": "honeycomb:slug",
+        "description": "schema:description",
+        "color": "honeycomb:color",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ApiKey": {
+      "@id": "honeycomb:ApiKey",
+      "@context": {
+        "name": "schema:name",
+        "type": "honeycomb:keyType",
+        "disabled": "honeycomb:disabled",
+        "environment_id": "honeycomb:environmentId",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
