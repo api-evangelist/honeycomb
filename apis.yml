@@ -1,5 +1,6 @@
 aid: honeycomb
-url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: honeycomb:api
@@ -10,7 +11,8 @@ apis:
       - Tracing
       - Debugging
       - Telemetry
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api
     properties:
@@ -19,14 +21,11 @@ apis:
       - url: openapi/honeycomb-api-openapi.yml
         type: OpenAPI
     description: >-
-      The Honeycomb API is a REST API that provides programmatic access to the
-      Honeycomb observability platform. It enables developers to send events,
-      manage datasets and columns, create and run queries, configure SLOs and
-      burn alerts, set up triggers and recipients, manage boards and markers,
-      and administer environments and API keys. The API covers the full range
-      of Honeycomb platform capabilities including event ingestion, query
-      execution, query annotations, calculated fields, marker settings, and
-      reporting for long-term SLO performance analysis.
+      The Honeycomb API is a REST API that provides programmatic access to the Honeycomb
+      observability platform. It enables developers to send events, manage datasets
+      and columns, create and run queries, configure SLOs and burn alerts, set up
+      triggers and recipients, manage boards and markers, and administer environments
+      and API keys.
   - aid: honeycomb:events-api
     name: Honeycomb Events API
     tags:
@@ -34,7 +33,8 @@ apis:
       - Events
       - Ingestion
       - Telemetry
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/events
     properties:
@@ -56,7 +56,8 @@ apis:
       - Queries
       - Analytics
       - Data Analysis
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/queries
     properties:
@@ -79,7 +80,8 @@ apis:
       - SLOs
       - Service Level Objectives
       - Reliability
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/slos
     properties:
@@ -100,7 +102,8 @@ apis:
       - Observability
       - Datasets
       - Data Management
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/datasets
     properties:
@@ -121,7 +124,8 @@ apis:
       - Observability
       - Dashboards
       - Visualization
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/boards
     properties:
@@ -143,7 +147,8 @@ apis:
       - Markers
       - Deployments
       - Annotations
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/marker-settings
     properties:
@@ -166,7 +171,8 @@ apis:
       - Alerts
       - Notifications
       - Monitoring
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/triggers
     properties:
@@ -188,7 +194,8 @@ apis:
       - Observability
       - Environments
       - Administration
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/environments
     properties:
@@ -215,3 +222,6 @@ common:
     url: json-schema/honeycomb-slo-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-trigger-schema.json
+description: >-
+  Build integrations and automate workflows with the Honeycomb API. Programmatically
+  manage datasets, queries, triggers, SLOs, environments, API keys, and more.
