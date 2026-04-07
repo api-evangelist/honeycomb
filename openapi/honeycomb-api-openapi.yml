@@ -24,10 +24,17 @@ tags:
     description: >-
       Validate authentication for a key, determine what authorizations have been
       granted to a key, and determine the Team and Environment it belongs to.
-  - name: Datasets
+  - name: Boards
     description: >-
-      Manage datasets, which represent collections of related events from the
-      same source.
+      Manage boards, which are collections of queries, SLO panels, and text
+      panels displayed together.
+  - name: Burn Alerts
+    description: >-
+      Manage burn alerts that notify you when issues impact your SLO budget.
+  - name: Calculated Fields
+    description: >-
+      Manage calculated fields (derived columns) that compute values from
+      expressions applied to event fields.
   - name: Columns
     description: >-
       Manage columns (fields) in the events you send to Honeycomb datasets.
@@ -35,39 +42,10 @@ tags:
     description: >-
       Manage dataset definitions that configure how columns are interpreted and
       displayed.
-  - name: Calculated Fields
+  - name: Datasets
     description: >-
-      Manage calculated fields (derived columns) that compute values from
-      expressions applied to event fields.
-  - name: Boards
-    description: >-
-      Manage boards, which are collections of queries, SLO panels, and text
-      panels displayed together.
-  - name: Markers
-    description: >-
-      Manage markers that indicate points in time on graphs where notable events
-      occurred such as deploys or outages.
-  - name: Marker Settings
-    description: >-
-      Manage marker settings that group similar markers together with consistent
-      visual styling.
-  - name: Triggers
-    description: >-
-      Configure alerting rules that fire when query results meet specified
-      conditions.
-  - name: Recipients
-    description: >-
-      Manage notification destinations for triggers and burn alerts including
-      PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
-  - name: SLOs
-    description: >-
-      Define and monitor Service Level Objectives for your organization.
-  - name: Burn Alerts
-    description: >-
-      Manage burn alerts that notify you when issues impact your SLO budget.
-  - name: Reporting
-    description: >-
-      Access historical SLO performance reporting data.
+      Manage datasets, which represent collections of related events from the
+      same source.
   - name: Environments
     description: >-
       Manage environments within a Honeycomb team for separating telemetry data
@@ -76,12 +54,34 @@ tags:
     description: >-
       Manage API keys for a team, including listing, creating, updating, and
       deleting keys.
+  - name: Marker Settings
+    description: >-
+      Manage marker settings that group similar markers together with consistent
+      visual styling.
+  - name: Markers
+    description: >-
+      Manage markers that indicate points in time on graphs where notable events
+      occurred such as deploys or outages.
   - name: Query Annotations
     description: >-
       Associate names and descriptions to queries for collaboration features.
+  - name: Recipients
+    description: >-
+      Manage notification destinations for triggers and burn alerts including
+      PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+  - name: Reporting
+    description: >-
+      Access historical SLO performance reporting data.
   - name: Service Maps
     description: >-
       Visualize relationships between services using dependency requests.
+  - name: SLOs
+    description: >-
+      Define and monitor Service Level Objectives for your organization.
+  - name: Triggers
+    description: >-
+      Configure alerting rules that fire when query results meet specified
+      conditions.
 security:
   - ApiKeyAuth: []
 paths:

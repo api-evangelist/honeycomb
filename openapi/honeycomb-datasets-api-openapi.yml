@@ -20,10 +20,6 @@ servers:
   - url: https://api.honeycomb.io
     description: Honeycomb Production API
 tags:
-  - name: Datasets
-    description: >-
-      Manage datasets, which represent collections of related events from the
-      same source.
   - name: Columns
     description: >-
       Manage columns (fields) within datasets that define the structure of
@@ -32,6 +28,10 @@ tags:
     description: >-
       Manage dataset definitions that configure how columns are interpreted
       and displayed in the UI.
+  - name: Datasets
+    description: >-
+      Manage datasets, which represent collections of related events from the
+      same source.
 security:
   - ApiKeyAuth: []
 paths:

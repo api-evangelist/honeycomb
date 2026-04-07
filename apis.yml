@@ -1,18 +1,16 @@
 aid: honeycomb
-url: 
-  https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: honeycomb:api
     name: Honeycomb API
     tags:
-      - Observability
-      - Monitoring
-      - Tracing
       - Debugging
+      - Monitoring
+      - Observability
       - Telemetry
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Tracing
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api
     properties:
@@ -29,12 +27,11 @@ apis:
   - aid: honeycomb:events-api
     name: Honeycomb Events API
     tags:
-      - Observability
       - Events
       - Ingestion
+      - Observability
       - Telemetry
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/events
     properties:
@@ -52,12 +49,11 @@ apis:
   - aid: honeycomb:queries-api
     name: Honeycomb Queries API
     tags:
-      - Observability
-      - Queries
       - Analytics
       - Data Analysis
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Observability
+      - Queries
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/queries
     properties:
@@ -77,11 +73,10 @@ apis:
     name: Honeycomb SLOs API
     tags:
       - Observability
-      - SLOs
-      - Service Level Objectives
       - Reliability
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Service Level Objectives
+      - SLOs
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/slos
     properties:
@@ -99,11 +94,10 @@ apis:
   - aid: honeycomb:datasets-api
     name: Honeycomb Datasets API
     tags:
-      - Observability
-      - Datasets
       - Data Management
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Datasets
+      - Observability
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/datasets
     properties:
@@ -121,11 +115,10 @@ apis:
   - aid: honeycomb:boards-api
     name: Honeycomb Boards API
     tags:
-      - Observability
       - Dashboards
+      - Observability
       - Visualization
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/boards
     properties:
@@ -143,12 +136,11 @@ apis:
   - aid: honeycomb:markers-api
     name: Honeycomb Markers API
     tags:
-      - Observability
-      - Markers
-      - Deployments
       - Annotations
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Deployments
+      - Markers
+      - Observability
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/marker-settings
     properties:
@@ -167,12 +159,11 @@ apis:
   - aid: honeycomb:triggers-api
     name: Honeycomb Triggers API
     tags:
-      - Observability
       - Alerts
-      - Notifications
       - Monitoring
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Notifications
+      - Observability
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/triggers
     properties:
@@ -191,11 +182,10 @@ apis:
   - aid: honeycomb:environments-api
     name: Honeycomb Environments API
     tags:
-      - Observability
-      - Environments
       - Administration
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Environments
+      - Observability
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/environments
     properties:

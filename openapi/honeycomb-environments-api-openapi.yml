@@ -22,14 +22,14 @@ servers:
   - url: https://api.honeycomb.io
     description: Honeycomb Production API
 tags:
-  - name: Environments
-    description: >-
-      Manage environments within a Honeycomb team for separating telemetry data
-      across stages.
   - name: Auth
     description: >-
       Validate API key authentication and determine associated team and
       environment permissions.
+  - name: Environments
+    description: >-
+      Manage environments within a Honeycomb team for separating telemetry data
+      across stages.
   - name: Key Management
     description: >-
       Manage API keys for a team, including listing, creating, updating, and

@@ -20,15 +20,15 @@ servers:
   - url: https://api.honeycomb.io
     description: Honeycomb Production API
 tags:
-  - name: SLOs
-    description: >-
-      Define and monitor Service Level Objectives for your organization.
   - name: Burn Alerts
     description: >-
       Manage burn alerts that notify you when issues impact your SLO budget.
   - name: Reporting
     description: >-
       Access historical SLO performance reporting data.
+  - name: SLOs
+    description: >-
+      Define and monitor Service Level Objectives for your organization.
 security:
   - ApiKeyAuth: []
 paths:

@@ -21,14 +21,14 @@ servers:
   - url: https://api.honeycomb.io
     description: Honeycomb Production API
 tags:
-  - name: Markers
-    description: >-
-      Manage markers that indicate points in time on graphs where notable events
-      occurred.
   - name: Marker Settings
     description: >-
       Manage marker settings that group similar markers with consistent visual
       styling.
+  - name: Markers
+    description: >-
+      Manage markers that indicate points in time on graphs where notable events
+      occurred.
 security:
   - ApiKeyAuth: []
 paths:

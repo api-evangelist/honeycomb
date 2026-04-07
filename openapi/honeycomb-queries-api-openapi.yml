@@ -25,12 +25,12 @@ tags:
     description: >-
       Create and retrieve query specifications that define what data to
       retrieve and how to aggregate it.
-  - name: Query Results
-    description: >-
-      Create and poll for asynchronous query results.
   - name: Query Data
     description: >-
       Access completed query result data.
+  - name: Query Results
+    description: >-
+      Create and poll for asynchronous query results.
 security:
   - ApiKeyAuth: []
 paths:
