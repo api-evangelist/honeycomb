@@ -1,6 +1,6 @@
 aid: honeycomb
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
-modified: '2026-03-20'
+modified: '2026-04-28'
 apis:
   - aid: honeycomb:api
     name: Honeycomb API
