@@ -1,6 +1,6 @@
 aid: honeycomb
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
-modified: '2026-04-28'
+modified: '2026-05-04'
 apis:
   - aid: honeycomb:api
     name: Honeycomb API
@@ -18,12 +18,10 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb API is a REST API that provides programmatic access to the Honeycomb
-      observability platform. It enables developers to send events, manage datasets
-      and columns, create and run queries, configure SLOs and burn alerts, set up
-      triggers and recipients, manage boards and markers, and administer environments
-      and API keys.
+    description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability
+      platform. It enables developers to send events, manage datasets and columns, create and run queries,
+      configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, and administer
+      environments and API keys.
   - aid: honeycomb:events-api
     name: Honeycomb Events API
     tags:
@@ -39,13 +37,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-events-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Events API is the lowest-level interface for sending event
-      data to Honeycomb. It supports both single event creation and batch event
-      submission, allowing developers to send structured telemetry data directly
-      to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or
-      Beeline SDKs for most instrumentation use cases, the Events API provides
-      direct control for custom integrations and specialized data pipelines.
+    description: The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb.
+      It supports both single event creation and batch event submission, allowing developers to send structured
+      telemetry data directly to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or
+      Beeline SDKs for most instrumentation use cases, the Events API provides direct control for custom
+      integrations and specialized data pipelines.
   - aid: honeycomb:queries-api
     name: Honeycomb Queries API
     tags:
@@ -61,14 +57,12 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-queries-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Queries API allows developers to programmatically create
-      and manage query specifications within Honeycomb. Queries are used to
-      identify and reference queries across other parts of the API, including
-      boards, triggers, and query annotations. Developers can run queries
-      asynchronously by creating a Query Result that references a Query ID,
-      then polling the query result endpoint until the data is ready. The
-      Query Data API complements this by providing access to query results.
+    description: The Honeycomb Queries API allows developers to programmatically create and manage query
+      specifications within Honeycomb. Queries are used to identify and reference queries across other
+      parts of the API, including boards, triggers, and query annotations. Developers can run queries
+      asynchronously by creating a Query Result that references a Query ID, then polling the query result
+      endpoint until the data is ready. The Query Data API complements this by providing access to query
+      results.
   - aid: honeycomb:slos-api
     name: Honeycomb SLOs API
     tags:
@@ -84,13 +78,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-slos-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb SLOs API enables developers to define and monitor Service
-      Level Objectives programmatically. It supports creating, listing,
-      updating, and deleting SLO objects for an organization. Combined with
-      the Burn Alerts API for notifications and the Reporting API for
-      historical SLO performance analysis, it provides a complete interface
-      for managing reliability targets and tracking error budgets over time.
+    description: The Honeycomb SLOs API enables developers to define and monitor Service Level Objectives
+      programmatically. It supports creating, listing, updating, and deleting SLO objects for an organization.
+      Combined with the Burn Alerts API for notifications and the Reporting API for historical SLO performance
+      analysis, it provides a complete interface for managing reliability targets and tracking error budgets
+      over time.
   - aid: honeycomb:datasets-api
     name: Honeycomb Datasets API
     tags:
@@ -105,13 +97,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-datasets-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Datasets API provides management capabilities for datasets,
-      which represent collections of related events from the same source. It
-      allows developers to list, create, and update datasets programmatically.
-      The related Columns API enables management of fields within datasets,
-      including listing, creating, updating, and deleting columns that define
-      the structure of event data stored in Honeycomb.
+    description: The Honeycomb Datasets API provides management capabilities for datasets, which represent
+      collections of related events from the same source. It allows developers to list, create, and update
+      datasets programmatically. The related Columns API enables management of fields within datasets,
+      including listing, creating, updating, and deleting columns that define the structure of event data
+      stored in Honeycomb.
   - aid: honeycomb:boards-api
     name: Honeycomb Boards API
     tags:
@@ -126,13 +116,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-boards-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Boards API allows developers to programmatically create
-      and manage boards, which are collections of queries displayed together
-      as a dashboard-like view. Boards provide a way to organize and share
-      related queries for monitoring and debugging workflows. The API supports
-      listing, creating, updating, and deleting boards, making it possible to
-      automate the setup of observability dashboards across environments.
+    description: The Honeycomb Boards API allows developers to programmatically create and manage boards,
+      which are collections of queries displayed together as a dashboard-like view. Boards provide a way
+      to organize and share related queries for monitoring and debugging workflows. The API supports listing,
+      creating, updating, and deleting boards, making it possible to automate the setup of observability
+      dashboards across environments.
   - aid: honeycomb:markers-api
     name: Honeycomb Markers API
     tags:
@@ -148,14 +136,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-markers-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Markers API enables developers to create and manage markers
-      that indicate points in time on graphs where notable events occurred,
-      such as deploys, configuration changes, or outages. Marker Settings
-      allow grouping similar markers together with consistent visual styling.
-      The API supports listing, creating, updating, and deleting both markers
-      and marker settings, making it straightforward to integrate deployment
-      pipelines and incident workflows with Honeycomb visualizations.
+    description: The Honeycomb Markers API enables developers to create and manage markers that indicate
+      points in time on graphs where notable events occurred, such as deploys, configuration changes,
+      or outages. Marker Settings allow grouping similar markers together with consistent visual styling.
+      The API supports listing, creating, updating, and deleting both markers and marker settings, making
+      it straightforward to integrate deployment pipelines and incident workflows with Honeycomb visualizations.
   - aid: honeycomb:triggers-api
     name: Honeycomb Triggers API
     tags:
@@ -171,14 +156,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-triggers-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Triggers API allows developers to programmatically configure
-      alerting rules that fire when query results meet specified conditions.
-      Triggers work in conjunction with the Recipients API, which manages
-      notification destinations including PagerDuty, Email, Webhook, Microsoft
-      Teams, and Slack. The API supports listing, creating, updating, and
-      deleting triggers, enabling automated setup of alerting workflows for
-      production observability.
+    description: The Honeycomb Triggers API allows developers to programmatically configure alerting rules
+      that fire when query results meet specified conditions. Triggers work in conjunction with the Recipients
+      API, which manages notification destinations including PagerDuty, Email, Webhook, Microsoft Teams,
+      and Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated
+      setup of alerting workflows for production observability.
   - aid: honeycomb:environments-api
     name: Honeycomb Environments API
     tags:
@@ -193,14 +175,11 @@ apis:
         type: Documentation
       - url: openapi/honeycomb-environments-api-openapi.yml
         type: OpenAPI
-    description: >-
-      The Honeycomb Environments API provides administrative capabilities for
-      managing environments within a Honeycomb team. Environments allow
-      organizations to separate telemetry data across different stages such
-      as development, staging, and production. The API supports listing,
-      creating, updating, and deleting environments, along with the Auth API
-      for validating API keys and determining their associated team and
-      environment permissions.
+    description: The Honeycomb Environments API provides administrative capabilities for managing environments
+      within a Honeycomb team. Environments allow organizations to separate telemetry data across different
+      stages such as development, staging, and production. The API supports listing, creating, updating,
+      and deleting environments, along with the Auth API for validating API keys and determining their
+      associated team and environment permissions.
 common:
   - type: JSON-LD
     url: json-ld/honeycomb-context.jsonld
@@ -212,6 +191,26 @@ common:
     url: json-schema/honeycomb-slo-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-trigger-schema.json
-description: >-
-  Build integrations and automate workflows with the Honeycomb API. Programmatically
-  manage datasets, queries, triggers, SLOs, environments, API keys, and more.
+  - type: Features
+    data:
+      - 'Free: 20M events/mo + 100M metrics/mo'
+      - 'Pro from $130/mo: 1.5B events, 100 triggers, 2 SLOs, SSO'
+      - 'Enterprise: 300+ triggers, 100+ SLOs, Service Map, PrivateLink'
+      - Query Data API at api.honeycomb.io (Enterprise)
+      - OpenTelemetry-native ingest
+      - BubbleUp for high-cardinality outlier analysis
+      - Distributed tracing with span search
+      - Refinery for tail-based sampling
+      - SLOs with burn rates
+      - Triggers (alerts on query results)
+      - Service Map (Enterprise)
+      - Honeycomb Private Cloud (Enterprise)
+      - Events ingest scales with plan; batch up to 1,000 events
+      - 'Query Data API: 5 req/sec/team'
+      - API keys per environment
+      - Heatmaps, scatter plots, trace waterfall views
+    sources:
+      - https://www.honeycomb.io/pricing
+    updated: '2026-05-04'
+description: Build integrations and automate workflows with the Honeycomb API. Programmatically manage
+  datasets, queries, triggers, SLOs, environments, API keys, and more.

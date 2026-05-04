@@ -1,0 +1,102 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Honeycomb
+providerId: honeycomb
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Observability
+  - Tracing
+  - OpenTelemetry
+description: Honeycomb event-based pricing across Free / Pro / Enterprise.
+sources:
+  - https://www.honeycomb.io/pricing
+plans:
+  - id: honeycomb-free
+    name: Free
+    type: freemium
+    description: $0/month; up to 20M events/month.
+    entries:
+      - label: Events/month
+        name: events
+        type: quota
+        metric: event
+        limit: 20000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Metrics data points
+        name: metrics
+        type: quota
+        metric: datapoint
+        limit: 100000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 2 Triggers
+      - name: Distributed Tracing
+      - name: BubbleUp
+      - name: OpenTelemetry support
+      - name: Team query history
+      - name: Query Result Permalinks
+  - id: honeycomb-pro
+    name: Pro
+    type: paid
+    description: Starting at $130/month; up to 1.5B events/month.
+    entries:
+      - label: Monthly base
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '130.00'
+        userMultiplied: false
+      - label: Events included
+        name: events
+        type: quota
+        metric: event
+        limit: 1500000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 100 Triggers
+      - name: 2 SLOs
+      - name: SSO
+      - name: Honeycomb Support
+      - name: Monthly or annual subscription
+  - id: honeycomb-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom pricing; starts with 10B events/year.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: 300+ Triggers
+      - name: 100+ SLOs
+      - name: Service Map
+      - name: Refinery Enterprise Support
+      - name: Query Data API
+      - name: AWS PrivateLink
+      - name: Honeycomb Private Cloud
