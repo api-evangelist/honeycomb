@@ -181,7 +181,7 @@ apis:
       and deleting environments, along with the Auth API for validating API keys and determining their
       associated team and environment permissions.
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/honeycomb-context.jsonld
   - type: JSONSchema
     url: json-schema/honeycomb-event-schema.json
