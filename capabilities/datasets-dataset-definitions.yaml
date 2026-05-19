@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Honeycomb Datasets API — Dataset Definitions
+  description: 'Honeycomb Datasets API — Dataset Definitions. 2 operations. Lead operation: Get dataset definition. Self-contained
+    Naftiko capability covering one Honeycomb business surface.'
+  tags:
+  - Honeycomb
+  - Dataset Definitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datasets-dataset-definitions
+    baseUri: https://api.honeycomb.io
+    description: Honeycomb Datasets API — Dataset Definitions business capability. Self-contained, no shared references.
+    resources:
+    - name: 1-dataset_definitions-datasetSlug
+      path: /1/dataset_definitions/{datasetSlug}
+      operations:
+      - name: getdatasetdefinition
+        method: GET
+        description: Get dataset definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedatasetdefinition
+        method: PUT
+        description: Update dataset definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: datasets-dataset-definitions-rest
+    port: 8080
+    description: REST adapter for Honeycomb Datasets API — Dataset Definitions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/1/dataset-definitions/{datasetslug}
+      name: 1-dataset-definitions-datasetslug
+      description: REST surface for 1-dataset_definitions-datasetSlug.
+      operations:
+      - method: GET
+        name: getdatasetdefinition
+        description: Get dataset definition
+        call: datasets-dataset-definitions.getdatasetdefinition
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedatasetdefinition
+        description: Update dataset definition
+        call: datasets-dataset-definitions.updatedatasetdefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datasets-dataset-definitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Honeycomb Datasets API — Dataset Definitions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-dataset-definition
+      description: Get dataset definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datasets-dataset-definitions.getdatasetdefinition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-dataset-definition
+      description: Update dataset definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: datasets-dataset-definitions.updatedatasetdefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

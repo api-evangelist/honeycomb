@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Honeycomb Datasets API — Datasets
+  description: 'Honeycomb Datasets API — Datasets. 4 operations. Lead operation: List all datasets. Self-contained Naftiko
+    capability covering one Honeycomb business surface.'
+  tags:
+  - Honeycomb
+  - Datasets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datasets-datasets
+    baseUri: https://api.honeycomb.io
+    description: Honeycomb Datasets API — Datasets business capability. Self-contained, no shared references.
+    resources:
+    - name: 1-datasets
+      path: /1/datasets
+      operations:
+      - name: listdatasets
+        method: GET
+        description: List all datasets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdataset
+        method: POST
+        description: Create a dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 1-datasets-datasetSlug
+      path: /1/datasets/{datasetSlug}
+      operations:
+      - name: getdataset
+        method: GET
+        description: Get a dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedataset
+        method: PUT
+        description: Update a dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: datasets-datasets-rest
+    port: 8080
+    description: REST adapter for Honeycomb Datasets API — Datasets. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/1/datasets
+      name: 1-datasets
+      description: REST surface for 1-datasets.
+      operations:
+      - method: GET
+        name: listdatasets
+        description: List all datasets
+        call: datasets-datasets.listdatasets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdataset
+        description: Create a dataset
+        call: datasets-datasets.createdataset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/datasets/{datasetslug}
+      name: 1-datasets-datasetslug
+      description: REST surface for 1-datasets-datasetSlug.
+      operations:
+      - method: GET
+        name: getdataset
+        description: Get a dataset
+        call: datasets-datasets.getdataset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedataset
+        description: Update a dataset
+        call: datasets-datasets.updatedataset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datasets-datasets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Honeycomb Datasets API — Datasets. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-datasets
+      description: List all datasets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datasets-datasets.listdatasets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-dataset
+      description: Create a dataset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: datasets-datasets.createdataset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-dataset
+      description: Get a dataset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datasets-datasets.getdataset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-dataset
+      description: Update a dataset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: datasets-datasets.updatedataset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Honeycomb Markers API — Marker Settings
+  description: 'Honeycomb Markers API — Marker Settings. 4 operations. Lead operation: List all marker settings. Self-contained
+    Naftiko capability covering one Honeycomb business surface.'
+  tags:
+  - Honeycomb
+  - Marker Settings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: markers-marker-settings
+    baseUri: https://api.honeycomb.io
+    description: Honeycomb Markers API — Marker Settings business capability. Self-contained, no shared references.
+    resources:
+    - name: 1-marker_settings-datasetSlug
+      path: /1/marker_settings/{datasetSlug}
+      operations:
+      - name: listmarkersettings
+        method: GET
+        description: List all marker settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createmarkersetting
+        method: POST
+        description: Create a marker setting
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 1-marker_settings-datasetSlug-markerSettingId
+      path: /1/marker_settings/{datasetSlug}/{markerSettingId}
+      operations:
+      - name: updatemarkersetting
+        method: PUT
+        description: Update a marker setting
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletemarkersetting
+        method: DELETE
+        description: Delete a marker setting
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: markers-marker-settings-rest
+    port: 8080
+    description: REST adapter for Honeycomb Markers API — Marker Settings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/1/marker-settings/{datasetslug}
+      name: 1-marker-settings-datasetslug
+      description: REST surface for 1-marker_settings-datasetSlug.
+      operations:
+      - method: GET
+        name: listmarkersettings
+        description: List all marker settings
+        call: markers-marker-settings.listmarkersettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmarkersetting
+        description: Create a marker setting
+        call: markers-marker-settings.createmarkersetting
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/marker-settings/{datasetslug}/{markersettingid}
+      name: 1-marker-settings-datasetslug-markersettingid
+      description: REST surface for 1-marker_settings-datasetSlug-markerSettingId.
+      operations:
+      - method: PUT
+        name: updatemarkersetting
+        description: Update a marker setting
+        call: markers-marker-settings.updatemarkersetting
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemarkersetting
+        description: Delete a marker setting
+        call: markers-marker-settings.deletemarkersetting
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: markers-marker-settings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Honeycomb Markers API — Marker Settings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-marker-settings
+      description: List all marker settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: markers-marker-settings.listmarkersettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-marker-setting
+      description: Create a marker setting
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: markers-marker-settings.createmarkersetting
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-marker-setting
+      description: Update a marker setting
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: markers-marker-settings.updatemarkersetting
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-marker-setting
+      description: Delete a marker setting
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: markers-marker-settings.deletemarkersetting
+      outputParameters:
+      - type: object
+        mapping: $.

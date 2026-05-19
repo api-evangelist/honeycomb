@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Honeycomb Events API — Events
+  description: 'Honeycomb Events API — Events. 2 operations. Lead operation: Create events (batch). Self-contained Naftiko
+    capability covering one Honeycomb business surface.'
+  tags:
+  - Honeycomb
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: events-events
+    baseUri: https://api.honeycomb.io
+    description: Honeycomb Events API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: 1-batch-datasetSlug
+      path: /1/batch/{datasetSlug}
+      operations:
+      - name: createevents
+        method: POST
+        description: Create events (batch)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 1-events-datasetSlug
+      path: /1/events/{datasetSlug}
+      operations:
+      - name: createevent
+        method: POST
+        description: Create an event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: events-events-rest
+    port: 8080
+    description: REST adapter for Honeycomb Events API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/1/batch/{datasetslug}
+      name: 1-batch-datasetslug
+      description: REST surface for 1-batch-datasetSlug.
+      operations:
+      - method: POST
+        name: createevents
+        description: Create events (batch)
+        call: events-events.createevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/events/{datasetslug}
+      name: 1-events-datasetslug
+      description: REST surface for 1-events-datasetSlug.
+      operations:
+      - method: POST
+        name: createevent
+        description: Create an event
+        call: events-events.createevent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: events-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Honeycomb Events API — Events. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-events-batch
+      description: Create events (batch)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: events-events.createevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-event
+      description: Create an event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: events-events.createevent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
