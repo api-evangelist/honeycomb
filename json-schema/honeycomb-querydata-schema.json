@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryData",
+  "title": "QueryData",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "The aggregated result rows.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "series": {
+      "type": "array",
+      "description": "Time series data points.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceMapRequest",
+  "title": "ServiceMapRequest",
+  "type": "object",
+  "properties": {
+    "time_range": {
+      "type": "integer",
+      "description": "The time range in seconds to generate the service map for."
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the service map start time."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the service map end time."
+    },
+    "dataset": {
+      "type": "string",
+      "description": "The dataset slug to generate the service map from."
+    }
+  }
+}

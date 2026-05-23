@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiKeyUpdateRequest",
+  "title": "ApiKeyUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the API key."
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to disable the API key."
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Updated permissions for the API key.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    }
+  }
+}

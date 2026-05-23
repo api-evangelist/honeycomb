@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BoardUpdateRequest",
+  "title": "BoardUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the board."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the board."
+    },
+    "style": {
+      "type": "string",
+      "description": "An updated visual layout style.",
+      "enum": [
+        "list",
+        "visual"
+      ]
+    },
+    "column_layout": {
+      "type": "string",
+      "description": "An updated column layout for visual mode.",
+      "enum": [
+        "multi",
+        "single"
+      ]
+    },
+    "queries": {
+      "type": "array",
+      "description": "An updated list of queries to display on the board.",
+      "items": {
+        "$ref": "#/components/schemas/BoardQuery"
+      }
+    }
+  }
+}

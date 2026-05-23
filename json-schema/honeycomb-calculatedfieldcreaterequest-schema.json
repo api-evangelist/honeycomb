@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalculatedFieldCreateRequest",
+  "title": "CalculatedFieldCreateRequest",
+  "type": "object",
+  "required": [
+    "alias",
+    "expression"
+  ],
+  "properties": {
+    "alias": {
+      "type": "string",
+      "description": "The alias name for the calculated field."
+    },
+    "expression": {
+      "type": "string",
+      "description": "The expression to compute the field value."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the calculated field."
+    }
+  }
+}

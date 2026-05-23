@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecipientUpdateRequest",
+  "title": "RecipientUpdateRequest",
+  "type": "object",
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "An updated target address or identifier for the recipient."
+    }
+  }
+}

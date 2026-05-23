@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EnvironmentCreateRequest",
+  "title": "EnvironmentCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the environment."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the environment."
+    },
+    "color": {
+      "type": "string",
+      "description": "An optional color for the environment."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarkerSettingCreateRequest",
+  "title": "MarkerSettingCreateRequest",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The marker type this setting applies to."
+    },
+    "color": {
+      "type": "string",
+      "description": "The color used to display markers of this type."
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarkerUpdateRequest",
+  "title": "MarkerUpdateRequest",
+  "type": "object",
+  "properties": {
+    "start_time": {
+      "type": "integer",
+      "description": "Updated Unix timestamp in seconds for the marker start."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Updated Unix timestamp in seconds for the marker end."
+    },
+    "message": {
+      "type": "string",
+      "description": "An updated message describing the marker event."
+    },
+    "type": {
+      "type": "string",
+      "description": "An updated type for the marker."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "An updated URL associated with the marker event."
+    }
+  }
+}

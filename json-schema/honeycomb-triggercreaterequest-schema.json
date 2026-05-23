@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerCreateRequest",
+  "title": "TriggerCreateRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "query",
+    "threshold",
+    "recipients"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the trigger."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the trigger."
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether the trigger should be disabled upon creation."
+    },
+    "query": {
+      "$ref": "#/components/schemas/QuerySpec"
+    },
+    "threshold": {
+      "type": "object",
+      "required": [
+        "op",
+        "value"
+      ],
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            ">",
+            ">=",
+            "<",
+            "<="
+          ]
+        },
+        "value": {
+          "type": "number"
+        }
+      }
+    },
+    "frequency": {
+      "type": "integer",
+      "description": "How frequently in seconds to evaluate the trigger."
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RecipientRef"
+      }
+    }
+  }
+}

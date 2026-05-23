@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EnvironmentUpdateRequest",
+  "title": "EnvironmentUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the environment."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the environment."
+    },
+    "color": {
+      "type": "string",
+      "description": "An updated color for the environment."
+    }
+  }
+}

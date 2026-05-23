@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnUpdateRequest",
+  "title": "ColumnUpdateRequest",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "An updated description for the column."
+    },
+    "type": {
+      "type": "string",
+      "description": "An updated data type for the column.",
+      "enum": [
+        "string",
+        "float",
+        "integer",
+        "boolean"
+      ]
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "If true, hides the column from autocomplete and raw data field lists."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SLOReport",
+  "title": "SLOReport",
+  "type": "object",
+  "properties": {
+    "slo_id": {
+      "type": "string",
+      "description": "The ID of the SLO this report is for."
+    },
+    "budget_remaining": {
+      "type": "number",
+      "description": "The remaining error budget as a percentage."
+    },
+    "budget_used": {
+      "type": "number",
+      "description": "The used error budget as a percentage."
+    },
+    "compliance": {
+      "type": "number",
+      "description": "The current compliance percentage."
+    },
+    "time_period_days": {
+      "type": "integer",
+      "description": "The time period in days for the report."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatasetCreateRequest",
+  "title": "DatasetCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the dataset to create."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the dataset."
+    }
+  }
+}

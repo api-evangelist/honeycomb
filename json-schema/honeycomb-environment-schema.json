@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Environment",
+  "title": "Environment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the environment."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the environment."
+    },
+    "slug": {
+      "type": "string",
+      "description": "The URL-safe slug identifier for the environment."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the environment."
+    },
+    "color": {
+      "type": "string",
+      "description": "A color associated with the environment for UI display."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the environment was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the environment was last updated."
+    }
+  }
+}

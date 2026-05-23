@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BurnAlertCreateRequest",
+  "title": "BurnAlertCreateRequest",
+  "type": "object",
+  "required": [
+    "slo_id",
+    "alert_type",
+    "recipients"
+  ],
+  "properties": {
+    "slo_id": {
+      "type": "string",
+      "description": "The ID of the SLO to monitor."
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "budget_rate",
+        "exhaustion_time"
+      ]
+    },
+    "exhaustion_minutes": {
+      "type": "integer"
+    },
+    "budget_rate_window_minutes": {
+      "type": "integer"
+    },
+    "budget_rate_decrease_percent": {
+      "type": "number"
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RecipientRef"
+      }
+    }
+  }
+}

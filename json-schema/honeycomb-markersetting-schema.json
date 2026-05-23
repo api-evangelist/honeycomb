@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarkerSetting",
+  "title": "MarkerSetting",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the marker setting."
+    },
+    "type": {
+      "type": "string",
+      "description": "The marker type this setting applies to."
+    },
+    "color": {
+      "type": "string",
+      "description": "The color used to display markers of this type."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker setting was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker setting was last updated."
+    }
+  }
+}

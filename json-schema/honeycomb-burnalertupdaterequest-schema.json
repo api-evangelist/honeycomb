@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BurnAlertUpdateRequest",
+  "title": "BurnAlertUpdateRequest",
+  "type": "object",
+  "properties": {
+    "exhaustion_minutes": {
+      "type": "integer"
+    },
+    "budget_rate_window_minutes": {
+      "type": "integer"
+    },
+    "budget_rate_decrease_percent": {
+      "type": "number"
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RecipientRef"
+      }
+    }
+  }
+}

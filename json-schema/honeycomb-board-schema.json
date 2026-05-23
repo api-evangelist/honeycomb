@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Board",
+  "title": "Board",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the board."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the board."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the board."
+    },
+    "style": {
+      "type": "string",
+      "description": "The visual layout style of the board.",
+      "enum": [
+        "list",
+        "visual"
+      ]
+    },
+    "column_layout": {
+      "type": "string",
+      "description": "The column layout for the board's visual mode.",
+      "enum": [
+        "multi",
+        "single"
+      ]
+    },
+    "queries": {
+      "type": "array",
+      "description": "The list of query objects displayed on the board.",
+      "items": {
+        "$ref": "#/components/schemas/BoardQuery"
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "Links related to the board.",
+      "properties": {
+        "board_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to view the board in the Honeycomb UI."
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the board was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the board was last updated."
+    }
+  }
+}

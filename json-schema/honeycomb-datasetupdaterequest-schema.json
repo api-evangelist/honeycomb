@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatasetUpdateRequest",
+  "title": "DatasetUpdateRequest",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "An updated description for the dataset."
+    },
+    "expand_json_depth": {
+      "type": "integer",
+      "description": "The depth to which nested JSON payloads should be unpacked into individual columns."
+    }
+  }
+}

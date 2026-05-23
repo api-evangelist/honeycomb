@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryAnnotationCreateRequest",
+  "title": "QueryAnnotationCreateRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "query_id"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the query annotation."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the annotation."
+    },
+    "query_id": {
+      "type": "string",
+      "description": "The ID of the query to annotate."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarkerSettingUpdateRequest",
+  "title": "MarkerSettingUpdateRequest",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "An updated marker type."
+    },
+    "color": {
+      "type": "string",
+      "description": "An updated color for the marker setting."
+    }
+  }
+}

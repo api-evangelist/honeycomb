@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthPermissions",
+  "title": "AuthPermissions",
+  "type": "object",
+  "properties": {
+    "api_key_access": {
+      "type": "object",
+      "description": "The permissions and access levels granted to the API key.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    }
+  }
+}

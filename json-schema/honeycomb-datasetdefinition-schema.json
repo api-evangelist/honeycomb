@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatasetDefinition",
+  "title": "DatasetDefinition",
+  "type": "object",
+  "properties": {
+    "duration_ms": {
+      "type": "string",
+      "description": "The column name that represents duration in milliseconds."
+    },
+    "error": {
+      "type": "string",
+      "description": "The column name that represents errors."
+    },
+    "name": {
+      "type": "string",
+      "description": "The column name that represents the event name."
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "The column name used for parent span ID in tracing."
+    },
+    "route": {
+      "type": "string",
+      "description": "The column name that represents the route."
+    },
+    "service_name": {
+      "type": "string",
+      "description": "The column name that represents the service name."
+    },
+    "span_id": {
+      "type": "string",
+      "description": "The column name used for span ID in tracing."
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "The column name used for trace ID in tracing."
+    },
+    "user": {
+      "type": "string",
+      "description": "The column name that represents the user."
+    }
+  }
+}

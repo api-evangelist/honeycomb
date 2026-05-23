@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerUpdateRequest",
+  "title": "TriggerUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the trigger."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the trigger."
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether the trigger should be disabled."
+    },
+    "query": {
+      "$ref": "#/components/schemas/QuerySpec"
+    },
+    "threshold": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            ">",
+            ">=",
+            "<",
+            "<="
+          ]
+        },
+        "value": {
+          "type": "number"
+        }
+      }
+    },
+    "frequency": {
+      "type": "integer"
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RecipientRef"
+      }
+    }
+  }
+}

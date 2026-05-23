@@ -1,0 +1,41 @@
+name: Honeycomb Domain Vocabulary
+provider: Honeycomb
+providerId: honeycomb
+description: Tag-derived vocabulary for the Honeycomb API surface; sourced from openapi/ tags.
+terms:
+- term: Auth
+  description: Validate authentication for a key, determine what authorizations have been granted to a key, and determine
+    the Team and Environment it belongs to.
+- term: Boards
+  description: Manage boards, which are collections of queries, SLO panels, and text panels displayed together.
+- term: Burn Alerts
+  description: Manage burn alerts that notify you when issues impact your SLO budget.
+- term: Calculated Fields
+  description: Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
+- term: Columns
+  description: Manage columns (fields) in the events you send to Honeycomb datasets.
+- term: Dataset Definitions
+  description: Manage dataset definitions that configure how columns are interpreted and displayed.
+- term: Datasets
+  description: Manage datasets, which represent collections of related events from the same source.
+- term: Environments
+  description: Manage environments within a Honeycomb team for separating telemetry data across stages.
+- term: Key Management
+  description: Manage API keys for a team, including listing, creating, updating, and deleting keys.
+- term: Marker Settings
+  description: Manage marker settings that group similar markers together with consistent visual styling.
+- term: Markers
+  description: Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.
+- term: Query Annotations
+  description: Associate names and descriptions to queries for collaboration features.
+- term: Recipients
+  description: Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook, Microsoft
+    Teams, and Slack.
+- term: Reporting
+  description: Access historical SLO performance reporting data.
+- term: Service Maps
+  description: Visualize relationships between services using dependency requests.
+- term: SLOs
+  description: Define and monitor Service Level Objectives for your organization.
+- term: Triggers
+  description: Configure alerting rules that fire when query results meet specified conditions.

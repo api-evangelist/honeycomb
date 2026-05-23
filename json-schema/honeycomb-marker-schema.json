@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Marker",
+  "title": "Marker",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the marker."
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp in seconds for when the marker starts."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp in seconds for when the marker ends. If omitted, the marker represents a single point in time."
+    },
+    "message": {
+      "type": "string",
+      "description": "A message describing the marker event."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the marker, used to group related markers."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL associated with the marker event."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker was last updated."
+    }
+  }
+}

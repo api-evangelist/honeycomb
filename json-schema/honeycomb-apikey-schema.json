@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiKey",
+  "title": "ApiKey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API key."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the API key."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of API key.",
+      "enum": [
+        "configuration",
+        "ingest"
+      ]
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether the API key is disabled."
+    },
+    "permissions": {
+      "type": "object",
+      "description": "The permissions granted to this API key.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "environment_id": {
+      "type": "string",
+      "description": "The environment this key is scoped to, if applicable."
+    },
+    "secret": {
+      "type": "string",
+      "description": "The API key secret, only returned upon creation."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the API key was created."
+    }
+  }
+}

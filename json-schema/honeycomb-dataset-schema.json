@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Dataset",
+  "title": "Dataset",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the dataset."
+    },
+    "slug": {
+      "type": "string",
+      "description": "The URL-safe slug identifier for the dataset."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the dataset."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted timestamp of when the dataset was created."
+    },
+    "last_written_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted timestamp of the last event written to the dataset."
+    },
+    "regular_columns_count": {
+      "type": "integer",
+      "description": "The number of regular columns in the dataset."
+    }
+  }
+}

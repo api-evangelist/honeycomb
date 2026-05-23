@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthInfo",
+  "title": "AuthInfo",
+  "type": "object",
+  "properties": {
+    "team": {
+      "type": "object",
+      "description": "The team associated with the API key.",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "The slug identifier for the team."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the team."
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "description": "The environment associated with the API key, if applicable.",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "The slug identifier for the environment."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the environment."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QuerySpec",
+  "title": "QuerySpec",
+  "type": "object",
+  "description": "A query specification defining what data to retrieve and how to aggregate it.",
+  "properties": {
+    "calculations": {
+      "type": "array",
+      "description": "The calculations to perform on the query data.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "description": "The aggregation operation.",
+            "enum": [
+              "COUNT",
+              "SUM",
+              "AVG",
+              "COUNT_DISTINCT",
+              "MAX",
+              "MIN",
+              "P001",
+              "P01",
+              "P05",
+              "P10",
+              "P25",
+              "P50",
+              "P75",
+              "P90",
+              "P95",
+              "P99",
+              "P999",
+              "HEATMAP",
+              "RATE_AVG",
+              "RATE_SUM",
+              "RATE_MAX"
+            ]
+          },
+          "column": {
+            "type": "string",
+            "description": "The column to perform the calculation on."
+          }
+        }
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Filters to apply to the query.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "The column to filter on."
+          },
+          "op": {
+            "type": "string",
+            "description": "The filter operator.",
+            "enum": [
+              "=",
+              "!=",
+              ">",
+              ">=",
+              "<",
+              "<=",
+              "starts-with",
+              "does-not-start-with",
+              "contains",
+              "does-not-contain",
+              "exists",
+              "does-not-exist",
+              "in",
+              "not-in"
+            ]
+          },
+          "value": {
+            "description": "The value to compare against."
+          }
+        }
+      }
+    },
+    "breakdowns": {
+      "type": "array",
+      "description": "Columns to group results by.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "orders": {
+      "type": "array",
+      "description": "Ordering for the results.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "op": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "ascending",
+              "descending"
+            ]
+          }
+        }
+      }
+    },
+    "time_range": {
+      "type": "integer",
+      "description": "The time range in seconds to query over."
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the query start time."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the query end time."
+    },
+    "granularity": {
+      "type": "integer",
+      "description": "The granularity of results in seconds."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "The maximum number of results to return."
+    }
+  }
+}

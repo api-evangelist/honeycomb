@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Column",
+  "title": "Column",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the column."
+    },
+    "key_name": {
+      "type": "string",
+      "description": "The name of the column."
+    },
+    "type": {
+      "type": "string",
+      "description": "The data type of the column.",
+      "enum": [
+        "string",
+        "float",
+        "integer",
+        "boolean"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the column."
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "If true, the column is excluded from autocomplete and raw data field lists."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the column was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the column was last updated."
+    },
+    "last_written": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the column last received event data."
+    }
+  }
+}

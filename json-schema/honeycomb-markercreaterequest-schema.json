@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarkerCreateRequest",
+  "title": "MarkerCreateRequest",
+  "type": "object",
+  "properties": {
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp in seconds for the marker start. Defaults to current time if not provided."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp in seconds for the marker end."
+    },
+    "message": {
+      "type": "string",
+      "description": "A message describing the marker event."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the marker, used to group related markers."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL associated with the marker event."
+    }
+  }
+}

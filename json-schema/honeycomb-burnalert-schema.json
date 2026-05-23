@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BurnAlert",
+  "title": "BurnAlert",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the burn alert."
+    },
+    "slo_id": {
+      "type": "string",
+      "description": "The ID of the SLO this burn alert monitors."
+    },
+    "alert_type": {
+      "type": "string",
+      "description": "The type of burn alert.",
+      "enum": [
+        "budget_rate",
+        "exhaustion_time"
+      ]
+    },
+    "exhaustion_minutes": {
+      "type": "integer",
+      "description": "For exhaustion_time alerts, the number of minutes before the budget is exhausted that triggers the alert."
+    },
+    "budget_rate_window_minutes": {
+      "type": "integer",
+      "description": "For budget_rate alerts, the window in minutes over which to measure the budget burn rate."
+    },
+    "budget_rate_decrease_percent": {
+      "type": "number",
+      "description": "For budget_rate alerts, the percentage decrease in budget that triggers the alert."
+    },
+    "recipients": {
+      "type": "array",
+      "description": "List of recipients to notify when the burn alert fires.",
+      "items": {
+        "$ref": "#/components/schemas/RecipientRef"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the burn alert was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the burn alert was last updated."
+    }
+  }
+}

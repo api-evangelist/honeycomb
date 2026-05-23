@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SLOCreateRequest",
+  "title": "SLOCreateRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "sli",
+    "target_percentage",
+    "time_period_days"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the SLO."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional description for the SLO."
+    },
+    "sli": {
+      "$ref": "#/components/schemas/QuerySpec"
+    },
+    "target_percentage": {
+      "type": "number",
+      "description": "The target percentage for the SLO.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "time_period_days": {
+      "type": "integer",
+      "description": "The time period in days for the SLO."
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SLOUpdateRequest",
+  "title": "SLOUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the SLO."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the SLO."
+    },
+    "sli": {
+      "$ref": "#/components/schemas/QuerySpec"
+    },
+    "target_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "time_period_days": {
+      "type": "integer"
+    }
+  }
+}

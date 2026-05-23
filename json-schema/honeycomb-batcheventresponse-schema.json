@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BatchEventResponse",
+  "title": "BatchEventResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": "The HTTP status code for this individual event. 202 indicates successful queuing for processing."
+    },
+    "error": {
+      "type": "string",
+      "description": "An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'."
+    }
+  }
+}

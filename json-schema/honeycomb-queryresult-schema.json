@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryResult",
+  "title": "QueryResult",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the query result."
+    },
+    "query_id": {
+      "type": "string",
+      "description": "The ID of the query specification that was executed."
+    },
+    "complete": {
+      "type": "boolean",
+      "description": "Whether the query has finished processing."
+    },
+    "data": {
+      "type": "object",
+      "description": "The result data, populated when complete is true.",
+      "properties": {
+        "results": {
+          "type": "array",
+          "description": "The aggregated result rows.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "series": {
+          "type": "array",
+          "description": "Time series data points.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "Links related to the query result.",
+      "properties": {
+        "query_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to view the query in the Honeycomb UI."
+        },
+        "graph_image_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to a rendered graph image of the query result."
+        }
+      }
+    }
+  }
+}

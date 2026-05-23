@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryAnnotationUpdateRequest",
+  "title": "QueryAnnotationUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated name for the query annotation."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the annotation."
+    }
+  }
+}

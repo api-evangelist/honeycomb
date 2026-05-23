@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiKeyCreateRequest",
+  "title": "ApiKeyCreateRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the API key."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of API key to create.",
+      "enum": [
+        "configuration",
+        "ingest"
+      ]
+    },
+    "permissions": {
+      "type": "object",
+      "description": "The permissions to grant to this API key.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "environment_id": {
+      "type": "string",
+      "description": "The environment to scope this key to."
+    }
+  }
+}

@@ -1,0 +1,948 @@
+{
+  "provider": "Honeycomb",
+  "providerId": "honeycomb",
+  "kind": "json-structure",
+  "description": "Structural overview of the Honeycomb API surface; extracted from openapi/.",
+  "schemaCount": 48,
+  "operationCount": 68,
+  "schemas": [
+    {
+      "name": "AuthInfo",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AuthPermissions",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Dataset",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "DatasetCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "DatasetUpdateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DatasetDefinition",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Column",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ColumnCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "key_name"
+      ]
+    },
+    {
+      "name": "ColumnUpdateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CalculatedField",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CalculatedFieldCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "alias",
+        "expression"
+      ]
+    },
+    {
+      "name": "CalculatedFieldUpdateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Board",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "BoardQuery",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "BoardCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "BoardUpdateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Marker",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "MarkerCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MarkerUpdateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MarkerSetting",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MarkerSettingCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "MarkerSettingUpdateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Trigger",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "TriggerCreateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "query",
+        "threshold",
+        "recipients"
+      ]
+    },
+    {
+      "name": "TriggerUpdateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Recipient",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RecipientRef",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RecipientCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "target"
+      ]
+    },
+    {
+      "name": "RecipientUpdateRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SLO",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "SLOCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "sli",
+        "target_percentage",
+        "time_period_days"
+      ]
+    },
+    {
+      "name": "SLOUpdateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SLOReport",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BurnAlert",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "BurnAlertCreateRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "slo_id",
+        "alert_type",
+        "recipients"
+      ]
+    },
+    {
+      "name": "BurnAlertUpdateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Environment",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "EnvironmentCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "EnvironmentUpdateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ApiKey",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ApiKeyCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "ApiKeyUpdateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "QuerySpec",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "QueryAnnotation",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "QueryAnnotationCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "query_id"
+      ]
+    },
+    {
+      "name": "QueryAnnotationUpdateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ServiceMapRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ServiceMapResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/1/auth",
+      "operationId": "getAuth",
+      "summary": "Authenticate API key",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/auth/permissions",
+      "operationId": "listAuthorizations",
+      "summary": "List authorizations",
+      "tags": [
+        "Auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/datasets",
+      "operationId": "listDatasets",
+      "summary": "List all datasets",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/datasets",
+      "operationId": "createDataset",
+      "summary": "Create a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/datasets/{datasetSlug}",
+      "operationId": "getDataset",
+      "summary": "Get a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/datasets/{datasetSlug}",
+      "operationId": "updateDataset",
+      "summary": "Update a dataset",
+      "tags": [
+        "Datasets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/columns/{datasetSlug}",
+      "operationId": "listColumns",
+      "summary": "List all columns",
+      "tags": [
+        "Columns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/columns/{datasetSlug}",
+      "operationId": "createColumn",
+      "summary": "Create a column",
+      "tags": [
+        "Columns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/columns/{datasetSlug}/{columnId}",
+      "operationId": "getColumn",
+      "summary": "Get a column",
+      "tags": [
+        "Columns"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/columns/{datasetSlug}/{columnId}",
+      "operationId": "updateColumn",
+      "summary": "Update a column",
+      "tags": [
+        "Columns"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/columns/{datasetSlug}/{columnId}",
+      "operationId": "deleteColumn",
+      "summary": "Delete a column",
+      "tags": [
+        "Columns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/dataset_definitions/{datasetSlug}",
+      "operationId": "getDatasetDefinition",
+      "summary": "Get dataset definition",
+      "tags": [
+        "Dataset Definitions"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/dataset_definitions/{datasetSlug}",
+      "operationId": "updateDatasetDefinition",
+      "summary": "Update dataset definition",
+      "tags": [
+        "Dataset Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/calculated_fields/{datasetSlug}",
+      "operationId": "listCalculatedFields",
+      "summary": "List calculated fields",
+      "tags": [
+        "Calculated Fields"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/calculated_fields/{datasetSlug}",
+      "operationId": "createCalculatedField",
+      "summary": "Create a calculated field",
+      "tags": [
+        "Calculated Fields"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/calculated_fields/{datasetSlug}/{calculatedFieldId}",
+      "operationId": "getCalculatedField",
+      "summary": "Get a calculated field",
+      "tags": [
+        "Calculated Fields"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/calculated_fields/{datasetSlug}/{calculatedFieldId}",
+      "operationId": "updateCalculatedField",
+      "summary": "Update a calculated field",
+      "tags": [
+        "Calculated Fields"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/calculated_fields/{datasetSlug}/{calculatedFieldId}",
+      "operationId": "deleteCalculatedField",
+      "summary": "Delete a calculated field",
+      "tags": [
+        "Calculated Fields"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/boards",
+      "operationId": "listBoards",
+      "summary": "List all boards",
+      "tags": [
+        "Boards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/boards",
+      "operationId": "createBoard",
+      "summary": "Create a board",
+      "tags": [
+        "Boards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/boards/{boardId}",
+      "operationId": "getBoard",
+      "summary": "Get a board",
+      "tags": [
+        "Boards"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/boards/{boardId}",
+      "operationId": "updateBoard",
+      "summary": "Update a board",
+      "tags": [
+        "Boards"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/boards/{boardId}",
+      "operationId": "deleteBoard",
+      "summary": "Delete a board",
+      "tags": [
+        "Boards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/markers/{datasetSlug}",
+      "operationId": "listMarkers",
+      "summary": "List all markers",
+      "tags": [
+        "Markers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/markers/{datasetSlug}",
+      "operationId": "createMarker",
+      "summary": "Create a marker",
+      "tags": [
+        "Markers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/markers/{datasetSlug}/{markerId}",
+      "operationId": "updateMarker",
+      "summary": "Update a marker",
+      "tags": [
+        "Markers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/markers/{datasetSlug}/{markerId}",
+      "operationId": "deleteMarker",
+      "summary": "Delete a marker",
+      "tags": [
+        "Markers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/marker_settings/{datasetSlug}",
+      "operationId": "listMarkerSettings",
+      "summary": "List all marker settings",
+      "tags": [
+        "Marker Settings"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/marker_settings/{datasetSlug}",
+      "operationId": "createMarkerSetting",
+      "summary": "Create a marker setting",
+      "tags": [
+        "Marker Settings"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/marker_settings/{datasetSlug}/{markerSettingId}",
+      "operationId": "updateMarkerSetting",
+      "summary": "Update a marker setting",
+      "tags": [
+        "Marker Settings"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/marker_settings/{datasetSlug}/{markerSettingId}",
+      "operationId": "deleteMarkerSetting",
+      "summary": "Delete a marker setting",
+      "tags": [
+        "Marker Settings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/triggers/{datasetSlug}",
+      "operationId": "listTriggers",
+      "summary": "List all triggers",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/triggers/{datasetSlug}",
+      "operationId": "createTrigger",
+      "summary": "Create a trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/triggers/{datasetSlug}/{triggerId}",
+      "operationId": "getTrigger",
+      "summary": "Get a trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/triggers/{datasetSlug}/{triggerId}",
+      "operationId": "updateTrigger",
+      "summary": "Update a trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/triggers/{datasetSlug}/{triggerId}",
+      "operationId": "deleteTrigger",
+      "summary": "Delete a trigger",
+      "tags": [
+        "Triggers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/recipients",
+      "operationId": "listRecipients",
+      "summary": "List all recipients",
+      "tags": [
+        "Recipients"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/recipients",
+      "operationId": "createRecipient",
+      "summary": "Create a recipient",
+      "tags": [
+        "Recipients"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/recipients/{recipientId}",
+      "operationId": "getRecipient",
+      "summary": "Get a recipient",
+      "tags": [
+        "Recipients"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/recipients/{recipientId}",
+      "operationId": "updateRecipient",
+      "summary": "Update a recipient",
+      "tags": [
+        "Recipients"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/recipients/{recipientId}",
+      "operationId": "deleteRecipient",
+      "summary": "Delete a recipient",
+      "tags": [
+        "Recipients"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/slos/{datasetSlug}",
+      "operationId": "listSLOs",
+      "summary": "List all SLOs",
+      "tags": [
+        "SLOs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/slos/{datasetSlug}",
+      "operationId": "createSLO",
+      "summary": "Create an SLO",
+      "tags": [
+        "SLOs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/slos/{datasetSlug}/{sloId}",
+      "operationId": "getSLO",
+      "summary": "Get an SLO",
+      "tags": [
+        "SLOs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/slos/{datasetSlug}/{sloId}",
+      "operationId": "updateSLO",
+      "summary": "Update an SLO",
+      "tags": [
+        "SLOs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/slos/{datasetSlug}/{sloId}",
+      "operationId": "deleteSLO",
+      "summary": "Delete an SLO",
+      "tags": [
+        "SLOs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/burn_alerts/{datasetSlug}",
+      "operationId": "listBurnAlerts",
+      "summary": "List all burn alerts",
+      "tags": [
+        "Burn Alerts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/burn_alerts/{datasetSlug}",
+      "operationId": "createBurnAlert",
+      "summary": "Create a burn alert",
+      "tags": [
+        "Burn Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/burn_alerts/{datasetSlug}/{burnAlertId}",
+      "operationId": "getBurnAlert",
+      "summary": "Get a burn alert",
+      "tags": [
+        "Burn Alerts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/burn_alerts/{datasetSlug}/{burnAlertId}",
+      "operationId": "updateBurnAlert",
+      "summary": "Update a burn alert",
+      "tags": [
+        "Burn Alerts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/burn_alerts/{datasetSlug}/{burnAlertId}",
+      "operationId": "deleteBurnAlert",
+      "summary": "Delete a burn alert",
+      "tags": [
+        "Burn Alerts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/slo_report/{datasetSlug}/{sloId}",
+      "operationId": "getSLOReport",
+      "summary": "Get SLO report",
+      "tags": [
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/environments",
+      "operationId": "listEnvironments",
+      "summary": "List all environments",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/environments",
+      "operationId": "createEnvironment",
+      "summary": "Create an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/environments/{environmentId}",
+      "operationId": "getEnvironment",
+      "summary": "Get an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/environments/{environmentId}",
+      "operationId": "updateEnvironment",
+      "summary": "Update an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/environments/{environmentId}",
+      "operationId": "deleteEnvironment",
+      "summary": "Delete an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/api_keys",
+      "operationId": "listApiKeys",
+      "summary": "List all API keys",
+      "tags": [
+        "Key Management"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/api_keys",
+      "operationId": "createApiKey",
+      "summary": "Create an API key",
+      "tags": [
+        "Key Management"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/api_keys/{keyId}",
+      "operationId": "getApiKey",
+      "summary": "Get an API key",
+      "tags": [
+        "Key Management"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/api_keys/{keyId}",
+      "operationId": "updateApiKey",
+      "summary": "Update an API key",
+      "tags": [
+        "Key Management"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/api_keys/{keyId}",
+      "operationId": "deleteApiKey",
+      "summary": "Delete an API key",
+      "tags": [
+        "Key Management"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/query_annotations/{datasetSlug}",
+      "operationId": "listQueryAnnotations",
+      "summary": "List query annotations",
+      "tags": [
+        "Query Annotations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/query_annotations/{datasetSlug}",
+      "operationId": "createQueryAnnotation",
+      "summary": "Create a query annotation",
+      "tags": [
+        "Query Annotations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/1/query_annotations/{datasetSlug}/{queryAnnotationId}",
+      "operationId": "getQueryAnnotation",
+      "summary": "Get a query annotation",
+      "tags": [
+        "Query Annotations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/1/query_annotations/{datasetSlug}/{queryAnnotationId}",
+      "operationId": "updateQueryAnnotation",
+      "summary": "Update a query annotation",
+      "tags": [
+        "Query Annotations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/1/query_annotations/{datasetSlug}/{queryAnnotationId}",
+      "operationId": "deleteQueryAnnotation",
+      "summary": "Delete a query annotation",
+      "tags": [
+        "Query Annotations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/1/service_map",
+      "operationId": "createServiceMapRequest",
+      "summary": "Create a service map dependency request",
+      "tags": [
+        "Service Maps"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalculatedFieldUpdateRequest",
+  "title": "CalculatedFieldUpdateRequest",
+  "type": "object",
+  "properties": {
+    "expression": {
+      "type": "string",
+      "description": "An updated expression for the calculated field."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the calculated field."
+    }
+  }
+}

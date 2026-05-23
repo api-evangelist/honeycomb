@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceMapResult",
+  "title": "ServiceMapResult",
+  "type": "object",
+  "properties": {
+    "services": {
+      "type": "array",
+      "description": "List of services in the service map.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the service."
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of dependencies between services.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "The source service name."
+          },
+          "target": {
+            "type": "string",
+            "description": "The target service name."
+          }
+        }
+      }
+    }
+  }
+}
