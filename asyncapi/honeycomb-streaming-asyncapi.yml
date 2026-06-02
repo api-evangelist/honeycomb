@@ -1,0 +1,580 @@
+asyncapi: 2.6.0
+info:
+  title: Honeycomb Streaming, OTLP Ingest & Trigger Webhooks
+  version: 1.0.0
+  description: |
+    AsyncAPI description of Honeycomb's event-driven and streaming-style
+    surfaces. Honeycomb does not publish a long-lived bidirectional streaming
+    API (no public Kafka topic, no WebSocket, no Server-Sent Events feed for
+    query results). Instead, the platform exposes two real, production
+    surfaces that benefit from an event-driven description:
+
+      1. Inbound OTLP ingest — OpenTelemetry Protocol over gRPC and HTTP,
+         used by every Honeycomb-instrumented application to push traces,
+         metrics, and logs into the platform. This is a unary request /
+         response protocol per OTLP, not a persistent stream, but it is the
+         primary "publish telemetry" channel for Honeycomb.
+
+      2. Outbound Trigger and SLO Burn Alert webhooks — Honeycomb posts
+         JSON to a customer-controlled URL when a Trigger fires, recovers,
+         or when an SLO Budget-Rate / Exhaustion-Time burn condition is
+         met. Slack and PagerDuty are delivered via vendor-managed channels
+         (Honeycomb Slack app, PagerDuty Events API integration key) and
+         therefore the customer does not host an endpoint for those — they
+         are noted here but not modelled as customer-facing channels.
+
+    Transport notes (honest):
+      - OTLP/gRPC is unary HTTP/2; AsyncAPI's "grpc" binding is a best-fit
+        description but Honeycomb does not expose server-streaming RPCs.
+      - OTLP/HTTP accepts both protobuf and JSON encodings on the same
+        paths; documented header for auth is "x-honeycomb-team", and the
+        legacy "x-honeycomb-dataset" header is only required for Honeycomb
+        Classic environments.
+      - Trigger webhooks are single HTTP POSTs with a 10-second response
+        deadline; authenticity is asserted via the "X-Honeycomb-Webhook-Token"
+        shared-secret header — Honeycomb does not document an HMAC
+        signature scheme for outbound webhooks at this time.
+      - "X-Honeycomb-Webhook-Delivery-ID" is supplied for at-least-once
+        delivery deduplication; retry policy beyond the 10s timeout is not
+        publicly documented.
+  contact:
+    name: Honeycomb
+    url: https://docs.honeycomb.io
+  license:
+    name: Proprietary
+    url: https://www.honeycomb.io/terms
+  x-apis-json:
+    aid: honeycomb
+    modified: '2026-05-30'
+
+defaultContentType: application/json
+
+servers:
+  otlp-grpc-us:
+    url: api.honeycomb.io:443
+    protocol: grpc
+    description: |
+      Honeycomb US OTLP/gRPC ingest. TLS on port 443. Used by OpenTelemetry
+      SDKs and collectors configured with OTLP/gRPC exporter.
+  otlp-grpc-eu:
+    url: api.eu1.honeycomb.io:443
+    protocol: grpc
+    description: |
+      Honeycomb EU OTLP/gRPC ingest. TLS on port 443. Use for tenants
+      provisioned in the EU instance.
+  otlp-http-us:
+    url: https://api.honeycomb.io
+    protocol: https
+    description: |
+      Honeycomb US OTLP/HTTP ingest. Accepts both application/x-protobuf
+      and application/json encodings on the /v1/traces, /v1/metrics, and
+      /v1/logs paths.
+  otlp-http-eu:
+    url: https://api.eu1.honeycomb.io
+    protocol: https
+    description: |
+      Honeycomb EU OTLP/HTTP ingest. Same paths and encodings as US.
+  trigger-webhook:
+    url: '{webhookUrl}'
+    protocol: https
+    description: |
+      Customer-hosted HTTPS endpoint registered as a "Webhook" recipient on
+      a Trigger or SLO Burn Alert. Honeycomb POSTs JSON here when the alert
+      condition fires or recovers.
+    variables:
+      webhookUrl:
+        description: HTTPS URL configured on the Honeycomb Recipient.
+        default: https://example.com/honeycomb-webhook
+
+channels:
+  v1/traces:
+    description: |
+      OTLP/HTTP traces ingest. Spans are encoded per the OpenTelemetry
+      protobuf schema (or JSON equivalent) inside ExportTraceServiceRequest.
+      A 200 response indicates Honeycomb accepted the batch for processing.
+    servers:
+      - otlp-http-us
+      - otlp-http-eu
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: publishOtlpTraces
+      summary: Export OpenTelemetry spans to Honeycomb.
+      message:
+        $ref: '#/components/messages/OtlpTraces'
+
+  v1/metrics:
+    description: |
+      OTLP/HTTP metrics ingest. ExportMetricsServiceRequest in protobuf or
+      JSON. Metrics quota is plan-dependent (see apis.yml Features).
+    servers:
+      - otlp-http-us
+      - otlp-http-eu
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: publishOtlpMetrics
+      summary: Export OpenTelemetry metrics to Honeycomb.
+      message:
+        $ref: '#/components/messages/OtlpMetrics'
+
+  v1/logs:
+    description: |
+      OTLP/HTTP logs ingest. ExportLogsServiceRequest in protobuf or JSON.
+    servers:
+      - otlp-http-us
+      - otlp-http-eu
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: publishOtlpLogs
+      summary: Export OpenTelemetry log records to Honeycomb.
+      message:
+        $ref: '#/components/messages/OtlpLogs'
+
+  opentelemetry.proto.collector.trace.v1.TraceService/Export:
+    description: |
+      OTLP/gRPC traces ingest — unary Export RPC. Use OpenTelemetry SDK
+      gRPC exporters; no server-streaming or client-streaming variants are
+      offered by Honeycomb.
+    servers:
+      - otlp-grpc-us
+      - otlp-grpc-eu
+    publish:
+      operationId: publishOtlpTracesGrpc
+      summary: Export spans via OTLP/gRPC.
+      message:
+        $ref: '#/components/messages/OtlpTraces'
+
+  opentelemetry.proto.collector.metrics.v1.MetricsService/Export:
+    description: OTLP/gRPC metrics ingest — unary Export RPC.
+    servers:
+      - otlp-grpc-us
+      - otlp-grpc-eu
+    publish:
+      operationId: publishOtlpMetricsGrpc
+      summary: Export metrics via OTLP/gRPC.
+      message:
+        $ref: '#/components/messages/OtlpMetrics'
+
+  opentelemetry.proto.collector.logs.v1.LogsService/Export:
+    description: OTLP/gRPC logs ingest — unary Export RPC.
+    servers:
+      - otlp-grpc-us
+      - otlp-grpc-eu
+    publish:
+      operationId: publishOtlpLogsGrpc
+      summary: Export log records via OTLP/gRPC.
+      message:
+        $ref: '#/components/messages/OtlpLogs'
+
+  trigger.fired:
+    description: |
+      Honeycomb POSTs to the configured webhook URL when a Trigger crosses
+      its threshold (Status TRIGGERED) or returns to a healthy state
+      (Status OK). The default payload is a JSON object built from the
+      documented template variables; payload can be customised per
+      recipient.
+    servers:
+      - trigger-webhook
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: receiveTriggerWebhook
+      summary: Receive a Honeycomb Trigger notification.
+      message:
+        $ref: '#/components/messages/TriggerAlert'
+
+  slo.burn_alert.budget_rate:
+    description: |
+      Webhook delivery for an SLO Budget-Rate burn alert (consumption over
+      a rolling window).
+    servers:
+      - trigger-webhook
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: receiveBudgetRateBurnAlert
+      summary: Receive an SLO Budget-Rate burn alert webhook.
+      message:
+        $ref: '#/components/messages/BudgetRateBurnAlert'
+
+  slo.burn_alert.exhaustion_time:
+    description: |
+      Webhook delivery for an SLO Exhaustion-Time burn alert (projected
+      time until budget is exhausted).
+    servers:
+      - trigger-webhook
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: receiveExhaustionTimeBurnAlert
+      summary: Receive an SLO Exhaustion-Time burn alert webhook.
+      message:
+        $ref: '#/components/messages/ExhaustionTimeBurnAlert'
+
+components:
+  messages:
+    OtlpTraces:
+      name: OtlpTraces
+      title: OTLP ExportTraceServiceRequest
+      summary: OpenTelemetry trace export payload.
+      contentType: application/x-protobuf
+      headers:
+        $ref: '#/components/schemas/OtlpRequestHeaders'
+      payload:
+        $ref: '#/components/schemas/OtlpExportTraceServiceRequest'
+
+    OtlpMetrics:
+      name: OtlpMetrics
+      title: OTLP ExportMetricsServiceRequest
+      summary: OpenTelemetry metrics export payload.
+      contentType: application/x-protobuf
+      headers:
+        $ref: '#/components/schemas/OtlpRequestHeaders'
+      payload:
+        $ref: '#/components/schemas/OtlpExportMetricsServiceRequest'
+
+    OtlpLogs:
+      name: OtlpLogs
+      title: OTLP ExportLogsServiceRequest
+      summary: OpenTelemetry logs export payload.
+      contentType: application/x-protobuf
+      headers:
+        $ref: '#/components/schemas/OtlpRequestHeaders'
+      payload:
+        $ref: '#/components/schemas/OtlpExportLogsServiceRequest'
+
+    TriggerAlert:
+      name: TriggerAlert
+      title: Honeycomb Trigger Webhook
+      summary: Payload Honeycomb POSTs when a Trigger fires or recovers.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/TriggerAlertPayload'
+
+    BudgetRateBurnAlert:
+      name: BudgetRateBurnAlert
+      title: SLO Budget-Rate Burn Alert Webhook
+      summary: Payload for an SLO Budget-Rate burn alert.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/BudgetRateBurnAlertPayload'
+
+    ExhaustionTimeBurnAlert:
+      name: ExhaustionTimeBurnAlert
+      title: SLO Exhaustion-Time Burn Alert Webhook
+      summary: Payload for an SLO Exhaustion-Time burn alert.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        $ref: '#/components/schemas/ExhaustionTimeBurnAlertPayload'
+
+  schemas:
+    OtlpRequestHeaders:
+      type: object
+      required:
+        - x-honeycomb-team
+      properties:
+        x-honeycomb-team:
+          type: string
+          description: |
+            Honeycomb ingest API key for the environment receiving the data.
+        x-honeycomb-dataset:
+          type: string
+          description: |
+            Required only for Honeycomb Classic. For Environments &
+            Services tenants this header is ignored; dataset routing is
+            derived from OTLP resource attributes (service.name).
+        content-type:
+          type: string
+          enum:
+            - application/x-protobuf
+            - application/json
+          description: OTLP/HTTP encoding selector.
+        content-encoding:
+          type: string
+          enum:
+            - gzip
+          description: Optional gzip compression of the request body.
+
+    OtlpExportTraceServiceRequest:
+      type: object
+      description: |
+        OpenTelemetry ExportTraceServiceRequest. Full schema is defined by
+        opentelemetry-proto; only the top-level shape is shown here.
+      properties:
+        resourceSpans:
+          type: array
+          items:
+            type: object
+
+    OtlpExportMetricsServiceRequest:
+      type: object
+      description: |
+        OpenTelemetry ExportMetricsServiceRequest. See opentelemetry-proto
+        for the full message definition.
+      properties:
+        resourceMetrics:
+          type: array
+          items:
+            type: object
+
+    OtlpExportLogsServiceRequest:
+      type: object
+      description: |
+        OpenTelemetry ExportLogsServiceRequest. See opentelemetry-proto for
+        the full message definition.
+      properties:
+        resourceLogs:
+          type: array
+          items:
+            type: object
+
+    WebhookHeaders:
+      type: object
+      required:
+        - Content-Type
+        - User-Agent
+      properties:
+        Content-Type:
+          type: string
+          enum:
+            - application/json
+        User-Agent:
+          type: string
+          enum:
+            - Honeycomb Triggers
+        X-Honeycomb-Webhook-Token:
+          type: string
+          description: |
+            Shared secret value configured on the Recipient. Receivers
+            should compare this against their stored secret to authenticate
+            the request. Honeycomb does not currently document an HMAC
+            signature scheme for these webhooks.
+        X-Honeycomb-Webhook-Delivery-ID:
+          type: string
+          description: |
+            Unique delivery identifier suitable for at-least-once
+            deduplication on the receiver.
+
+    Alert:
+      type: object
+      description: Common Alert envelope shared by Trigger and Burn Alert payloads.
+      properties:
+        InstanceID:
+          type: string
+          description: Unique identifier for this firing instance.
+        Description:
+          type: string
+        Status:
+          type: string
+          enum:
+            - TRIGGERED
+            - OK
+        Summary:
+          type: string
+        IsTest:
+          type: boolean
+        Timestamp:
+          type: string
+          format: date-time
+        Type:
+          type: string
+          description: For Triggers — "on_change" or "on_true".
+          enum:
+            - on_change
+            - on_true
+        BudgetDecrease:
+          type: number
+          format: float
+          description: Present on SLO burn-alert payloads.
+
+    Recipient:
+      type: object
+      properties:
+        Name:
+          type: string
+        Secret:
+          type: string
+          description: |
+            Same shared secret echoed in the X-Honeycomb-Webhook-Token
+            header.
+
+    ResultGroup:
+      type: object
+      properties:
+        Group:
+          type: object
+          properties:
+            Key:
+              type: string
+            Value: {}
+        Result:
+          type: number
+          format: float
+
+    TriggerResult:
+      type: object
+      properties:
+        URL:
+          type: string
+          format: uri
+        Groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultGroup'
+        GroupsTriggered:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultGroup'
+
+    TriggerQuery:
+      type: object
+      properties:
+        TimeRange:
+          type: integer
+          description: Query duration in seconds.
+
+    TriggerAlertPayload:
+      type: object
+      description: |
+        Default Trigger webhook body. Customers may override this via the
+        Recipient's Payload template; the fields below correspond to the
+        documented template variables.
+      properties:
+        Name:
+          type: string
+        ID:
+          type: string
+        Description:
+          type: string
+        URL:
+          type: string
+          format: uri
+        Environment:
+          type: string
+        Datasets:
+          type: array
+          items:
+            type: string
+        Operator:
+          type: string
+        Threshold:
+          type: number
+          format: float
+        Frequency:
+          type: integer
+          description: Evaluation frequency in minutes.
+        Query:
+          $ref: '#/components/schemas/TriggerQuery'
+        Result:
+          $ref: '#/components/schemas/TriggerResult'
+        Alert:
+          $ref: '#/components/schemas/Alert'
+        Recipient:
+          $ref: '#/components/schemas/Recipient'
+
+    SLORef:
+      type: object
+      properties:
+        URL:
+          type: string
+          format: uri
+        ID:
+          type: string
+
+    SLIRef:
+      type: object
+      properties:
+        URL:
+          type: string
+          format: uri
+
+    BudgetRateBurnAlertPayload:
+      type: object
+      description: |
+        SLO Budget-Rate burn alert webhook body. Field set per Honeycomb's
+        documented webhook template variables.
+      properties:
+        Name:
+          type: string
+        ID:
+          type: string
+        Description:
+          type: string
+        URL:
+          type: string
+          format: uri
+        Environment:
+          type: string
+        Datasets:
+          type: array
+          items:
+            type: string
+        BudgetRateWindowMinutes:
+          type: integer
+        BudgetDecreaseThreshold:
+          type: number
+          format: float
+        SLO:
+          $ref: '#/components/schemas/SLORef'
+        SLI:
+          $ref: '#/components/schemas/SLIRef'
+        Alert:
+          $ref: '#/components/schemas/Alert'
+        Recipient:
+          $ref: '#/components/schemas/Recipient'
+
+    ExhaustionTimeBurnAlertPayload:
+      type: object
+      description: SLO Exhaustion-Time burn alert webhook body.
+      properties:
+        Name:
+          type: string
+        ID:
+          type: string
+        Description:
+          type: string
+        URL:
+          type: string
+          format: uri
+        Environment:
+          type: string
+        Datasets:
+          type: array
+          items:
+            type: string
+        ExhaustionMinutes:
+          type: integer
+        SLO:
+          $ref: '#/components/schemas/SLORef'
+        SLI:
+          $ref: '#/components/schemas/SLIRef'
+        Alert:
+          $ref: '#/components/schemas/Alert'
+        Recipient:
+          $ref: '#/components/schemas/Recipient'

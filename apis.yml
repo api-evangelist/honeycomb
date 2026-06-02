@@ -1,6 +1,6 @@
 aid: honeycomb
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
-modified: '2026-05-19'
+modified: '2026-05-30'
 apis:
   - aid: honeycomb:api
     name: Honeycomb API
@@ -70,6 +70,8 @@ apis:
       type: Documentation
     - url: openapi/honeycomb-events-api-openapi.yml
       type: OpenAPI
+    - url: asyncapi/honeycomb-streaming-asyncapi.yml
+      type: AsyncAPI
     - type: NaftikoCapability
       url: capabilities/events-events.yaml
     - type: NaftikoCapability
@@ -212,6 +214,8 @@ apis:
       type: Documentation
     - url: openapi/honeycomb-triggers-api-openapi.yml
       type: OpenAPI
+    - url: asyncapi/honeycomb-streaming-asyncapi.yml
+      type: AsyncAPI
     - type: NaftikoCapability
       url: capabilities/triggers-recipients.yaml
     - type: NaftikoCapability
