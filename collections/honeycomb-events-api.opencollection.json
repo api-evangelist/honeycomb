@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Honeycomb-Team",
+      "value": "{{X-Honeycomb-Team}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/events/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a single event to the specified dataset. Using this endpoint for anything more than testing is highly discouraged. Sending events in batches via the batch endpoint is much more efficient and should be preferred."
+        },
+        {
+          "info": {
+            "name": "Create events (batch)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/batch/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a batch of events to the specified dataset. This is the recommended way to send events to Honeycomb. The request body is limited to 1MB of raw (potentially compressed) data. Dataset names are case insensitive."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Kinesis Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Kinesis events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/kinesis_events/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Processes streaming events from Amazon Kinesis into the specified Honeycomb dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

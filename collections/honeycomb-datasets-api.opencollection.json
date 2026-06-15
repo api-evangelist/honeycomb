@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Datasets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Honeycomb-Team",
+      "value": "{{X-Honeycomb-Team}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets"
+          },
+          "docs": "Returns a list of all datasets in the environment associated with the API key."
+        },
+        {
+          "info": {
+            "name": "Create a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/datasets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a dataset in the environment associated with the API key. If a dataset already exists with that name or slug, the existing dataset is returned."
+        },
+        {
+          "info": {
+            "name": "Get a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ]
+          },
+          "docs": "Returns a single dataset by its slug."
+        },
+        {
+          "info": {
+            "name": "Update a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a dataset's properties such as description and JSON expansion depth."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ]
+          },
+          "docs": "Returns a list of all columns in the specified dataset. The API key must have the Manage Queries and Columns permission."
+        },
+        {
+          "info": {
+            "name": "Create a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new column in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Get a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ]
+          },
+          "docs": "Returns a single column by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a column's description, type, or visibility."
+        },
+        {
+          "info": {
+            "name": "Delete a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ]
+          },
+          "docs": "Deletes a column from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dataset Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get dataset definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ]
+          },
+          "docs": "Returns the dataset definition which configures how columns are interpreted and displayed, such as mapping trace_id, span_id, parent_id, service_name, and other semantic fields."
+        },
+        {
+          "info": {
+            "name": "Update dataset definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the dataset definition for the specified dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

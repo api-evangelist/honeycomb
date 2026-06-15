@@ -1,0 +1,1592 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Honeycomb-Team",
+      "value": "{{X-Honeycomb-Team}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/auth"
+          },
+          "docs": "Validates authentication for a key and returns the team and environment that the key belongs to."
+        },
+        {
+          "info": {
+            "name": "List authorizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/auth/permissions"
+          },
+          "docs": "Determines what authorizations have been granted to the API key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets"
+          },
+          "docs": "Returns a list of all datasets in the environment associated with the API key."
+        },
+        {
+          "info": {
+            "name": "Create a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/datasets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a dataset in the environment associated with the API key. If a dataset already exists with that name or slug, the existing dataset is returned."
+        },
+        {
+          "info": {
+            "name": "Get a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a single dataset by its slug."
+        },
+        {
+          "info": {
+            "name": "Update a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a dataset's properties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all columns in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new column in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Get a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ]
+          },
+          "docs": "Returns a single column by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the properties of a column in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Delete a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the column."
+              }
+            ]
+          },
+          "docs": "Deletes a column from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dataset Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get dataset definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns the dataset definition for the specified dataset, which configures how columns are interpreted and displayed."
+        },
+        {
+          "info": {
+            "name": "Update dataset definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the dataset definition for the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calculated Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List calculated fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/calculated_fields/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all calculated fields (derived columns) in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a calculated field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/calculated_fields/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new calculated field (derived column) in the specified dataset or across the environment."
+        },
+        {
+          "info": {
+            "name": "Get a calculated field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/calculated_fields/:datasetSlug/:calculatedFieldId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "calculatedFieldId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the calculated field."
+              }
+            ]
+          },
+          "docs": "Returns a single calculated field by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a calculated field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/calculated_fields/:datasetSlug/:calculatedFieldId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "calculatedFieldId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the calculated field."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the expression or properties of a calculated field."
+        },
+        {
+          "info": {
+            "name": "Delete a calculated field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/calculated_fields/:datasetSlug/:calculatedFieldId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "calculatedFieldId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the calculated field."
+              }
+            ]
+          },
+          "docs": "Deletes a calculated field from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Boards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all boards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards"
+          },
+          "docs": "Returns a list of all boards accessible in the current environment."
+        },
+        {
+          "info": {
+            "name": "Create a board",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/boards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new board for organizing queries, SLO panels, and text panels."
+        },
+        {
+          "info": {
+            "name": "Get a board",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the board."
+              }
+            ]
+          },
+          "docs": "Returns a single board by its ID, including all queries and panels."
+        },
+        {
+          "info": {
+            "name": "Update a board",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the board."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a board's properties, queries, and panels."
+        },
+        {
+          "info": {
+            "name": "Delete a board",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the board."
+              }
+            ]
+          },
+          "docs": "Deletes a board."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Markers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all markers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all markers for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a marker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred."
+        },
+        {
+          "info": {
+            "name": "Update a marker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "markerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the marker."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a marker's properties."
+        },
+        {
+          "info": {
+            "name": "Delete a marker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "markerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the marker."
+              }
+            ]
+          },
+          "docs": "Deletes a marker from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Marker Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all marker settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all marker settings for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a marker setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new marker setting that groups similar markers together with consistent visual styling."
+        },
+        {
+          "info": {
+            "name": "Update a marker setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug/:markerSettingId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "markerSettingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the marker setting."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a marker setting's properties."
+        },
+        {
+          "info": {
+            "name": "Delete a marker setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug/:markerSettingId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "markerSettingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the marker setting."
+              }
+            ]
+          },
+          "docs": "Deletes a marker setting from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/triggers/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all triggers for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/triggers/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new trigger that fires when query results meet specified threshold conditions."
+        },
+        {
+          "info": {
+            "name": "Get a trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/triggers/:datasetSlug/:triggerId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the trigger."
+              }
+            ]
+          },
+          "docs": "Returns a single trigger by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/triggers/:datasetSlug/:triggerId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the trigger."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a trigger's query, threshold, or notification settings."
+        },
+        {
+          "info": {
+            "name": "Delete a trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/triggers/:datasetSlug/:triggerId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the trigger."
+              }
+            ]
+          },
+          "docs": "Deletes a trigger from the specified dataset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/recipients"
+          },
+          "docs": "Returns a list of all notification recipients configured for the team. Recipients are team-wide and not environment-specific."
+        },
+        {
+          "info": {
+            "name": "Create a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/recipients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new notification recipient. Supported types include PagerDuty, Email, Webhook, Microsoft Teams, and Slack."
+        },
+        {
+          "info": {
+            "name": "Get a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recipient."
+              }
+            ]
+          },
+          "docs": "Returns a single recipient by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recipient."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a recipient's notification target or configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the recipient."
+              }
+            ]
+          },
+          "docs": "Deletes a notification recipient."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SLOs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all SLOs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all Service Level Objectives for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Service Level Objective for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Get an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Returns a single SLO by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an SLO's target percentage, time period, or associated query."
+        },
+        {
+          "info": {
+            "name": "Delete an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Deletes a Service Level Objective."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Burn Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all burn alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all burn alerts for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new burn alert that notifies when issues impact your SLO budget."
+        },
+        {
+          "info": {
+            "name": "Get a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ]
+          },
+          "docs": "Returns a single burn alert by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a burn alert's configuration or notification recipients."
+        },
+        {
+          "info": {
+            "name": "Delete a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ]
+          },
+          "docs": "Deletes a burn alert."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SLO report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slo_report/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Returns historical SLO performance reporting data for the specified SLO."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/environments"
+          },
+          "docs": "Returns a list of all environments within the team."
+        },
+        {
+          "info": {
+            "name": "Create an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/environments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new environment for separating telemetry data across stages such as development, staging, and production."
+        },
+        {
+          "info": {
+            "name": "Get an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the environment."
+              }
+            ]
+          },
+          "docs": "Returns a single environment by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the environment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an environment's properties."
+        },
+        {
+          "info": {
+            "name": "Delete an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the environment."
+              }
+            ]
+          },
+          "docs": "Deletes an environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Key Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/api_keys"
+          },
+          "docs": "Returns a list of all API keys for the team."
+        },
+        {
+          "info": {
+            "name": "Create an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/api_keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API key for the team with specified permissions and environment scope."
+        },
+        {
+          "info": {
+            "name": "Get an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the API key."
+              }
+            ]
+          },
+          "docs": "Returns a single API key by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the API key."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an API key's name, permissions, or configuration."
+        },
+        {
+          "info": {
+            "name": "Delete an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the API key."
+              }
+            ]
+          },
+          "docs": "Deletes an API key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List query annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ]
+          },
+          "docs": "Returns a list of all query annotations for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a query annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new query annotation to associate a name and description to a query for collaboration."
+        },
+        {
+          "info": {
+            "name": "Get a query annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query annotation."
+              }
+            ]
+          },
+          "docs": "Returns a single query annotation by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a query annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query annotation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a query annotation's name or description."
+        },
+        {
+          "info": {
+            "name": "Delete a query annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query annotation."
+              }
+            ]
+          },
+          "docs": "Deletes a query annotation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Service Maps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a service map dependency request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/service_map",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new dependency request to generate a service map visualizing relationships between services."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

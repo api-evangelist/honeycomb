@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb SLOs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Honeycomb-Team",
+      "value": "{{X-Honeycomb-Team}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLOs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all SLOs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ]
+          },
+          "docs": "Returns a list of all Service Level Objectives for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Service Level Objective for the specified dataset. The API key must have the Manage SLOs permission."
+        },
+        {
+          "info": {
+            "name": "Get an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Returns a single SLO by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an SLO's target percentage, time period, or associated query."
+        },
+        {
+          "info": {
+            "name": "Delete an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Deletes a Service Level Objective."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Burn Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all burn alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ]
+          },
+          "docs": "Returns a list of all burn alerts for the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Create a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new burn alert that notifies when issues impact your SLO budget. Supported alert types are budget_rate and exhaustion_time."
+        },
+        {
+          "info": {
+            "name": "Get a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ]
+          },
+          "docs": "Returns a single burn alert by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a burn alert's configuration or notification recipients."
+        },
+        {
+          "info": {
+            "name": "Delete a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ]
+          },
+          "docs": "Deletes a burn alert."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SLO report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slo_report/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the SLO."
+              }
+            ]
+          },
+          "docs": "Returns historical SLO performance reporting data including budget remaining, budget used, and compliance percentage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

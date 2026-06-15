@@ -1,0 +1,1397 @@
+{
+  "item": [
+    {
+      "id": "a144f9ce-8a51-44d8-9358-c4698eada7ab",
+      "name": "Queries",
+      "description": {
+        "content": "Create and retrieve query specifications that define what data to retrieve and how to aggregate it.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc165eb7-0627-4d41-b315-66f90819bf16",
+          "name": "Create a query",
+          "request": {
+            "name": "Create a query",
+            "description": {
+              "content": "Creates a query specification that validates the query parameters are valid and returns a query ID that can be used to create query results, reference in boards, triggers, and query annotations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "queries",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe6a723b-e64a-4853-b8ea-6d3481c2e800",
+              "name": "Query created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"calculations\": [\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    },\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    },\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    }\n  ],\n  \"breakdowns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"time_range\": 6198,\n  \"granularity\": 2459,\n  \"limit\": 9175,\n  \"created_at\": \"2016-05-01T12:15:18.394Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1812a162-baae-4017-951e-c32de18ac6da",
+              "name": "Bad request - invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e1b7ede-e89e-42cc-9d7d-10c7aa03c37e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e393bc06-44e3-4867-865f-c0c75d661b67",
+              "name": "Dataset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93a75ded-8be6-4861-8d38-4ad26abc8a51",
+          "name": "Get a query",
+          "request": {
+            "name": "Get a query",
+            "description": {
+              "content": "Returns a single query specification by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "queries",
+                ":datasetSlug",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier for the query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "539a4578-e138-44a7-92fc-63e1108e8d9a",
+              "name": "Query details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier for the query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"calculations\": [\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    },\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    },\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    }\n  ],\n  \"breakdowns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"time_range\": 6198,\n  \"granularity\": 2459,\n  \"limit\": 9175,\n  \"created_at\": \"2016-05-01T12:15:18.394Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cccab372-c389-4117-a323-6cb6b5de0458",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier for the query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "105791cd-3aa2-4f25-9e5f-81c271fab46f",
+              "name": "Query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier for the query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "64fdb024-bc87-4817-b650-ae131e513730",
+      "name": "Query Data",
+      "description": {
+        "content": "Access completed query result data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fa65da2-6cda-44ef-8b6e-03e5d5cf8eff",
+          "name": "Run a query and get data",
+          "request": {
+            "name": "Run a query and get data",
+            "description": {
+              "content": "Submits a query specification and returns the result data directly. This is a convenience endpoint that combines query creation and result retrieval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_data",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16c6c8f3-e965-4f7c-b0b5-fadd69e7741b",
+              "name": "Query data results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_data",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"key_0\": true,\n      \"key_1\": 7909\n    },\n    {\n      \"key_0\": 7290,\n      \"key_1\": 4526.173170773361\n    }\n  ],\n  \"series\": [\n    {\n      \"key_0\": false,\n      \"key_1\": 3593.7507663703896,\n      \"key_2\": 1209.7733152943847\n    },\n    {\n      \"key_0\": 9525\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c3d6d8e-1236-4f4e-9e53-6d74444ed3aa",
+              "name": "Bad request - invalid query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_data",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9971e6f1-778e-4d49-a263-aeccf9033555",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_data",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5df069c5-70c0-475b-8398-df363ee02108",
+              "name": "Dataset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_data",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<string>\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"filter_combination\": \"<string>\",\n  \"breakdowns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"time_range\": \"<integer>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"granularity\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d81a6dea-ff1f-4972-9e25-865fa152e959",
+      "name": "Query Results",
+      "description": {
+        "content": "Create and poll for asynchronous query results.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7314a7b8-78cc-4414-aed9-5100c07af9a6",
+          "name": "Create a query result",
+          "request": {
+            "name": "Create a query result",
+            "description": {
+              "content": "Creates an asynchronous query result by referencing a Query ID. After creation, poll the query result endpoint until the data is complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_results",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6355e762-00f1-4c52-a6f8-0cd141974eba",
+              "name": "Query result created and processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"query_id\": \"string\",\n  \"complete\": true,\n  \"data\": {\n    \"results\": [\n      {\n        \"key_0\": 9969.444230581703\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ],\n    \"series\": [\n      {\n        \"key_0\": 5927.31421502398,\n        \"key_1\": 8612.251572376646,\n        \"key_2\": 307.269051693968\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ]\n  },\n  \"links\": {\n    \"query_url\": \"http://LCbxVUqh.nhxTStSUGNNhj9uPojeucHitQAPG,0xeB5i13zTi.LWcFrs1rIODv9BHZy,\",\n    \"graph_image_url\": \"http://dtUzNzIzCYyTVSHZJQuHAlhuXwe.ebPgRgtCQvtpP4jGJjdy+6WH8fUigYrOcdJCYW87AHRV20RjlMz1zyYgEEXGnsPhv3MBOQeILoqiut2arXbTVlRb\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5fe569e-361e-47be-ae1a-9ce3e72f9551",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ba08738-0aa2-4a0f-ac9c-c06fa8a0a8b1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d21986e3-be38-4f8e-b4fc-ffc42bc983cb",
+              "name": "Dataset or query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf5bb111-fad2-4666-9ba1-2d455e4d986b",
+          "name": "Get a query result",
+          "request": {
+            "name": "Get a query result",
+            "description": {
+              "content": "Returns the status and data of an asynchronous query result. Poll this endpoint until the complete flag is true to get the final results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_results",
+                ":datasetSlug",
+                ":queryResultId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryResultId",
+                  "description": "(Required) The unique identifier for the query result."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba600693-86cc-405c-b8c6-03d7d9b2ec5d",
+              "name": "Query result status and data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"query_id\": \"string\",\n  \"complete\": true,\n  \"data\": {\n    \"results\": [\n      {\n        \"key_0\": 9969.444230581703\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ],\n    \"series\": [\n      {\n        \"key_0\": 5927.31421502398,\n        \"key_1\": 8612.251572376646,\n        \"key_2\": 307.269051693968\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ]\n  },\n  \"links\": {\n    \"query_url\": \"http://LCbxVUqh.nhxTStSUGNNhj9uPojeucHitQAPG,0xeB5i13zTi.LWcFrs1rIODv9BHZy,\",\n    \"graph_image_url\": \"http://dtUzNzIzCYyTVSHZJQuHAlhuXwe.ebPgRgtCQvtpP4jGJjdy+6WH8fUigYrOcdJCYW87AHRV20RjlMz1zyYgEEXGnsPhv3MBOQeILoqiut2arXbTVlRb\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb6661c7-34be-4b53-9f99-356db0b0c54b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fca6168-1e41-4e65-aca1-4354cc2afca2",
+              "name": "Query result not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Honeycomb-Team"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47404107-af6f-43b0-88e4-a77193182aef",
+    "name": "Honeycomb Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Honeycomb Queries API allows developers to programmatically create and manage query specifications within Honeycomb. Queries are used to identify and reference queries across other parts of the API, including boards, triggers, and query annotations. Developers can run queries asynchronously by creating a Query Result that references a Query ID, then polling the query result endpoint until the data is ready. The Query Data API complements this by providing access to query results.\n\nContact Support:\n Name: Honeycomb Support",
+      "type": "text/plain"
+    }
+  }
+}

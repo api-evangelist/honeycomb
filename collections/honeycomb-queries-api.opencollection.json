@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Queries API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Honeycomb-Team",
+      "value": "{{X-Honeycomb-Team}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/queries/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a query specification that validates the query parameters are valid and returns a query ID that can be used to create query results, reference in boards, triggers, and query annotations."
+        },
+        {
+          "info": {
+            "name": "Get a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/queries/:datasetSlug/:queryId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query."
+              }
+            ]
+          },
+          "docs": "Returns a single query specification by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a query result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an asynchronous query result by referencing a Query ID. After creation, poll the query result endpoint until the data is complete."
+        },
+        {
+          "info": {
+            "name": "Get a query result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug/:queryResultId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              },
+              {
+                "name": "queryResultId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query result."
+              }
+            ]
+          },
+          "docs": "Returns the status and data of an asynchronous query result. Poll this endpoint until the complete flag is true to get the final results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run a query and get data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/query_data/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a query specification and returns the result data directly. This is a convenience endpoint that combines query creation and result retrieval."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

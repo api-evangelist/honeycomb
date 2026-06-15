@@ -1,0 +1,933 @@
+{
+  "item": [
+    {
+      "id": "289e4518-a82f-4eea-a92b-5139493deb67",
+      "name": "Boards",
+      "description": {
+        "content": "Manage boards for organizing queries, SLO panels, text panels, and views.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e1d3ab1-aac7-4cdc-b22e-5da2bf5f7186",
+          "name": "List all boards",
+          "request": {
+            "name": "List all boards",
+            "description": {
+              "content": "Returns a list of all boards accessible in the current environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdc922a0-0b15-4453-a71f-7643f58d0407",
+              "name": "A list of boards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"style\": \"visual\",\n    \"column_layout\": \"single\",\n    \"queries\": [\n      {\n        \"query_id\": \"string\",\n        \"dataset\": \"string\",\n        \"query_annotation_id\": \"string\",\n        \"caption\": \"string\",\n        \"query_style\": \"graph\",\n        \"graph_settings\": {}\n      },\n      {\n        \"query_id\": \"string\",\n        \"dataset\": \"string\",\n        \"query_annotation_id\": \"string\",\n        \"caption\": \"string\",\n        \"query_style\": \"graph\",\n        \"graph_settings\": {}\n      }\n    ],\n    \"links\": {\n      \"board_url\": \"http://uxwrOzZlPO.axdmMOd8UCuMLQZwTTA\"\n    },\n    \"created_at\": \"2009-09-07T17:25:56.480Z\",\n    \"updated_at\": \"1951-02-12T02:44:01.801Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"style\": \"visual\",\n    \"column_layout\": \"multi\",\n    \"queries\": [\n      {\n        \"query_id\": \"string\",\n        \"dataset\": \"string\",\n        \"query_annotation_id\": \"string\",\n        \"caption\": \"string\",\n        \"query_style\": \"graph\",\n        \"graph_settings\": {}\n      },\n      {\n        \"query_id\": \"string\",\n        \"dataset\": \"string\",\n        \"query_annotation_id\": \"string\",\n        \"caption\": \"string\",\n        \"query_style\": \"combo\",\n        \"graph_settings\": {}\n      }\n    ],\n    \"links\": {\n      \"board_url\": \"https://ypHyPXvLUSbsZXF.rdzqMjCL7r86ELPZV8172v5q8RfjsyOTBUKB\"\n    },\n    \"created_at\": \"1984-04-21T12:45:47.956Z\",\n    \"updated_at\": \"1959-07-04T07:24:43.610Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83c2a6ed-d3f2-406c-874c-5b4b8d609a28",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dfaf6a0-84fd-451a-847a-5f8800e86ab5",
+          "name": "Create a board",
+          "request": {
+            "name": "Create a board",
+            "description": {
+              "content": "Creates a new board for organizing queries, SLO panels, and text panels. Boards support preset filters (limited to 5 per board) to apply consistent filtering across the board.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"<string>\",\n      \"dataset\": \"<string>\",\n      \"query_annotation_id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"query_style\": \"<string>\",\n      \"graph_settings\": \"<object>\"\n    },\n    {\n      \"query_id\": \"<string>\",\n      \"dataset\": \"<string>\",\n      \"query_annotation_id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"query_style\": \"<string>\",\n      \"graph_settings\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc11ea76-6498-4384-ad79-9c2fa5598cee",
+              "name": "Board created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"table\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"style\": \"list\",\n  \"column_layout\": \"single\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"table\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ],\n  \"links\": {\n    \"board_url\": \"http://cWStM.awAMNzM.rdoTjImnyS34p74\"\n  },\n  \"created_at\": \"2021-11-12T07:15:20.637Z\",\n  \"updated_at\": \"1982-04-17T10:49:35.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a5c0fa4-aeac-4a96-b82f-638f55429c2e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"table\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65b75823-7a5b-4c1b-8470-73f60bf09de2",
+          "name": "Get a board",
+          "request": {
+            "name": "Get a board",
+            "description": {
+              "content": "Returns a single board by its ID, including all queries and panels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier for the board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa4dc2a2-54e1-4a2c-9b7e-ec96e56a3b1c",
+              "name": "Board details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"style\": \"list\",\n  \"column_layout\": \"single\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"table\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ],\n  \"links\": {\n    \"board_url\": \"http://cWStM.awAMNzM.rdoTjImnyS34p74\"\n  },\n  \"created_at\": \"2021-11-12T07:15:20.637Z\",\n  \"updated_at\": \"1982-04-17T10:49:35.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b55aef37-e067-4548-8177-02c70adf0a03",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c91395dd-1dfc-47ae-96af-9987c7023e7c",
+              "name": "Board not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "919c430b-1819-4920-8747-8c0490e1babe",
+          "name": "Update a board",
+          "request": {
+            "name": "Update a board",
+            "description": {
+              "content": "Updates a board's properties, queries, and panels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier for the board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"<string>\",\n      \"dataset\": \"<string>\",\n      \"query_annotation_id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"query_style\": \"<string>\",\n      \"graph_settings\": \"<object>\"\n    },\n    {\n      \"query_id\": \"<string>\",\n      \"dataset\": \"<string>\",\n      \"query_annotation_id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"query_style\": \"<string>\",\n      \"graph_settings\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35fe2713-783a-444b-baff-3ef52cd1563e",
+              "name": "Board updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"combo\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"style\": \"list\",\n  \"column_layout\": \"single\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"table\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ],\n  \"links\": {\n    \"board_url\": \"http://cWStM.awAMNzM.rdoTjImnyS34p74\"\n  },\n  \"created_at\": \"2021-11-12T07:15:20.637Z\",\n  \"updated_at\": \"1982-04-17T10:49:35.936Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0df5f93f-525b-44eb-a67f-c70dc8c0d510",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"combo\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18ac014b-c82f-4db0-9cdb-a64f15185dcf",
+              "name": "Board not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"style\": \"<string>\",\n  \"column_layout\": \"<string>\",\n  \"queries\": [\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"combo\",\n      \"graph_settings\": {}\n    },\n    {\n      \"query_id\": \"string\",\n      \"dataset\": \"string\",\n      \"query_annotation_id\": \"string\",\n      \"caption\": \"string\",\n      \"query_style\": \"graph\",\n      \"graph_settings\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c310eed1-8d81-450d-aef4-06bb41346e32",
+          "name": "Delete a board",
+          "request": {
+            "name": "Delete a board",
+            "description": {
+              "content": "Deletes a board.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier for the board."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e006375-b608-4cb8-924a-09191da2e06a",
+              "name": "Board deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec85bff4-f0c2-48d5-97d5-0535d0381099",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "178181eb-602f-45f1-8177-6c0acc2787c9",
+              "name": "Board not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier for the board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Honeycomb-Team"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a2614b1e-4066-442f-9df4-22d3e61e3406",
+    "name": "Honeycomb Boards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Honeycomb Boards API allows developers to programmatically create and manage boards, which are collections of queries displayed together as a dashboard-like view. Boards provide a way to organize and share related queries for monitoring and debugging workflows. The API supports listing, creating, updating, and deleting boards, making it possible to automate the setup of observability dashboards across environments.\n\nContact Support:\n Name: Honeycomb Support",
+      "type": "text/plain"
+    }
+  }
+}
