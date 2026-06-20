@@ -10,7 +10,7 @@ apis:
       - Observability
       - Telemetry
       - Tracing
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api
     properties:
@@ -29,7 +29,7 @@ apis:
       - Ingestion
       - Observability
       - Telemetry
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/events
     properties:
@@ -51,7 +51,7 @@ apis:
       - Data Analysis
       - Observability
       - Queries
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/queries
     properties:
@@ -72,7 +72,7 @@ apis:
       - Reliability
       - Service Level Objectives
       - SLOs
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/slos
     properties:
@@ -91,7 +91,7 @@ apis:
       - Data Management
       - Datasets
       - Observability
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/datasets
     properties:
@@ -110,7 +110,7 @@ apis:
       - Dashboards
       - Observability
       - Visualization
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/boards
     properties:
@@ -130,7 +130,7 @@ apis:
       - Deployments
       - Markers
       - Observability
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/marker-settings
     properties:
@@ -151,7 +151,7 @@ apis:
       - Monitoring
       - Notifications
       - Observability
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/triggers
     properties:
@@ -173,7 +173,7 @@ apis:
       - Administration
       - Environments
       - Observability
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.honeycomb.io
     humanURL: https://api-docs.honeycomb.io/api/environments
     properties:
