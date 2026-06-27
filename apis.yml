@@ -222,7 +222,7 @@ common:
     updated: '2026-05-04'
   - type: Integrations
     url: https://docs.honeycomb.io/integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.honeycomb.io/llms.txt
 description: >-
   Build integrations and automate workflows with the Honeycomb API. Programmatically manage datasets, queries, triggers,
