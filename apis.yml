@@ -187,6 +187,12 @@ apis:
       staging, and production. The API supports listing, creating, updating, and deleting environments, along with the
       Auth API for validating API keys and determining their associated team and environment permissions.
 common:
+  - type: TrustCenter
+    url: security/honeycomb-trust-center.yml
+  - type: DomainSecurity
+    url: security/honeycomb-domain-security.yml
+  - type: Authentication
+    url: authentication/honeycomb-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/honeycombio
   - type: JSONLD
@@ -224,6 +230,8 @@ common:
     url: https://docs.honeycomb.io/integrations
   - type: LlmsText
     url: https://docs.honeycomb.io/llms.txt
+  - url: https://www.honeycomb.io/feed/
+    type: Blog
 description: >-
   Build integrations and automate workflows with the Honeycomb API. Programmatically manage datasets, queries, triggers,
   SLOs, environments, API keys, and more.

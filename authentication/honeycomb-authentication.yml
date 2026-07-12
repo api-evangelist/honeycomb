@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/honeycomb-api-openapi.yml, openapi/honeycomb-boards-api-openapi.yml, openapi/honeycomb-datasets-api-openapi.yml,
+  openapi/honeycomb-environments-api-openapi.yml, openapi/honeycomb-events-api-openapi.yml,
+  openapi/honeycomb-markers-api-openapi.yml, openapi/honeycomb-queries-api-openapi.yml, openapi/honeycomb-slos-api-openapi.yml,
+  openapi/honeycomb-triggers-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-Honeycomb-Team
+  description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint
+    being called.
+  sources:
+  - openapi/honeycomb-api-openapi.yml
+  - openapi/honeycomb-boards-api-openapi.yml
+  - openapi/honeycomb-datasets-api-openapi.yml
+  - openapi/honeycomb-environments-api-openapi.yml
+  - openapi/honeycomb-events-api-openapi.yml
+  - openapi/honeycomb-markers-api-openapi.yml
+  - openapi/honeycomb-queries-api-openapi.yml
+  - openapi/honeycomb-slos-api-openapi.yml
+  - openapi/honeycomb-triggers-api-openapi.yml
