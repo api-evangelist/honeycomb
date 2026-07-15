@@ -187,6 +187,8 @@ apis:
       staging, and production. The API supports listing, creating, updating, and deleting environments, along with the
       Auth API for validating API keys and determining their associated team and environment permissions.
 common:
+  - type: AgenticAccess
+    url: agentic-access/honeycomb-agentic-access.yml
   - type: TrustCenter
     url: security/honeycomb-trust-center.yml
   - type: DomainSecurity
