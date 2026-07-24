@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Reporting API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Reporting
+  description: Access historical SLO performance reporting data.
+paths:
+  /1/slo_report/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLOReport
+      summary: Get SLO report
+      description: Returns historical SLO performance reporting data for the specified SLO.
+      tags:
+      - Reporting
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO report data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOReport'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+components:
+  parameters:
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: The unique identifier for the SLO.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+  schemas:
+    SLOReport:
+      type: object
+      properties:
+        slo_id:
+          type: string
+          description: The ID of the SLO this report is for.
+        budget_remaining:
+          type: number
+          description: The remaining error budget as a percentage.
+        budget_used:
+          type: number
+          description: The used error budget as a percentage.
+        compliance:
+          type: number
+          description: The current compliance percentage.
+        time_period_days:
+          type: integer
+          description: The time period in days for the report.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

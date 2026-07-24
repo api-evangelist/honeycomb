@@ -1,0 +1,197 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Query Annotations API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Query Annotations
+  description: Associate names and descriptions to queries for collaboration features.
+paths:
+  /1/query_annotations/{datasetSlug}:
+    get:
+      operationId: listQueryAnnotations
+      summary: List query annotations
+      description: Returns a list of all query annotations for the specified dataset.
+      tags:
+      - Query Annotations
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of query annotations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createQueryAnnotation
+      summary: Create a query annotation
+      description: Creates a new query annotation to associate a name and description to a query for collaboration.
+      tags:
+      - Query Annotations
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryAnnotationCreateRequest'
+      responses:
+        '201':
+          description: Query annotation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+  /1/query_annotations/{datasetSlug}/{queryAnnotationId}:
+    get:
+      operationId: getQueryAnnotation
+      summary: Get a query annotation
+      description: Returns a single query annotation by its ID.
+      tags:
+      - Query Annotations
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/queryAnnotationId'
+      responses:
+        '200':
+          description: Query annotation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+    put:
+      operationId: updateQueryAnnotation
+      summary: Update a query annotation
+      description: Updates a query annotation's name or description.
+      tags:
+      - Query Annotations
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/queryAnnotationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryAnnotationUpdateRequest'
+      responses:
+        '200':
+          description: Query annotation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAnnotation'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+    delete:
+      operationId: deleteQueryAnnotation
+      summary: Delete a query annotation
+      description: Deletes a query annotation.
+      tags:
+      - Query Annotations
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/queryAnnotationId'
+      responses:
+        '204':
+          description: Query annotation deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Query annotation not found
+components:
+  schemas:
+    QueryAnnotationCreateRequest:
+      type: object
+      required:
+      - name
+      - query_id
+      properties:
+        name:
+          type: string
+          description: The name for the query annotation.
+        description:
+          type: string
+          description: An optional description for the annotation.
+        query_id:
+          type: string
+          description: The ID of the query to annotate.
+    QueryAnnotation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the query annotation.
+        name:
+          type: string
+          description: The name of the query annotation.
+        description:
+          type: string
+          description: A description associated with the query.
+        query_id:
+          type: string
+          description: The ID of the query this annotation is associated with.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the query annotation was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the query annotation was last updated.
+    QueryAnnotationUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated name for the query annotation.
+        description:
+          type: string
+          description: An updated description for the annotation.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    queryAnnotationId:
+      name: queryAnnotationId
+      in: path
+      required: true
+      description: The unique identifier for the query annotation.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

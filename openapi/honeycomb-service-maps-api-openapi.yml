@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Service Maps API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Service Maps
+  description: Visualize relationships between services using dependency requests.
+paths:
+  /1/service_map:
+    post:
+      operationId: createServiceMapRequest
+      summary: Create a service map dependency request
+      description: Creates a new dependency request to generate a service map visualizing relationships between services.
+      tags:
+      - Service Maps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceMapRequest'
+      responses:
+        '201':
+          description: Service map request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMapResult'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    ServiceMapResult:
+      type: object
+      properties:
+        services:
+          type: array
+          description: List of services in the service map.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The name of the service.
+        dependencies:
+          type: array
+          description: List of dependencies between services.
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                description: The source service name.
+              target:
+                type: string
+                description: The target service name.
+    ServiceMapRequest:
+      type: object
+      properties:
+        time_range:
+          type: integer
+          description: The time range in seconds to generate the service map for.
+        start_time:
+          type: integer
+          description: Unix timestamp for the service map start time.
+        end_time:
+          type: integer
+          description: Unix timestamp for the service map end time.
+        dataset:
+          type: string
+          description: The dataset slug to generate the service map from.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

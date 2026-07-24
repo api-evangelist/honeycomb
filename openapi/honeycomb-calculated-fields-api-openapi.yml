@@ -1,0 +1,197 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Calculated Fields API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Calculated Fields
+  description: Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
+paths:
+  /1/calculated_fields/{datasetSlug}:
+    get:
+      operationId: listCalculatedFields
+      summary: List calculated fields
+      description: Returns a list of all calculated fields (derived columns) in the specified dataset.
+      tags:
+      - Calculated Fields
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of calculated fields
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createCalculatedField
+      summary: Create a calculated field
+      description: Creates a new calculated field (derived column) in the specified dataset or across the environment.
+      tags:
+      - Calculated Fields
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatedFieldCreateRequest'
+      responses:
+        '201':
+          description: Calculated field created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+  /1/calculated_fields/{datasetSlug}/{calculatedFieldId}:
+    get:
+      operationId: getCalculatedField
+      summary: Get a calculated field
+      description: Returns a single calculated field by its ID.
+      tags:
+      - Calculated Fields
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/calculatedFieldId'
+      responses:
+        '200':
+          description: Calculated field details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+    put:
+      operationId: updateCalculatedField
+      summary: Update a calculated field
+      description: Updates the expression or properties of a calculated field.
+      tags:
+      - Calculated Fields
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/calculatedFieldId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatedFieldUpdateRequest'
+      responses:
+        '200':
+          description: Calculated field updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedField'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+    delete:
+      operationId: deleteCalculatedField
+      summary: Delete a calculated field
+      description: Deletes a calculated field from the specified dataset.
+      tags:
+      - Calculated Fields
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/calculatedFieldId'
+      responses:
+        '204':
+          description: Calculated field deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Calculated field not found
+components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    calculatedFieldId:
+      name: calculatedFieldId
+      in: path
+      required: true
+      description: The unique identifier for the calculated field.
+      schema:
+        type: string
+  schemas:
+    CalculatedFieldCreateRequest:
+      type: object
+      required:
+      - alias
+      - expression
+      properties:
+        alias:
+          type: string
+          description: The alias name for the calculated field.
+        expression:
+          type: string
+          description: The expression to compute the field value.
+        description:
+          type: string
+          description: An optional description for the calculated field.
+    CalculatedField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the calculated field.
+        alias:
+          type: string
+          description: The alias name used to reference this calculated field in queries.
+        expression:
+          type: string
+          description: The expression used to compute the calculated field value.
+        description:
+          type: string
+          description: A description of the calculated field.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the calculated field was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the calculated field was last updated.
+    CalculatedFieldUpdateRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: An updated expression for the calculated field.
+        description:
+          type: string
+          description: An updated description for the calculated field.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

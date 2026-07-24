@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Kinesis Events API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Kinesis Events
+  description: Process streaming events from Amazon Kinesis into Honeycomb.
+paths:
+  /1/kinesis_events/{datasetSlug}:
+    post:
+      operationId: createKinesisEvents
+      summary: Create Kinesis events
+      description: Processes streaming events from Amazon Kinesis into the specified Honeycomb dataset.
+      tags:
+      - Kinesis Events
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Kinesis event data in the expected format.
+              properties:
+                records:
+                  type: array
+                  description: Array of Kinesis records to process.
+                  items:
+                    type: object
+                    properties:
+                      data:
+                        type: string
+                        description: Base64-encoded event data.
+      responses:
+        '200':
+          description: Kinesis events processed
+        '400':
+          description: Bad request - malformed Kinesis data
+        '401':
+          description: Unauthorized - invalid API key
+components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

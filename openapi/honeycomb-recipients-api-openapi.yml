@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Recipients API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Recipients
+  description: Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+paths:
+  /1/recipients:
+    get:
+      operationId: listRecipients
+      summary: List all recipients
+      description: Returns a list of all notification recipients configured for the team. Recipients are team-wide and not environment-specific.
+      tags:
+      - Recipients
+      responses:
+        '200':
+          description: A list of recipients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRecipient
+      summary: Create a recipient
+      description: Creates a new notification recipient. Supported types include PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+      tags:
+      - Recipients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientCreateRequest'
+      responses:
+        '201':
+          description: Recipient created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+  /1/recipients/{recipientId}:
+    get:
+      operationId: getRecipient
+      summary: Get a recipient
+      description: Returns a single recipient by its ID.
+      tags:
+      - Recipients
+      parameters:
+      - $ref: '#/components/parameters/recipientId'
+      responses:
+        '200':
+          description: Recipient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    put:
+      operationId: updateRecipient
+      summary: Update a recipient
+      description: Updates a recipient's notification target or configuration.
+      tags:
+      - Recipients
+      parameters:
+      - $ref: '#/components/parameters/recipientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientUpdateRequest'
+      responses:
+        '200':
+          description: Recipient updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+    delete:
+      operationId: deleteRecipient
+      summary: Delete a recipient
+      description: Deletes a notification recipient.
+      tags:
+      - Recipients
+      parameters:
+      - $ref: '#/components/parameters/recipientId'
+      responses:
+        '204':
+          description: Recipient deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recipient not found
+components:
+  schemas:
+    RecipientUpdateRequest:
+      type: object
+      properties:
+        target:
+          type: string
+          description: An updated target address or identifier for the recipient.
+    Recipient:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the recipient.
+        type:
+          type: string
+          description: The notification channel type.
+          enum:
+          - email
+          - pagerduty
+          - slack
+          - webhook
+          - msteams
+        target:
+          type: string
+          description: The target address or identifier for the recipient, such as an email address or webhook URL.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the recipient was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the recipient was last updated.
+    RecipientCreateRequest:
+      type: object
+      required:
+      - type
+      - target
+      properties:
+        type:
+          type: string
+          description: The notification channel type.
+          enum:
+          - email
+          - pagerduty
+          - slack
+          - webhook
+          - msteams
+        target:
+          type: string
+          description: The target address or identifier for the recipient.
+  parameters:
+    recipientId:
+      name: recipientId
+      in: path
+      required: true
+      description: The unique identifier for the recipient.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Auth
+  description: Validate authentication for a key, determine what authorizations have been granted to a key, and determine the Team and Environment it belongs to.
+paths:
+  /1/auth:
+    get:
+      operationId: getAuth
+      summary: Authenticate API key
+      description: Validates authentication for a key and returns the team and environment that the key belongs to.
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthInfo'
+        '401':
+          description: Unauthorized - invalid API key
+  /1/auth/permissions:
+    get:
+      operationId: listAuthorizations
+      summary: List authorizations
+      description: Determines what authorizations have been granted to the API key.
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: List of authorizations for the key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPermissions'
+        '401':
+          description: Unauthorized - invalid API key
+components:
+  schemas:
+    AuthInfo:
+      type: object
+      properties:
+        team:
+          type: object
+          description: The team associated with the API key.
+          properties:
+            slug:
+              type: string
+              description: The slug identifier for the team.
+            name:
+              type: string
+              description: The display name of the team.
+        environment:
+          type: object
+          description: The environment associated with the API key, if applicable.
+          properties:
+            slug:
+              type: string
+              description: The slug identifier for the environment.
+            name:
+              type: string
+              description: The display name of the environment.
+    AuthPermissions:
+      type: object
+      properties:
+        api_key_access:
+          type: object
+          description: The permissions and access levels granted to the API key.
+          additionalProperties:
+            type: boolean
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

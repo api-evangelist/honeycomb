@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Dataset Definitions API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Dataset Definitions
+  description: Manage dataset definitions that configure how columns are interpreted and displayed.
+paths:
+  /1/dataset_definitions/{datasetSlug}:
+    get:
+      operationId: getDatasetDefinition
+      summary: Get dataset definition
+      description: Returns the dataset definition for the specified dataset, which configures how columns are interpreted and displayed.
+      tags:
+      - Dataset Definitions
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: Dataset definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+    put:
+      operationId: updateDatasetDefinition
+      summary: Update dataset definition
+      description: Updates the dataset definition for the specified dataset.
+      tags:
+      - Dataset Definitions
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatasetDefinition'
+      responses:
+        '200':
+          description: Dataset definition updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinition'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+components:
+  schemas:
+    DatasetDefinition:
+      type: object
+      properties:
+        duration_ms:
+          type: string
+          description: The column name that represents duration in milliseconds.
+        error:
+          type: string
+          description: The column name that represents errors.
+        name:
+          type: string
+          description: The column name that represents the event name.
+        parent_id:
+          type: string
+          description: The column name used for parent span ID in tracing.
+        route:
+          type: string
+          description: The column name that represents the route.
+        service_name:
+          type: string
+          description: The column name that represents the service name.
+        span_id:
+          type: string
+          description: The column name used for span ID in tracing.
+        trace_id:
+          type: string
+          description: The column name used for trace ID in tracing.
+        user:
+          type: string
+          description: The column name that represents the user.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

@@ -1,0 +1,231 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Burn Alerts API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Burn Alerts
+  description: Manage burn alerts that notify you when issues impact your SLO budget.
+paths:
+  /1/burn_alerts/{datasetSlug}:
+    get:
+      operationId: listBurnAlerts
+      summary: List all burn alerts
+      description: Returns a list of all burn alerts for the specified dataset.
+      tags:
+      - Burn Alerts
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of burn alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createBurnAlert
+      summary: Create a burn alert
+      description: Creates a new burn alert that notifies when issues impact your SLO budget.
+      tags:
+      - Burn Alerts
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertCreateRequest'
+      responses:
+        '201':
+          description: Burn alert created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+  /1/burn_alerts/{datasetSlug}/{burnAlertId}:
+    get:
+      operationId: getBurnAlert
+      summary: Get a burn alert
+      description: Returns a single burn alert by its ID.
+      tags:
+      - Burn Alerts
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '200':
+          description: Burn alert details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    put:
+      operationId: updateBurnAlert
+      summary: Update a burn alert
+      description: Updates a burn alert's configuration or notification recipients.
+      tags:
+      - Burn Alerts
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/burnAlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BurnAlertUpdateRequest'
+      responses:
+        '200':
+          description: Burn alert updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlert'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+    delete:
+      operationId: deleteBurnAlert
+      summary: Delete a burn alert
+      description: Deletes a burn alert.
+      tags:
+      - Burn Alerts
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/burnAlertId'
+      responses:
+        '204':
+          description: Burn alert deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Burn alert not found
+components:
+  schemas:
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the recipient to notify.
+    BurnAlert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the burn alert.
+        slo_id:
+          type: string
+          description: The ID of the SLO this burn alert monitors.
+        alert_type:
+          type: string
+          description: The type of burn alert.
+          enum:
+          - budget_rate
+          - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+          description: For exhaustion_time alerts, the number of minutes before the budget is exhausted that triggers the alert.
+        budget_rate_window_minutes:
+          type: integer
+          description: For budget_rate alerts, the window in minutes over which to measure the budget burn rate.
+        budget_rate_decrease_percent:
+          type: number
+          description: For budget_rate alerts, the percentage decrease in budget that triggers the alert.
+        recipients:
+          type: array
+          description: List of recipients to notify when the burn alert fires.
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the burn alert was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the burn alert was last updated.
+    BurnAlertUpdateRequest:
+      type: object
+      properties:
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    BurnAlertCreateRequest:
+      type: object
+      required:
+      - slo_id
+      - alert_type
+      - recipients
+      properties:
+        slo_id:
+          type: string
+          description: The ID of the SLO to monitor.
+        alert_type:
+          type: string
+          enum:
+          - budget_rate
+          - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    burnAlertId:
+      name: burnAlertId
+      in: path
+      required: true
+      description: The unique identifier for the burn alert.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api
