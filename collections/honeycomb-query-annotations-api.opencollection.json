@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Markers API",
+    "name": "Honeycomb Auth Query Annotations API",
     "version": "1.0"
   },
   "request": {
@@ -15,18 +15,18 @@
   "items": [
     {
       "info": {
-        "name": "Markers",
+        "name": "Query Annotations",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List all markers",
+            "name": "List query annotations",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -36,16 +36,16 @@
               }
             ]
           },
-          "docs": "Returns a list of all markers for the specified dataset."
+          "docs": "Returns a list of all query annotations for the specified dataset."
         },
         {
           "info": {
-            "name": "Create a marker",
+            "name": "Create a query annotation",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -59,16 +59,41 @@
               "data": "{}"
             }
           },
-          "docs": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred."
+          "docs": "Creates a new query annotation to associate a name and description to a query for collaboration."
         },
         {
           "info": {
-            "name": "Update a marker",
+            "name": "Get a query annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the query annotation."
+              }
+            ]
+          },
+          "docs": "Returns a single query annotation by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a query annotation",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
             "params": [
               {
                 "name": "datasetSlug",
@@ -77,10 +102,10 @@
                 "description": "The slug identifier for the dataset. Dataset names are case insensitive."
               },
               {
-                "name": "markerId",
+                "name": "queryAnnotationId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the marker."
+                "description": "The unique identifier for the query annotation."
               }
             ],
             "body": {
@@ -88,16 +113,16 @@
               "data": "{}"
             }
           },
-          "docs": "Updates a marker's properties."
+          "docs": "Updates a query annotation's name or description."
         },
         {
           "info": {
-            "name": "Delete a marker",
+            "name": "Delete a query annotation",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
             "params": [
               {
                 "name": "datasetSlug",
@@ -106,14 +131,14 @@
                 "description": "The slug identifier for the dataset. Dataset names are case insensitive."
               },
               {
-                "name": "markerId",
+                "name": "queryAnnotationId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the marker."
+                "description": "The unique identifier for the query annotation."
               }
             ]
           },
-          "docs": "Deletes a marker from the specified dataset."
+          "docs": "Deletes a query annotation."
         }
       ]
     }

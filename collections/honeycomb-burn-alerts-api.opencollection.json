@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Markers API",
+    "name": "Honeycomb Auth Burn Alerts API",
     "version": "1.0"
   },
   "request": {
@@ -15,18 +15,18 @@
   "items": [
     {
       "info": {
-        "name": "Markers",
+        "name": "Burn Alerts",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List all markers",
+            "name": "List all burn alerts",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -36,16 +36,16 @@
               }
             ]
           },
-          "docs": "Returns a list of all markers for the specified dataset."
+          "docs": "Returns a list of all burn alerts for the specified dataset."
         },
         {
           "info": {
-            "name": "Create a marker",
+            "name": "Create a burn alert",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -59,16 +59,41 @@
               "data": "{}"
             }
           },
-          "docs": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred."
+          "docs": "Creates a new burn alert that notifies when issues impact your SLO budget."
         },
         {
           "info": {
-            "name": "Update a marker",
+            "name": "Get a burn alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier for the dataset. Dataset names are case insensitive."
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the burn alert."
+              }
+            ]
+          },
+          "docs": "Returns a single burn alert by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a burn alert",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
             "params": [
               {
                 "name": "datasetSlug",
@@ -77,10 +102,10 @@
                 "description": "The slug identifier for the dataset. Dataset names are case insensitive."
               },
               {
-                "name": "markerId",
+                "name": "burnAlertId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the marker."
+                "description": "The unique identifier for the burn alert."
               }
             ],
             "body": {
@@ -88,16 +113,16 @@
               "data": "{}"
             }
           },
-          "docs": "Updates a marker's properties."
+          "docs": "Updates a burn alert's configuration or notification recipients."
         },
         {
           "info": {
-            "name": "Delete a marker",
+            "name": "Delete a burn alert",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://api.honeycomb.io/1/markers/:datasetSlug/:markerId",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
             "params": [
               {
                 "name": "datasetSlug",
@@ -106,14 +131,14 @@
                 "description": "The slug identifier for the dataset. Dataset names are case insensitive."
               },
               {
-                "name": "markerId",
+                "name": "burnAlertId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the marker."
+                "description": "The unique identifier for the burn alert."
               }
             ]
           },
-          "docs": "Deletes a marker from the specified dataset."
+          "docs": "Deletes a burn alert."
         }
       ]
     }

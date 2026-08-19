@@ -1,347 +1,26 @@
 {
   "item": [
     {
-      "id": "bfe50869-35b8-4366-95be-523ea55e898a",
-      "name": "Datasets",
+      "id": "7aa81651-4dec-458c-9fcd-0a5bb3f44a90",
+      "name": "Dataset Definitions",
       "description": {
-        "content": "Manage datasets, which represent collections of related events from the same source.",
+        "content": "Manage dataset definitions that configure how columns are interpreted and displayed.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "45e75c89-708d-4185-95f4-65158f159e2e",
-          "name": "List all datasets",
+          "id": "d60d0e1e-4e3e-4df9-a8fd-5b2009363089",
+          "name": "Get dataset definition",
           "request": {
-            "name": "List all datasets",
+            "name": "Get dataset definition",
             "description": {
-              "content": "Returns a list of all datasets in the environment associated with the API key.",
+              "content": "Returns the dataset definition for the specified dataset, which configures how columns are interpreted and displayed.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "datasets"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d27a4493-cb5b-4076-bbfc-73c08d5e076f",
-              "name": "A list of datasets",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "datasets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"2019-08-28T07:42:14.574Z\",\n    \"last_written_at\": \"1977-08-14T10:05:51.079Z\",\n    \"regular_columns_count\": 3696\n  },\n  {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"2015-04-07T09:52:35.475Z\",\n    \"last_written_at\": \"1991-04-04T22:42:31.919Z\",\n    \"regular_columns_count\": 487\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7d4e1cd1-3dd7-4dfc-9a69-ef9f9ca0cd00",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "datasets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c24a927c-bd64-4f7c-858f-43fda878605b",
-          "name": "Create a dataset",
-          "request": {
-            "name": "Create a dataset",
-            "description": {
-              "content": "Creates a dataset in the environment associated with the API key. If a dataset already exists with that name or slug, the existing dataset is returned.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "1",
-                "datasets"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4b8059ff-ac02-4f9d-bd85-0ad5c863b050",
-              "name": "Existing dataset returned",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "datasets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1997-06-22T20:11:40.892Z\",\n  \"last_written_at\": \"1972-05-25T20:48:14.624Z\",\n  \"regular_columns_count\": 468\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "42ebbc92-8982-45d6-9cf1-33d4fa415c24",
-              "name": "Dataset created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "datasets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1997-06-22T20:11:40.892Z\",\n  \"last_written_at\": \"1972-05-25T20:48:14.624Z\",\n  \"regular_columns_count\": 468\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "638ce887-8301-40f8-b560-3d62cea1ff65",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "datasets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b308ff72-e212-4e8c-b57b-64093d0f46a5",
-          "name": "Get a dataset",
-          "request": {
-            "name": "Get a dataset",
-            "description": {
-              "content": "Returns a single dataset by its slug.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "1",
-                "datasets",
+                "dataset_definitions",
                 ":datasetSlug"
               ],
               "host": [
@@ -369,13 +48,13 @@
           },
           "response": [
             {
-              "id": "9518034b-d417-4b97-9490-e859bcab0ba0",
-              "name": "Dataset details",
+              "id": "7db747d6-d2ca-40b7-a335-33c79075c006",
+              "name": "Dataset definition details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -417,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1997-06-22T20:11:40.892Z\",\n  \"last_written_at\": \"1972-05-25T20:48:14.624Z\",\n  \"regular_columns_count\": 468\n}",
+              "body": "{\n  \"duration_ms\": \"string\",\n  \"error\": \"string\",\n  \"name\": \"string\",\n  \"parent_id\": \"string\",\n  \"route\": \"string\",\n  \"service_name\": \"string\",\n  \"span_id\": \"string\",\n  \"trace_id\": \"string\",\n  \"user\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "51498aab-ec16-41d8-8b36-e9149c99d8ca",
+              "id": "ffe8dd84-a078-4ba8-980f-ec3eedfdecef",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -471,13 +150,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "3920a43e-28bf-4d25-8e44-17e925697630",
+              "id": "72cff358-d00d-4ac1-aa5f-56350bc42288",
               "name": "Dataset not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -526,18 +205,18 @@
           }
         },
         {
-          "id": "7628c6f6-cba7-4a05-8af5-158af4b9a127",
-          "name": "Update a dataset",
+          "id": "2fe72416-046a-4c3e-9a41-47e1bb6d8762",
+          "name": "Update dataset definition",
           "request": {
-            "name": "Update a dataset",
+            "name": "Update dataset definition",
             "description": {
-              "content": "Updates a dataset's properties.",
+              "content": "Updates the dataset definition for the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "datasets",
+                "dataset_definitions",
                 ":datasetSlug"
               ],
               "host": [
@@ -568,7 +247,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"description\": \"<string>\",\n  \"expand_json_depth\": \"<integer>\"\n}",
+              "raw": "{\n  \"duration_ms\": \"<string>\",\n  \"error\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"route\": \"<string>\",\n  \"service_name\": \"<string>\",\n  \"span_id\": \"<string>\",\n  \"trace_id\": \"<string>\",\n  \"user\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -578,13 +257,13 @@
           },
           "response": [
             {
-              "id": "1ff83f10-7177-436c-8d4e-8836b284a590",
-              "name": "Dataset updated",
+              "id": "55c542d7-8376-4e65-971e-91b50b2117a8",
+              "name": "Dataset definition updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -618,7 +297,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\",\n  \"expand_json_depth\": \"<integer>\"\n}",
+                  "raw": "{\n  \"duration_ms\": \"<string>\",\n  \"error\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"route\": \"<string>\",\n  \"service_name\": \"<string>\",\n  \"span_id\": \"<string>\",\n  \"trace_id\": \"<string>\",\n  \"user\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -634,18 +313,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1997-06-22T20:11:40.892Z\",\n  \"last_written_at\": \"1972-05-25T20:48:14.624Z\",\n  \"regular_columns_count\": 468\n}",
+              "body": "{\n  \"duration_ms\": \"string\",\n  \"error\": \"string\",\n  \"name\": \"string\",\n  \"parent_id\": \"string\",\n  \"route\": \"string\",\n  \"service_name\": \"string\",\n  \"span_id\": \"string\",\n  \"trace_id\": \"string\",\n  \"user\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "0ac41811-bbaa-4735-9d3d-003d7cf6b296",
+              "id": "8fb8bc58-0ba1-4f6d-b3ef-ce146e4abcaf",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -675,7 +354,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\",\n  \"expand_json_depth\": \"<integer>\"\n}",
+                  "raw": "{\n  \"duration_ms\": \"<string>\",\n  \"error\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"route\": \"<string>\",\n  \"service_name\": \"<string>\",\n  \"span_id\": \"<string>\",\n  \"trace_id\": \"<string>\",\n  \"user\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -696,13 +375,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "74875876-e348-412e-bc21-8e3971822b00",
+              "id": "90973e04-bf4b-470c-8a36-63fcdc1d8729",
               "name": "Dataset not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "datasets",
+                    "dataset_definitions",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -732,7 +411,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\",\n  \"expand_json_depth\": \"<integer>\"\n}",
+                  "raw": "{\n  \"duration_ms\": \"<string>\",\n  \"error\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"route\": \"<string>\",\n  \"service_name\": \"<string>\",\n  \"span_id\": \"<string>\",\n  \"trace_id\": \"<string>\",\n  \"user\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -788,8 +467,8 @@
     ]
   },
   "info": {
-    "_postman_id": "07375ca4-b6a8-4c6d-ab88-b916dba731bd",
-    "name": "Honeycomb Auth Datasets API",
+    "_postman_id": "b4ee065c-b667-4678-b94b-e74e84489c9a",
+    "name": "Honeycomb Auth Dataset Definitions API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

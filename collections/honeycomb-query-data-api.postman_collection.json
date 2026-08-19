@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "459d371d-2ecd-4afc-bb8f-1db440d9e0b6",
-      "name": "Queries",
+      "id": "4cb1dbd5-3d23-4552-8ac4-a62190ba96f4",
+      "name": "Query Data",
       "description": {
-        "content": "Create and retrieve query specifications that define what data to retrieve and how to aggregate it.",
+        "content": "Access completed query result data.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "1ead2317-90b8-4ed6-ba8f-9adfbab26a6e",
-          "name": "Create a query",
+          "id": "56997585-8107-4095-a87e-25b035e4ee52",
+          "name": "Run a query and get data",
           "request": {
-            "name": "Create a query",
+            "name": "Run a query and get data",
             "description": {
-              "content": "Creates a query specification that validates the query parameters are valid and returns a query ID that can be used to create query results, reference in boards, triggers, and query annotations.",
+              "content": "Submits a query specification and returns the result data directly. This is a convenience endpoint that combines query creation and result retrieval.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "queries",
+                "query_data",
                 ":datasetSlug"
               ],
               "host": [
@@ -61,13 +61,13 @@
           },
           "response": [
             {
-              "id": "ed1989c2-edbd-49a8-91c5-79aba9d71255",
-              "name": "Query created successfully",
+              "id": "59d8b31e-9fd3-496c-8a07-541c10ac6124",
+              "name": "Query data results",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "queries",
+                    "query_data",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -109,26 +109,26 @@
                   }
                 }
               },
-              "status": "Created",
-              "code": 201,
+              "status": "OK",
+              "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"calculations\": [\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    },\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    },\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    }\n  ],\n  \"breakdowns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"time_range\": 9191,\n  \"granularity\": 4876,\n  \"limit\": 5369,\n  \"created_at\": \"1952-03-23T02:07:56.589Z\"\n}",
+              "body": "{\n  \"results\": [\n    {\n      \"key_0\": 3406.578713522326\n    },\n    {\n      \"key_0\": 5234.999286626167\n    }\n  ],\n  \"series\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": true\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "eabf2f3a-332d-41be-9d9d-4c12018dddf7",
-              "name": "Bad request - invalid query parameters",
+              "id": "dd7b919e-fac8-41e4-a24d-e6b720cf8710",
+              "name": "Bad request - invalid query",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "queries",
+                    "query_data",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -179,13 +179,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d027bfd1-76fd-43a8-aa27-1fd18e6d9020",
+              "id": "368db091-3845-49f5-bbfa-f3200c8e7bed",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "queries",
+                    "query_data",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -236,13 +236,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "5f87ca73-b0dc-4b74-b8ed-e05f48843924",
+              "id": "d15af25c-c0de-4f36-8e96-d2e3ea138f5d",
               "name": "Dataset not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "queries",
+                    "query_data",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -279,234 +279,6 @@
                     }
                   }
                 }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "04a960bf-b8dd-49c5-9b04-7e464a4a078a",
-          "name": "Get a query",
-          "request": {
-            "name": "Get a query",
-            "description": {
-              "content": "Returns a single query specification by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "1",
-                "queries",
-                ":datasetSlug",
-                ":queryId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "queryId",
-                  "description": "(Required) The unique identifier for the query."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "55d6b503-03d7-4c5d-8bea-60837276f675",
-              "name": "Query details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "queries",
-                    ":datasetSlug",
-                    ":queryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The unique identifier for the query."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"calculations\": [\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    },\n    {\n      \"op\": \"string\",\n      \"column\": \"string\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    },\n    {\n      \"column\": \"string\",\n      \"op\": \"string\",\n      \"value\": \"\"\n    }\n  ],\n  \"breakdowns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"time_range\": 9191,\n  \"granularity\": 4876,\n  \"limit\": 5369,\n  \"created_at\": \"1952-03-23T02:07:56.589Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1451a629-8d56-41d9-b2fa-2404e1743f78",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "queries",
-                    ":datasetSlug",
-                    ":queryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The unique identifier for the query."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "65a54478-3d0d-42bc-b2d6-b60d9096761a",
-              "name": "Query not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "queries",
-                    ":datasetSlug",
-                    ":queryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The unique identifier for the query."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
               },
               "status": "Not Found",
               "code": 404,
@@ -556,8 +328,8 @@
     ]
   },
   "info": {
-    "_postman_id": "25f94b28-03dd-4896-9ae8-fd2e81f3e5ae",
-    "name": "Honeycomb Auth Queries API",
+    "_postman_id": "aa4652f0-ba16-46fc-a97d-9464284e8ab8",
+    "name": "Honeycomb Auth Query Data API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

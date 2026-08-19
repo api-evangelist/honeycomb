@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Boards API",
+    "name": "Honeycomb Auth Boards API",
     "version": "1.0"
   },
   "request": {
@@ -43,7 +43,7 @@
               "data": "{}"
             }
           },
-          "docs": "Creates a new board for organizing queries, SLO panels, and text panels. Boards support preset filters (limited to 5 per board) to apply consistent filtering across the board."
+          "docs": "Creates a new board for organizing queries, SLO panels, and text panels."
         },
         {
           "info": {

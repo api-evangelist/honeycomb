@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "1bbef1a9-15e1-418d-beec-3c70a668a2a3",
-      "name": "Events",
+      "id": "897e03b8-3a17-4bdc-81da-3ec91b71d590",
+      "name": "Query Results",
       "description": {
-        "content": "Send individual and batch events to Honeycomb datasets.",
+        "content": "Create and poll for asynchronous query results.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "3c50011b-9a7d-4b19-99e1-180c8266ec63",
-          "name": "Create an event",
+          "id": "2e22ddc3-6ba3-4c3c-b1b1-44c1f6a61bb0",
+          "name": "Create a query result",
           "request": {
-            "name": "Create an event",
+            "name": "Create a query result",
             "description": {
-              "content": "Sends a single event to the specified dataset. Using this endpoint for anything more than testing is highly discouraged. Sending events in batches via the batch endpoint is much more efficient and should be preferred.",
+              "content": "Creates an asynchronous query result by referencing a Query ID. After creation, poll the query result endpoint until the data is complete.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "events",
+                "query_results",
                 ":datasetSlug"
               ],
               "host": [
@@ -33,232 +33,7 @@
                   "type": "any",
                   "value": "<string>",
                   "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": false,\n  \"key_1\": 1205,\n  \"key_2\": \"string\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "bdfcdbb9-618c-4583-9143-631975d47f97",
-              "name": "Event accepted for processing",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "events",
-                    ":datasetSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "39599ab8-54f7-4973-a42f-fbd5b2a48b53",
-              "name": "Bad request - malformed event data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "events",
-                    ":datasetSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "a8c85f77-3b39-434c-a456-ac02bdbda90d",
-              "name": "Unauthorized - invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "events",
-                    ":datasetSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c2709d73-5d77-44da-8eb4-1e83ea0cde77",
-          "name": "Create events (batch)",
-          "request": {
-            "name": "Create events (batch)",
-            "description": {
-              "content": "Sends a batch of events to the specified dataset. This is the recommended way to send events to Honeycomb. The request body is limited to 1MB of raw (potentially compressed) data. Dataset names are case insensitive.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "1",
-                "batch",
-                ":datasetSlug"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+                  "description": "(Required) The slug identifier for the dataset."
                 }
               ]
             },
@@ -276,7 +51,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "[\n  {\n    \"data\": {\n      \"key_0\": \"string\"\n    },\n    \"time\": \"<dateTime>\",\n    \"samplerate\": \"<integer>\"\n  },\n  {\n    \"data\": {\n      \"key_0\": 1248\n    },\n    \"time\": \"<dateTime>\",\n    \"samplerate\": \"<integer>\"\n  }\n]",
+              "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -286,13 +61,13 @@
           },
           "response": [
             {
-              "id": "d27083da-0486-411f-b1e2-4a362140eeae",
-              "name": "Batch results returned",
+              "id": "cf43bdae-3204-4af6-8bdd-7befd322fc73",
+              "name": "Query result created and processing",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "batch",
+                    "query_results",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,7 +80,7 @@
                       "type": "any",
                       "value": "<string>",
                       "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+                      "description": "(Required) The slug identifier for the dataset."
                     }
                   ]
                 },
@@ -326,7 +101,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "[\n  {\n    \"data\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"time\": \"1967-04-10T20:51:48.815Z\",\n    \"samplerate\": 1708\n  },\n  {\n    \"data\": {\n      \"key_0\": 6520\n    },\n    \"time\": \"1952-08-04T21:45:14.568Z\",\n    \"samplerate\": 7308\n  }\n]",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -334,26 +109,26 @@
                   }
                 }
               },
-              "status": "OK",
-              "code": 200,
+              "status": "Created",
+              "code": 201,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"status\": 9826,\n    \"error\": \"string\"\n  },\n  {\n    \"status\": 7959,\n    \"error\": \"string\"\n  }\n]",
+              "body": "{\n  \"id\": \"string\",\n  \"query_id\": \"string\",\n  \"complete\": true,\n  \"data\": {\n    \"results\": [\n      {\n        \"key_0\": false\n      },\n      {\n        \"key_0\": true,\n        \"key_1\": false\n      }\n    ],\n    \"series\": [\n      {\n        \"key_0\": true\n      },\n      {\n        \"key_0\": true,\n        \"key_1\": 627\n      }\n    ]\n  },\n  \"links\": {\n    \"query_url\": \"http://SNUhmygGVkUVRPCubis.ftk38EVuoV\",\n    \"graph_image_url\": \"http://ttDlVtBFAOEXxDlcfUAEcNcybgjQAVNKe.lenkOAuQovst4WqlTFiVFRPGfiSIGJZdxCScsRgPDtXCcxC\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "04d12b69-3abb-4947-b63c-ae74e712008c",
-              "name": "Bad request - malformed batch data",
+              "id": "9ff52d73-2cfe-4ad0-ae9a-1be687aa2011",
+              "name": "Bad request",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "batch",
+                    "query_results",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -366,7 +141,7 @@
                       "type": "any",
                       "value": "<string>",
                       "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+                      "description": "(Required) The slug identifier for the dataset."
                     }
                   ]
                 },
@@ -383,7 +158,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "[\n  {\n    \"data\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"time\": \"1967-04-10T20:51:48.815Z\",\n    \"samplerate\": 1708\n  },\n  {\n    \"data\": {\n      \"key_0\": 6520\n    },\n    \"time\": \"1952-08-04T21:45:14.568Z\",\n    \"samplerate\": 7308\n  }\n]",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -404,13 +179,13 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2c9e01c5-cb30-40b5-a609-70aa0bf52683",
-              "name": "Unauthorized - invalid API key",
+              "id": "d9a3dfcd-08be-4ddf-ab08-1c75c10a918b",
+              "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "batch",
+                    "query_results",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -423,7 +198,7 @@
                       "type": "any",
                       "value": "<string>",
                       "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes."
+                      "description": "(Required) The slug identifier for the dataset."
                     }
                   ]
                 },
@@ -440,7 +215,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "[\n  {\n    \"data\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"time\": \"1967-04-10T20:51:48.815Z\",\n    \"samplerate\": 1708\n  },\n  {\n    \"data\": {\n      \"key_0\": 6520\n    },\n    \"time\": \"1952-08-04T21:45:14.568Z\",\n    \"samplerate\": 7308\n  }\n]",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -450,6 +225,291 @@
               },
               "status": "Unauthorized",
               "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "988f1d7f-bc7f-471d-a83e-15d109c264e9",
+              "name": "Dataset or query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": \"<boolean>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e005f6b-b2fe-43b1-a882-7502fb57444d",
+          "name": "Get a query result",
+          "request": {
+            "name": "Get a query result",
+            "description": {
+              "content": "Returns the status and data of an asynchronous query result. Poll this endpoint until the complete flag is true to get the final results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_results",
+                ":datasetSlug",
+                ":queryResultId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryResultId",
+                  "description": "(Required) The unique identifier for the query result."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c22a804-757e-4551-8323-39be67886088",
+              "name": "Query result status and data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"query_id\": \"string\",\n  \"complete\": true,\n  \"data\": {\n    \"results\": [\n      {\n        \"key_0\": false\n      },\n      {\n        \"key_0\": true,\n        \"key_1\": false\n      }\n    ],\n    \"series\": [\n      {\n        \"key_0\": true\n      },\n      {\n        \"key_0\": true,\n        \"key_1\": 627\n      }\n    ]\n  },\n  \"links\": {\n    \"query_url\": \"http://SNUhmygGVkUVRPCubis.ftk38EVuoV\",\n    \"graph_image_url\": \"http://ttDlVtBFAOEXxDlcfUAEcNcybgjQAVNKe.lenkOAuQovst4WqlTFiVFRPGfiSIGJZdxCScsRgPDtXCcxC\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff8e2ba2-c7c3-4151-8748-f9722234c97b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16b01d55-c6c4-4563-b7de-75250a65baaa",
+              "name": "Query result not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier for the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
               "header": [
                 {
                   "key": "Content-Type",
@@ -496,8 +556,8 @@
     ]
   },
   "info": {
-    "_postman_id": "df9bb7b2-b493-440d-9bc7-9e2ff9378538",
-    "name": "Honeycomb Auth Events API",
+    "_postman_id": "d78a1dea-9cf1-4304-9bb3-5a1b852f1d5c",
+    "name": "Honeycomb Auth Query Results API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

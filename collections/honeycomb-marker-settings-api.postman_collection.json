@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "73ecf35b-15f6-42bc-9cf7-3f0fe67c487e",
+      "name": "Marker Settings",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Manage marker settings that group similar markers together with consistent visual styling.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "6f307b37-8a10-4fc1-9331-2b95fb538087",
+          "name": "List all marker settings",
           "request": {
-            "name": "List all markers",
+            "name": "List all marker settings",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all marker settings for the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "marker_settings",
                 ":datasetSlug"
               ],
               "host": [
@@ -48,13 +48,13 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "9ede611f-fd91-4420-a42b-7b382359c74e",
+              "name": "A list of marker settings",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -96,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"color\": \"string\",\n    \"created_at\": \"1997-05-22T04:09:50.023Z\",\n    \"updated_at\": \"1983-11-11T08:57:27.196Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"color\": \"string\",\n    \"created_at\": \"1965-06-28T07:09:47.176Z\",\n    \"updated_at\": \"2024-01-27T11:52:28.255Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "db0150be-3f57-45cd-a624-5e5e42ffba2a",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -156,18 +156,18 @@
           }
         },
         {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
+          "id": "a7ad5dc2-6403-4305-98d6-0d633fb22b8d",
+          "name": "Create a marker setting",
           "request": {
-            "name": "Create a marker",
+            "name": "Create a marker setting",
             "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
+              "content": "Creates a new marker setting that groups similar markers together with consistent visual styling.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "marker_settings",
                 ":datasetSlug"
               ],
               "host": [
@@ -198,7 +198,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -208,13 +208,13 @@
           },
           "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "ef1aae13-a68c-4f80-99f0-d3a520cbd7d6",
+              "name": "Marker setting created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -248,7 +248,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -264,18 +264,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"color\": \"string\",\n  \"created_at\": \"1988-11-21T16:18:01.542Z\",\n  \"updated_at\": \"2003-09-17T06:05:48.906Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
+              "id": "fb50db58-0468-443f-92a6-a32daf56fb6b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,7 +305,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -332,20 +332,20 @@
           }
         },
         {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
+          "id": "a76ffafd-69a4-44b2-bafb-258070563884",
+          "name": "Update a marker setting",
           "request": {
-            "name": "Update a marker",
+            "name": "Update a marker setting",
             "description": {
-              "content": "Updates a marker's properties.",
+              "content": "Updates a marker setting's properties.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "marker_settings",
                 ":datasetSlug",
-                ":markerId"
+                ":markerSettingId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -363,8 +363,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "markerSettingId",
+                  "description": "(Required) The unique identifier for the marker setting."
                 }
               ]
             },
@@ -382,7 +382,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -392,15 +392,15 @@
           },
           "response": [
             {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
+              "id": "3293e216-dd86-4037-8535-864c1dcee659",
+              "name": "Marker setting updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -418,8 +418,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -440,7 +440,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -456,20 +456,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"color\": \"string\",\n  \"created_at\": \"1988-11-21T16:18:01.542Z\",\n  \"updated_at\": \"2003-09-17T06:05:48.906Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
+              "id": "83c88af9-e2ac-4090-917b-bc27b47a46fc",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -487,8 +487,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -505,7 +505,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +526,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "0de8e3fb-45fc-4e58-b36f-b58a537b7d59",
+              "name": "Marker setting not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -552,8 +552,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -570,7 +570,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +597,20 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "a3cd485e-f88b-41dc-a167-4323c9708116",
+          "name": "Delete a marker setting",
           "request": {
-            "name": "Delete a marker",
+            "name": "Delete a marker setting",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Deletes a marker setting from the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "marker_settings",
                 ":datasetSlug",
-                ":markerId"
+                ":markerSettingId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -628,8 +628,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "markerSettingId",
+                  "description": "(Required) The unique identifier for the marker setting."
                 }
               ]
             },
@@ -638,15 +638,15 @@
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "048ee960-9f7f-4903-956d-f432e651ba06",
+              "name": "Marker setting deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -664,8 +664,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -695,15 +695,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "2c00da91-850e-43cb-974f-0dada5ce4266",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -721,8 +721,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -752,15 +752,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "f5df93c6-afbf-4c5a-88be-2725efc3c2eb",
+              "name": "Marker setting not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "marker_settings",
                     ":datasetSlug",
-                    ":markerId"
+                    ":markerSettingId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -778,8 +778,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier for the marker setting."
                     }
                   ]
                 },
@@ -844,8 +844,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "25b45815-48e3-44b1-8052-3a84cba159ff",
+    "name": "Honeycomb Auth Marker Settings API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "9504db1c-c138-4241-957d-28f3f8b7a742",
-      "name": "SLOs",
+      "id": "9504765a-6267-4220-a118-b36e7e87ae21",
+      "name": "Triggers",
       "description": {
-        "content": "Define and monitor Service Level Objectives for your organization.",
+        "content": "Configure alerting rules that fire when query results meet specified conditions.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "ea6cf959-fc44-4b0e-a288-da76081bbe27",
-          "name": "List all SLOs",
+          "id": "e1ef311f-7047-4926-bd73-d7b3eeb1ae27",
+          "name": "List all triggers",
           "request": {
-            "name": "List all SLOs",
+            "name": "List all triggers",
             "description": {
-              "content": "Returns a list of all Service Level Objectives for the specified dataset.",
+              "content": "Returns a list of all triggers for the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "slos",
+                "triggers",
                 ":datasetSlug"
               ],
               "host": [
@@ -48,13 +48,13 @@
           },
           "response": [
             {
-              "id": "d6cab9fb-cf89-4806-b84a-0f3053e5f161",
-              "name": "A list of SLOs",
+              "id": "71928033-252e-49bd-86ee-a744a27adce4",
+              "name": "A list of triggers",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -96,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"sli\": {\n      \"calculations\": [\n        {\n          \"op\": \"SUM\",\n          \"column\": \"string\"\n        },\n        {\n          \"op\": \"P25\",\n          \"column\": \"string\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"in\",\n          \"value\": {}\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \">\",\n          \"value\": {}\n        }\n      ],\n      \"breakdowns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"orders\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"ascending\"\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"descending\"\n        }\n      ],\n      \"time_range\": 2342,\n      \"start_time\": 6827,\n      \"end_time\": 3720,\n      \"granularity\": 8202,\n      \"limit\": 6431\n    },\n    \"target_percentage\": 32.02012149063486,\n    \"time_period_days\": 4458,\n    \"created_at\": \"1974-10-12T00:15:13.513Z\",\n    \"updated_at\": \"2005-12-18T21:14:12.569Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"sli\": {\n      \"calculations\": [\n        {\n          \"op\": \"COUNT_DISTINCT\",\n          \"column\": \"string\"\n        },\n        {\n          \"op\": \"P10\",\n          \"column\": \"string\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"column\": \"string\",\n          \"op\": \">=\",\n          \"value\": {}\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"=\",\n          \"value\": {}\n        }\n      ],\n      \"breakdowns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"orders\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"ascending\"\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"descending\"\n        }\n      ],\n      \"time_range\": 9121,\n      \"start_time\": 6028,\n      \"end_time\": 8837,\n      \"granularity\": 2619,\n      \"limit\": 3924\n    },\n    \"target_percentage\": 34.847233182716344,\n    \"time_period_days\": 7098,\n    \"created_at\": \"1960-08-02T03:51:54.942Z\",\n    \"updated_at\": \"1958-05-02T16:38:02.143Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"disabled\": true,\n    \"query\": {\n      \"calculations\": [\n        {\n          \"op\": \"P999\",\n          \"column\": \"string\"\n        },\n        {\n          \"op\": \"P50\",\n          \"column\": \"string\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"starts-with\",\n          \"value\": {}\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"contains\",\n          \"value\": {}\n        }\n      ],\n      \"breakdowns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"orders\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"ascending\"\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"descending\"\n        }\n      ],\n      \"time_range\": 8116,\n      \"start_time\": 9843,\n      \"end_time\": 2345,\n      \"granularity\": 8242,\n      \"limit\": 3142\n    },\n    \"threshold\": {\n      \"op\": \"<=\",\n      \"value\": 7590.523500608357,\n      \"exceeded_limit\": 8432\n    },\n    \"frequency\": 5501,\n    \"recipients\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"created_at\": \"1982-02-17T11:30:04.052Z\",\n    \"updated_at\": \"1986-10-30T06:59:53.389Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"disabled\": false,\n    \"query\": {\n      \"calculations\": [\n        {\n          \"op\": \"P001\",\n          \"column\": \"string\"\n        },\n        {\n          \"op\": \"P75\",\n          \"column\": \"string\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"=\",\n          \"value\": {}\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"in\",\n          \"value\": {}\n        }\n      ],\n      \"breakdowns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"orders\": [\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"descending\"\n        },\n        {\n          \"column\": \"string\",\n          \"op\": \"string\",\n          \"order\": \"ascending\"\n        }\n      ],\n      \"time_range\": 10,\n      \"start_time\": 4663,\n      \"end_time\": 949,\n      \"granularity\": 1528,\n      \"limit\": 9205\n    },\n    \"threshold\": {\n      \"op\": \"<=\",\n      \"value\": 1663.8393501149262,\n      \"exceeded_limit\": 3426\n    },\n    \"frequency\": 8956,\n    \"recipients\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"created_at\": \"1983-10-27T05:50:12.822Z\",\n    \"updated_at\": \"1964-02-13T14:38:43.021Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "30009797-2fbc-470a-a93a-0928425b3e49",
+              "id": "e8a52e49-f0e9-4421-873f-7ee4d3e8c7c2",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -156,18 +156,18 @@
           }
         },
         {
-          "id": "d6d3cd27-085c-4531-8141-b77f5345f466",
-          "name": "Create an SLO",
+          "id": "611fdd95-5440-4017-a79b-2353597608c4",
+          "name": "Create a trigger",
           "request": {
-            "name": "Create an SLO",
+            "name": "Create a trigger",
             "description": {
-              "content": "Creates a new Service Level Objective for the specified dataset.",
+              "content": "Creates a new trigger that fires when query results meet specified threshold conditions.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "slos",
+                "triggers",
                 ":datasetSlug"
               ],
               "host": [
@@ -198,7 +198,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      },\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      }\n    ],\n    \"time_range\": \"<integer>\",\n    \"start_time\": \"<integer>\",\n    \"end_time\": \"<integer>\",\n    \"granularity\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      },\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      }\n    ],\n    \"time_range\": \"<integer>\",\n    \"start_time\": \"<integer>\",\n    \"end_time\": \"<integer>\",\n    \"granularity\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"frequency\": \"<integer>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -208,13 +208,13 @@
           },
           "response": [
             {
-              "id": "d8027181-929a-496d-a472-5956db6db27a",
-              "name": "SLO created",
+              "id": "7b8733df-9fcd-4380-bf3b-9635f438f0a8",
+              "name": "Trigger created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -248,7 +248,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"contains\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"does-not-exist\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 167,\n    \"start_time\": 2308,\n    \"end_time\": 8140,\n    \"granularity\": 71,\n    \"limit\": 5712\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"SUM\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P10\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"<=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 1112,\n    \"start_time\": 7533,\n    \"end_time\": 7573,\n    \"granularity\": 7784,\n    \"limit\": 7657\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"frequency\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -264,18 +264,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P01\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P001\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"starts-with\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 3797,\n    \"start_time\": 2721,\n    \"end_time\": 838,\n    \"granularity\": 3172,\n    \"limit\": 3669\n  },\n  \"target_percentage\": 68.25869438949759,\n  \"time_period_days\": 8108,\n  \"created_at\": \"1984-06-08T21:46:00.316Z\",\n  \"updated_at\": \"1997-10-27T05:35:03.909Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"disabled\": true,\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P10\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"RATE_AVG\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 8025,\n    \"start_time\": 687,\n    \"end_time\": 1343,\n    \"granularity\": 1536,\n    \"limit\": 6903\n  },\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 5458.34599586383,\n    \"exceeded_limit\": 9425\n  },\n  \"frequency\": 741,\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"created_at\": \"2003-10-27T19:50:01.256Z\",\n  \"updated_at\": \"1953-09-22T23:13:46.916Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "9f0e9f87-8cd4-408d-9306-ce068d63279d",
+              "id": "b9fc2e67-8b7b-495a-9cd5-bbbe7f5ba546",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,7 +305,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"contains\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"does-not-exist\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 167,\n    \"start_time\": 2308,\n    \"end_time\": 8140,\n    \"granularity\": 71,\n    \"limit\": 5712\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"SUM\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P10\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"<=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 1112,\n    \"start_time\": 7533,\n    \"end_time\": 7573,\n    \"granularity\": 7784,\n    \"limit\": 7657\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"frequency\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -332,20 +332,20 @@
           }
         },
         {
-          "id": "cd686fda-c0ba-45df-b11e-3ee6827ff68d",
-          "name": "Get an SLO",
+          "id": "eda49201-9922-4066-b258-8c5d05c135bd",
+          "name": "Get a trigger",
           "request": {
-            "name": "Get an SLO",
+            "name": "Get a trigger",
             "description": {
-              "content": "Returns a single SLO by its ID.",
+              "content": "Returns a single trigger by its ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "slos",
+                "triggers",
                 ":datasetSlug",
-                ":sloId"
+                ":triggerId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -363,8 +363,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "sloId",
-                  "description": "(Required) The unique identifier for the SLO."
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier for the trigger."
                 }
               ]
             },
@@ -379,15 +379,15 @@
           },
           "response": [
             {
-              "id": "4b69a782-aa40-42fa-9f5d-ce3c31a68803",
-              "name": "SLO details",
+              "id": "1fff7415-e164-41bc-a42c-fbc99e5b09c4",
+              "name": "Trigger details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -405,8 +405,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -435,20 +435,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P01\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P001\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"starts-with\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 3797,\n    \"start_time\": 2721,\n    \"end_time\": 838,\n    \"granularity\": 3172,\n    \"limit\": 3669\n  },\n  \"target_percentage\": 68.25869438949759,\n  \"time_period_days\": 8108,\n  \"created_at\": \"1984-06-08T21:46:00.316Z\",\n  \"updated_at\": \"1997-10-27T05:35:03.909Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"disabled\": true,\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P10\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"RATE_AVG\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 8025,\n    \"start_time\": 687,\n    \"end_time\": 1343,\n    \"granularity\": 1536,\n    \"limit\": 6903\n  },\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 5458.34599586383,\n    \"exceeded_limit\": 9425\n  },\n  \"frequency\": 741,\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"created_at\": \"2003-10-27T19:50:01.256Z\",\n  \"updated_at\": \"1953-09-22T23:13:46.916Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "25c03890-e9c4-40a6-94ca-653e5c6b69e4",
+              "id": "1a011c9c-b8d7-437e-bf68-dcf75e87ae12",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -466,8 +466,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -497,15 +497,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0c471d90-1ab9-44e1-9ce9-14de5ddf0bf9",
-              "name": "SLO not found",
+              "id": "495d7a53-192c-4eda-a818-c8d1fc54a586",
+              "name": "Trigger not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -523,8 +523,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -560,20 +560,20 @@
           }
         },
         {
-          "id": "554943e5-55a3-4595-98f9-2d2d85eda2d7",
-          "name": "Update an SLO",
+          "id": "230102a2-7da7-4b05-851d-2ffada4c0d34",
+          "name": "Update a trigger",
           "request": {
-            "name": "Update an SLO",
+            "name": "Update a trigger",
             "description": {
-              "content": "Updates an SLO's target percentage, time period, or associated query.",
+              "content": "Updates a trigger's query, threshold, or notification settings.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "slos",
+                "triggers",
                 ":datasetSlug",
-                ":sloId"
+                ":triggerId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -591,8 +591,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "sloId",
-                  "description": "(Required) The unique identifier for the SLO."
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier for the trigger."
                 }
               ]
             },
@@ -610,7 +610,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      },\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      }\n    ],\n    \"time_range\": \"<integer>\",\n    \"start_time\": \"<integer>\",\n    \"end_time\": \"<integer>\",\n    \"granularity\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\"\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      },\n      {\n        \"op\": \"<string>\",\n        \"column\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"op\": \"<string>\",\n        \"order\": \"<string>\"\n      }\n    ],\n    \"time_range\": \"<integer>\",\n    \"start_time\": \"<integer>\",\n    \"end_time\": \"<integer>\",\n    \"granularity\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"frequency\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -620,15 +620,15 @@
           },
           "response": [
             {
-              "id": "2963db96-1aa4-4f60-a7de-19bc9913416e",
-              "name": "SLO updated",
+              "id": "b287043e-3c0b-4e1c-8de6-fe7107483c2f",
+              "name": "Trigger updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -646,8 +646,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -668,7 +668,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P25\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P999\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"<=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 2767,\n    \"start_time\": 5488,\n    \"end_time\": 3325,\n    \"granularity\": 1601,\n    \"limit\": 4214\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P90\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"exists\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 5650,\n    \"start_time\": 4516,\n    \"end_time\": 821,\n    \"granularity\": 2414,\n    \"limit\": 7878\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"frequency\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -684,20 +684,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P01\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P001\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"starts-with\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 3797,\n    \"start_time\": 2721,\n    \"end_time\": 838,\n    \"granularity\": 3172,\n    \"limit\": 3669\n  },\n  \"target_percentage\": 68.25869438949759,\n  \"time_period_days\": 8108,\n  \"created_at\": \"1984-06-08T21:46:00.316Z\",\n  \"updated_at\": \"1997-10-27T05:35:03.909Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"disabled\": true,\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P10\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"RATE_AVG\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"!=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 8025,\n    \"start_time\": 687,\n    \"end_time\": 1343,\n    \"granularity\": 1536,\n    \"limit\": 6903\n  },\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 5458.34599586383,\n    \"exceeded_limit\": 9425\n  },\n  \"frequency\": 741,\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"created_at\": \"2003-10-27T19:50:01.256Z\",\n  \"updated_at\": \"1953-09-22T23:13:46.916Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "62c14ccb-90fb-4302-88c6-5dcc2887cf0d",
+              "id": "4c69efa5-623c-4d1f-8500-eca4cff6acbd",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -715,8 +715,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -733,7 +733,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P25\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P999\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"<=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 2767,\n    \"start_time\": 5488,\n    \"end_time\": 3325,\n    \"granularity\": 1601,\n    \"limit\": 4214\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P90\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"exists\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 5650,\n    \"start_time\": 4516,\n    \"end_time\": 821,\n    \"granularity\": 2414,\n    \"limit\": 7878\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"frequency\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -754,15 +754,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "6df76b1b-2add-4da7-bb29-4ec0f12777ba",
-              "name": "SLO not found",
+              "id": "bd457b81-442e-4729-a700-e84811e994be",
+              "name": "Trigger not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -780,8 +780,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -798,7 +798,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sli\": {\n    \"calculations\": [\n      {\n        \"op\": \"P25\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"P999\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"<=\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"time_range\": 2767,\n    \"start_time\": 5488,\n    \"end_time\": 3325,\n    \"granularity\": 1601,\n    \"limit\": 4214\n  },\n  \"target_percentage\": \"<number>\",\n  \"time_period_days\": \"<integer>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"P90\",\n        \"column\": \"string\"\n      },\n      {\n        \"op\": \"COUNT_DISTINCT\",\n        \"column\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"exists\",\n        \"value\": {}\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"not-in\",\n        \"value\": {}\n      }\n    ],\n    \"breakdowns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"orders\": [\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"descending\"\n      },\n      {\n        \"column\": \"string\",\n        \"op\": \"string\",\n        \"order\": \"ascending\"\n      }\n    ],\n    \"time_range\": 5650,\n    \"start_time\": 4516,\n    \"end_time\": 821,\n    \"granularity\": 2414,\n    \"limit\": 7878\n  },\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\"\n  },\n  \"frequency\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -825,20 +825,20 @@
           }
         },
         {
-          "id": "378ad353-9549-4bd8-b814-e0ce290711a7",
-          "name": "Delete an SLO",
+          "id": "4912fa8a-60ab-4947-98ec-71087ed00cfa",
+          "name": "Delete a trigger",
           "request": {
-            "name": "Delete an SLO",
+            "name": "Delete a trigger",
             "description": {
-              "content": "Deletes a Service Level Objective.",
+              "content": "Deletes a trigger from the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "slos",
+                "triggers",
                 ":datasetSlug",
-                ":sloId"
+                ":triggerId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -856,8 +856,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "sloId",
-                  "description": "(Required) The unique identifier for the SLO."
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier for the trigger."
                 }
               ]
             },
@@ -866,15 +866,15 @@
           },
           "response": [
             {
-              "id": "fb8d1a9b-d413-40a9-8402-13d01416a161",
-              "name": "SLO deleted",
+              "id": "52c7db1a-a443-4ff5-a624-2834c558c4a9",
+              "name": "Trigger deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -892,8 +892,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -923,15 +923,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2e85a48f-7386-4381-a58e-b44a16b28bc7",
+              "id": "274078f4-6f0c-4266-8152-3e26adaf12d4",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -949,8 +949,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -980,15 +980,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "321fd65c-cc01-4fd8-8cec-ac7c714a9798",
-              "name": "SLO not found",
+              "id": "0d542418-602d-4f37-a6b0-ef2b85c6c11d",
+              "name": "Trigger not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "slos",
+                    "triggers",
                     ":datasetSlug",
-                    ":sloId"
+                    ":triggerId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -1006,8 +1006,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "sloId",
-                      "description": "(Required) The unique identifier for the SLO."
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier for the trigger."
                     }
                   ]
                 },
@@ -1072,8 +1072,8 @@
     ]
   },
   "info": {
-    "_postman_id": "58bff45c-f389-418d-b1a0-64783f08fb0a",
-    "name": "Honeycomb Auth SLOs API",
+    "_postman_id": "e2efdb16-fa57-4de9-9822-d25a1516622c",
+    "name": "Honeycomb Auth Triggers API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

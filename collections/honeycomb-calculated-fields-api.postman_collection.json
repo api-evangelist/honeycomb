@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "0fc46dce-bfbd-41dc-a312-97ab1993d048",
+      "name": "Calculated Fields",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Manage calculated fields (derived columns) that compute values from expressions applied to event fields.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "901ead3f-7640-4b67-8d68-7ec285555ff1",
+          "name": "List calculated fields",
           "request": {
-            "name": "List all markers",
+            "name": "List calculated fields",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all calculated fields (derived columns) in the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "calculated_fields",
                 ":datasetSlug"
               ],
               "host": [
@@ -48,13 +48,13 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "ac218e50-2fb4-42e0-8fcf-324db35fec7a",
+              "name": "A list of calculated fields",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -96,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"alias\": \"string\",\n    \"expression\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"2025-02-13T00:36:30.486Z\",\n    \"updated_at\": \"1967-09-28T22:39:19.724Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"alias\": \"string\",\n    \"expression\": \"string\",\n    \"description\": \"string\",\n    \"created_at\": \"1992-10-04T19:13:06.174Z\",\n    \"updated_at\": \"1978-02-05T07:44:14.732Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "6eab0f5e-28bd-4f44-b16c-d7f7f2875b06",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -156,18 +156,18 @@
           }
         },
         {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
+          "id": "7fed84c1-02e8-47a8-ace6-d0ac6e713a95",
+          "name": "Create a calculated field",
           "request": {
-            "name": "Create a marker",
+            "name": "Create a calculated field",
             "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
+              "content": "Creates a new calculated field (derived column) in the specified dataset or across the environment.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "calculated_fields",
                 ":datasetSlug"
               ],
               "host": [
@@ -198,7 +198,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -208,13 +208,13 @@
           },
           "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "8f02378f-59fb-431e-8178-8e41cbed6756",
+              "name": "Calculated field created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -248,7 +248,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -264,18 +264,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"alias\": \"string\",\n  \"expression\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1967-07-05T17:11:18.245Z\",\n  \"updated_at\": \"1975-07-15T10:31:14.409Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
+              "id": "bf37c0a8-9523-4ae4-be34-c5e28b5c6802",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,7 +305,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -332,20 +332,20 @@
           }
         },
         {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
+          "id": "df53b575-cab5-4a9a-b071-0cebde41dd86",
+          "name": "Get a calculated field",
           "request": {
-            "name": "Update a marker",
+            "name": "Get a calculated field",
             "description": {
-              "content": "Updates a marker's properties.",
+              "content": "Returns a single calculated field by its ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "calculated_fields",
                 ":datasetSlug",
-                ":markerId"
+                ":calculatedFieldId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -363,44 +363,31 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "calculatedFieldId",
+                  "description": "(Required) The unique identifier for the calculated field."
                 }
               ]
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
+              "id": "fdf8a98a-6f87-446e-aa2f-1b7a22c754a4",
+              "name": "Calculated field details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -418,8 +405,249 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"alias\": \"string\",\n  \"expression\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1967-07-05T17:11:18.245Z\",\n  \"updated_at\": \"1975-07-15T10:31:14.409Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae41bd01-7162-491c-aa8d-41b17a28ca1a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "calculated_fields",
+                    ":datasetSlug",
+                    ":calculatedFieldId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d464f22-0b3a-479d-9769-3e75ed623289",
+              "name": "Calculated field not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "calculated_fields",
+                    ":datasetSlug",
+                    ":calculatedFieldId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecdb86e7-8d08-42ef-806d-71b5fcdc10b0",
+          "name": "Update a calculated field",
+          "request": {
+            "name": "Update a calculated field",
+            "description": {
+              "content": "Updates the expression or properties of a calculated field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "calculated_fields",
+                ":datasetSlug",
+                ":calculatedFieldId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "calculatedFieldId",
+                  "description": "(Required) The unique identifier for the calculated field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7dd048c8-878a-4fe3-8f30-61221cf5b35e",
+              "name": "Calculated field updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "calculated_fields",
+                    ":datasetSlug",
+                    ":calculatedFieldId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -440,7 +668,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -456,20 +684,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"alias\": \"string\",\n  \"expression\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": \"1967-07-05T17:11:18.245Z\",\n  \"updated_at\": \"1975-07-15T10:31:14.409Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
+              "id": "f63589f4-a4aa-42ce-83a2-80ce1fbf3b1d",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -487,8 +715,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -505,7 +733,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +754,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "44ec62ec-9cba-49bf-9407-141319797d71",
+              "name": "Calculated field not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -552,8 +780,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -570,7 +798,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"expression\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +825,20 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "f3e475e1-9679-44f6-b64e-4dfdde9cc906",
+          "name": "Delete a calculated field",
           "request": {
-            "name": "Delete a marker",
+            "name": "Delete a calculated field",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Deletes a calculated field from the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "calculated_fields",
                 ":datasetSlug",
-                ":markerId"
+                ":calculatedFieldId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -628,8 +856,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "calculatedFieldId",
+                  "description": "(Required) The unique identifier for the calculated field."
                 }
               ]
             },
@@ -638,15 +866,15 @@
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "90b36152-79a3-43c1-902b-d50c7d64ba55",
+              "name": "Calculated field deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -664,8 +892,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -695,15 +923,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "933885ab-1066-4402-9b38-9b1dcdd77a56",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -721,8 +949,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -752,15 +980,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "dd5917c6-a690-4b95-8bf5-47742656228a",
+              "name": "Calculated field not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "calculated_fields",
                     ":datasetSlug",
-                    ":markerId"
+                    ":calculatedFieldId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -778,8 +1006,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "calculatedFieldId",
+                      "description": "(Required) The unique identifier for the calculated field."
                     }
                   ]
                 },
@@ -844,8 +1072,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "72fa6d2e-4115-423e-9064-00404cf48fee",
+    "name": "Honeycomb Auth Calculated Fields API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

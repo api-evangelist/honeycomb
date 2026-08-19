@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Environments API",
+    "name": "Honeycomb Auth Recipients API",
     "version": "1.0"
   },
   "request": {
@@ -15,69 +15,69 @@
   "items": [
     {
       "info": {
-        "name": "Environments",
+        "name": "Recipients",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List all environments",
+            "name": "List all recipients",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/environments"
+            "url": "https://api.honeycomb.io/1/recipients"
           },
-          "docs": "Returns a list of all environments within the team."
+          "docs": "Returns a list of all notification recipients configured for the team. Recipients are team-wide and not environment-specific."
         },
         {
           "info": {
-            "name": "Create an environment",
+            "name": "Create a recipient",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.honeycomb.io/1/environments",
+            "url": "https://api.honeycomb.io/1/recipients",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Creates a new environment for separating telemetry data across stages such as development, staging, and production."
+          "docs": "Creates a new notification recipient. Supported types include PagerDuty, Email, Webhook, Microsoft Teams, and Slack."
         },
         {
           "info": {
-            "name": "Get an environment",
+            "name": "Get a recipient",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "recipientId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the recipient."
               }
             ]
           },
-          "docs": "Returns a single environment by its ID."
+          "docs": "Returns a single recipient by its ID."
         },
         {
           "info": {
-            "name": "Update an environment",
+            "name": "Update a recipient",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "recipientId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the recipient."
               }
             ],
             "body": {
@@ -85,26 +85,26 @@
               "data": "{}"
             }
           },
-          "docs": "Updates an environment's properties."
+          "docs": "Updates a recipient's notification target or configuration."
         },
         {
           "info": {
-            "name": "Delete an environment",
+            "name": "Delete a recipient",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "recipientId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the recipient."
               }
             ]
           },
-          "docs": "Deletes an environment."
+          "docs": "Deletes a notification recipient."
         }
       ]
     }

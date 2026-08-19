@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Queries API",
+    "name": "Honeycomb Auth Query Results API",
     "version": "1.0"
   },
   "request": {
@@ -15,18 +15,18 @@
   "items": [
     {
       "info": {
-        "name": "Queries",
+        "name": "Query Results",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create a query",
+            "name": "Create a query result",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.honeycomb.io/1/queries/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -40,16 +40,16 @@
               "data": "{}"
             }
           },
-          "docs": "Creates a query specification that validates the query parameters are valid and returns a query ID that can be used to create query results, reference in boards, triggers, and query annotations."
+          "docs": "Creates an asynchronous query result by referencing a Query ID. After creation, poll the query result endpoint until the data is complete."
         },
         {
           "info": {
-            "name": "Get a query",
+            "name": "Get a query result",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/queries/:datasetSlug/:queryId",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug/:queryResultId",
             "params": [
               {
                 "name": "datasetSlug",
@@ -58,14 +58,14 @@
                 "description": "The slug identifier for the dataset."
               },
               {
-                "name": "queryId",
+                "name": "queryResultId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the query."
+                "description": "The unique identifier for the query result."
               }
             ]
           },
-          "docs": "Returns a single query specification by its ID."
+          "docs": "Returns the status and data of an asynchronous query result. Poll this endpoint until the complete flag is true to get the final results."
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Environments API",
+    "name": "Honeycomb Auth Key Management API",
     "version": "1.0"
   },
   "request": {
@@ -15,69 +15,69 @@
   "items": [
     {
       "info": {
-        "name": "Environments",
+        "name": "Key Management",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List all environments",
+            "name": "List all API keys",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/environments"
+            "url": "https://api.honeycomb.io/1/api_keys"
           },
-          "docs": "Returns a list of all environments within the team."
+          "docs": "Returns a list of all API keys for the team."
         },
         {
           "info": {
-            "name": "Create an environment",
+            "name": "Create an API key",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://api.honeycomb.io/1/environments",
+            "url": "https://api.honeycomb.io/1/api_keys",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Creates a new environment for separating telemetry data across stages such as development, staging, and production."
+          "docs": "Creates a new API key for the team with specified permissions and environment scope."
         },
         {
           "info": {
-            "name": "Get an environment",
+            "name": "Get an API key",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "keyId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the API key."
               }
             ]
           },
-          "docs": "Returns a single environment by its ID."
+          "docs": "Returns a single API key by its ID."
         },
         {
           "info": {
-            "name": "Update an environment",
+            "name": "Update an API key",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "keyId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the API key."
               }
             ],
             "body": {
@@ -85,26 +85,26 @@
               "data": "{}"
             }
           },
-          "docs": "Updates an environment's properties."
+          "docs": "Updates an API key's name, permissions, or configuration."
         },
         {
           "info": {
-            "name": "Delete an environment",
+            "name": "Delete an API key",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://api.honeycomb.io/1/environments/:environmentId",
+            "url": "https://api.honeycomb.io/1/api_keys/:keyId",
             "params": [
               {
-                "name": "environmentId",
+                "name": "keyId",
                 "value": "",
                 "type": "path",
-                "description": "The unique identifier for the environment."
+                "description": "The unique identifier for the API key."
               }
             ]
           },
-          "docs": "Deletes an environment."
+          "docs": "Deletes an API key."
         }
       ]
     }

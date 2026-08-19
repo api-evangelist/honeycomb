@@ -1,27 +1,296 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "c694d73e-5faf-4b25-9d00-c98b44aa27ca",
+      "name": "Recipients",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook, Microsoft Teams, and Slack.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "daecfeb5-c351-4f54-869a-8dae273bff49",
+          "name": "List all recipients",
           "request": {
-            "name": "List all markers",
+            "name": "List all recipients",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all notification recipients configured for the team. Recipients are team-wide and not environment-specific.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug"
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0620aded-4cb9-40ea-9ce4-6b3658ad8581",
+              "name": "A list of recipients",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"slack\",\n    \"target\": \"string\",\n    \"created_at\": \"2004-06-09T07:33:07.441Z\",\n    \"updated_at\": \"2004-08-20T13:41:00.012Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"slack\",\n    \"target\": \"string\",\n    \"created_at\": \"1952-09-15T00:52:40.677Z\",\n    \"updated_at\": \"2025-07-04T15:53:14.268Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d4d09d3-3c5a-49e7-9b32-6e0e881e11a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c51cd8a1-4eaf-432e-83dc-78fd5b465b51",
+          "name": "Create a recipient",
+          "request": {
+            "name": "Create a recipient",
+            "description": {
+              "content": "Creates a new notification recipient. Supported types include PagerDuty, Email, Webhook, Microsoft Teams, and Slack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"target\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "451decfc-6660-4fc7-8551-ebcca3b43244",
+              "name": "Recipient created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"target\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"pagerduty\",\n  \"target\": \"string\",\n  \"created_at\": \"1963-02-14T05:14:43.585Z\",\n  \"updated_at\": \"2015-11-21T14:24:41.038Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abd1dd83-268a-4941-ac0a-2a077b92d8d8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"target\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c45c49e-b8cf-4ae8-8a2a-fe092457918e",
+          "name": "Get a recipient",
+          "request": {
+            "name": "Get a recipient",
+            "description": {
+              "content": "Returns a single recipient by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "recipients",
+                ":recipientId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -32,8 +301,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                  "key": "recipientId",
+                  "description": "(Required) The unique identifier for the recipient."
                 }
               ]
             },
@@ -48,14 +317,14 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "45574f4f-fd3c-4dc9-96f2-163dd7f32e0f",
+              "name": "Recipient details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -66,8 +335,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -96,19 +365,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"pagerduty\",\n  \"target\": \"string\",\n  \"created_at\": \"1963-02-14T05:14:43.585Z\",\n  \"updated_at\": \"2015-11-21T14:24:41.038Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "4f335f7d-a637-4407-bd89-f16b99b94365",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -119,8 +388,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -148,74 +417,16 @@
               "body": "",
               "cookie": [],
               "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
-          "request": {
-            "name": "Create a marker",
-            "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
-              "type": "text/plain"
             },
-            "url": {
-              "path": [
-                "1",
-                "markers",
-                ":datasetSlug"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "2bf6acea-7519-4f97-82cc-424a11f1a91b",
+              "name": "Recipient not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -226,69 +437,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "markers",
-                    ":datasetSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -302,19 +452,11 @@
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
-              "status": "Unauthorized",
-              "code": 401,
+              "status": "Not Found",
+              "code": 404,
               "header": [
                 {
                   "key": "Content-Type",
@@ -332,20 +474,19 @@
           }
         },
         {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
+          "id": "21c6c9a9-acdb-4efa-9a92-12744859f087",
+          "name": "Update a recipient",
           "request": {
-            "name": "Update a marker",
+            "name": "Update a recipient",
             "description": {
-              "content": "Updates a marker's properties.",
+              "content": "Updates a recipient's notification target or configuration.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug",
-                ":markerId"
+                "recipients",
+                ":recipientId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -356,15 +497,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "recipientId",
+                  "description": "(Required) The unique identifier for the recipient."
                 }
               ]
             },
@@ -382,7 +516,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"target\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -392,15 +526,14 @@
           },
           "response": [
             {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
+              "id": "41b77e7e-9f67-4250-b66d-cbe12dd7c793",
+              "name": "Recipient updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -411,15 +544,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -440,7 +566,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"target\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -456,20 +582,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"pagerduty\",\n  \"target\": \"string\",\n  \"created_at\": \"1963-02-14T05:14:43.585Z\",\n  \"updated_at\": \"2015-11-21T14:24:41.038Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
+              "id": "66b5add9-65dc-4a11-b171-07b96d61a0a1",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -480,15 +605,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -505,7 +623,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"target\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +644,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "4e1b5337-7f12-4633-86d1-589da73d182a",
+              "name": "Recipient not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -545,15 +662,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -570,7 +680,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"target\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +707,19 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "34f23dce-8a66-4c03-a6d2-0f3724e428fe",
+          "name": "Delete a recipient",
           "request": {
-            "name": "Delete a marker",
+            "name": "Delete a recipient",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Deletes a notification recipient.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug",
-                ":markerId"
+                "recipients",
+                ":recipientId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -621,15 +730,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "recipientId",
+                  "description": "(Required) The unique identifier for the recipient."
                 }
               ]
             },
@@ -638,15 +740,14 @@
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "4931bf55-f309-495f-b137-510cb4e1cfeb",
+              "name": "Recipient deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -657,15 +758,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -695,15 +789,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "2dbd49c8-69b5-4de6-bb34-3144f6aa1ae4",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -714,15 +807,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -752,15 +838,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "02fd6b45-ec76-4dce-a963-b84cf42b259c",
+              "name": "Recipient not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "recipients",
+                    ":recipientId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -771,15 +856,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "recipientId",
+                      "description": "(Required) The unique identifier for the recipient."
                     }
                   ]
                 },
@@ -844,8 +922,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "39409367-09d7-4327-9149-431a995ef584",
+    "name": "Honeycomb Auth Recipients API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

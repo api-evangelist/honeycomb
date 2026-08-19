@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "fc82b145-787b-4d20-bc13-aff1bdf0031c",
+      "name": "Query Annotations",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Associate names and descriptions to queries for collaboration features.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "b1ab1bf5-dc09-4e9c-a84e-d104bb4c5383",
+          "name": "List query annotations",
           "request": {
-            "name": "List all markers",
+            "name": "List query annotations",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all query annotations for the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "query_annotations",
                 ":datasetSlug"
               ],
               "host": [
@@ -48,13 +48,13 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "490e9a59-cf86-4979-8a9b-d4660601330e",
+              "name": "A list of query annotations",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -96,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"query_id\": \"string\",\n    \"created_at\": \"1953-06-29T09:45:08.300Z\",\n    \"updated_at\": \"2017-09-08T03:47:37.276Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"query_id\": \"string\",\n    \"created_at\": \"1988-11-22T05:36:56.613Z\",\n    \"updated_at\": \"1994-06-23T20:15:14.122Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "9fabd86d-cdf8-478c-b7d9-d460a935147c",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -156,18 +156,18 @@
           }
         },
         {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
+          "id": "c2384339-54cb-4a4e-be1c-0a8a80942943",
+          "name": "Create a query annotation",
           "request": {
-            "name": "Create a marker",
+            "name": "Create a query annotation",
             "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
+              "content": "Creates a new query annotation to associate a name and description to a query for collaboration.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "query_annotations",
                 ":datasetSlug"
               ],
               "host": [
@@ -198,7 +198,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -208,13 +208,13 @@
           },
           "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "1ad69fb3-da2a-43b8-bf81-45f895f76d18",
+              "name": "Query annotation created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -248,7 +248,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -264,18 +264,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"query_id\": \"string\",\n  \"created_at\": \"2019-10-17T05:19:33.739Z\",\n  \"updated_at\": \"1951-11-27T10:47:53.318Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
+              "id": "9d55722f-9c80-406f-bf48-e23b95b6e109",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,7 +305,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -332,20 +332,20 @@
           }
         },
         {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
+          "id": "cdc35396-533a-4da8-ba2d-730f409980de",
+          "name": "Get a query annotation",
           "request": {
-            "name": "Update a marker",
+            "name": "Get a query annotation",
             "description": {
-              "content": "Updates a marker's properties.",
+              "content": "Returns a single query annotation by its ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "query_annotations",
                 ":datasetSlug",
-                ":markerId"
+                ":queryAnnotationId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -363,44 +363,31 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier for the query annotation."
                 }
               ]
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
+              "id": "d77328d8-8748-41b2-aa8e-c530158fb0a0",
+              "name": "Query annotation details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -418,8 +405,249 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"query_id\": \"string\",\n  \"created_at\": \"2019-10-17T05:19:33.739Z\",\n  \"updated_at\": \"1951-11-27T10:47:53.318Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "266e2a69-ec07-4ace-afc8-7f20c7ae72de",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5157380d-b392-4970-bf4b-1d4d5e9cb806",
+              "name": "Query annotation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26edd38c-8a68-4c67-bd91-dd64de8f1350",
+          "name": "Update a query annotation",
+          "request": {
+            "name": "Update a query annotation",
+            "description": {
+              "content": "Updates a query annotation's name or description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug",
+                ":queryAnnotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier for the query annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4b63aa5-f97f-4815-945b-947743de5dbb",
+              "name": "Query annotation updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -440,7 +668,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -456,20 +684,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"query_id\": \"string\",\n  \"created_at\": \"2019-10-17T05:19:33.739Z\",\n  \"updated_at\": \"1951-11-27T10:47:53.318Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
+              "id": "e66fd54d-c574-4669-b88a-566c43d3675b",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -487,8 +715,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -505,7 +733,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +754,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "5f20f841-61d2-4a36-bda8-6cc26ff5415f",
+              "name": "Query annotation not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -552,8 +780,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -570,7 +798,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +825,20 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "fdb29754-ee72-4a22-897b-ced0dd6bd918",
+          "name": "Delete a query annotation",
           "request": {
-            "name": "Delete a marker",
+            "name": "Delete a query annotation",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Deletes a query annotation.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "query_annotations",
                 ":datasetSlug",
-                ":markerId"
+                ":queryAnnotationId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -628,8 +856,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier for the query annotation."
                 }
               ]
             },
@@ -638,15 +866,15 @@
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "21d1f792-c10f-471b-af0f-648a7b2333df",
+              "name": "Query annotation deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -664,8 +892,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -695,15 +923,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "1f09155b-bc81-4b84-97eb-c13ea3a3ceda",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -721,8 +949,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -752,15 +980,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "b1828ca4-c3dc-4434-928e-0cf67fb528af",
+              "name": "Query annotation not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "query_annotations",
                     ":datasetSlug",
-                    ":markerId"
+                    ":queryAnnotationId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -778,8 +1006,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier for the query annotation."
                     }
                   ]
                 },
@@ -844,8 +1072,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "b1468e0b-d162-446a-8376-6ac0f5bde40a",
+    "name": "Honeycomb Auth Query Annotations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

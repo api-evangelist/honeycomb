@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Honeycomb Auth Datasets API",
+    "name": "Honeycomb Auth Dataset Definitions API",
     "version": "1.0"
   },
   "request": {
@@ -15,44 +15,18 @@
   "items": [
     {
       "info": {
-        "name": "Datasets",
+        "name": "Dataset Definitions",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List all datasets",
+            "name": "Get dataset definition",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://api.honeycomb.io/1/datasets"
-          },
-          "docs": "Returns a list of all datasets in the environment associated with the API key."
-        },
-        {
-          "info": {
-            "name": "Create a dataset",
-            "type": "http"
-          },
-          "http": {
-            "method": "POST",
-            "url": "https://api.honeycomb.io/1/datasets",
-            "body": {
-              "type": "json",
-              "data": "{}"
-            }
-          },
-          "docs": "Creates a dataset in the environment associated with the API key. If a dataset already exists with that name or slug, the existing dataset is returned."
-        },
-        {
-          "info": {
-            "name": "Get a dataset",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -62,16 +36,16 @@
               }
             ]
           },
-          "docs": "Returns a single dataset by its slug."
+          "docs": "Returns the dataset definition for the specified dataset, which configures how columns are interpreted and displayed."
         },
         {
           "info": {
-            "name": "Update a dataset",
+            "name": "Update dataset definition",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
             "params": [
               {
                 "name": "datasetSlug",
@@ -85,7 +59,7 @@
               "data": "{}"
             }
           },
-          "docs": "Updates a dataset's properties."
+          "docs": "Updates the dataset definition for the specified dataset."
         }
       ]
     }

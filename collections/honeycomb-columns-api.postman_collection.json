@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "dec5b851-1b2f-411f-b3c8-db06b74c6fef",
+      "name": "Columns",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Manage columns (fields) in the events you send to Honeycomb datasets.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "f13aa5bd-58a2-467a-9492-a74fe8f9b40a",
+          "name": "List all columns",
           "request": {
-            "name": "List all markers",
+            "name": "List all columns",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all columns in the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "columns",
                 ":datasetSlug"
               ],
               "host": [
@@ -48,13 +48,13 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "03d0c81c-6691-4aca-8741-cf8568754a4a",
+              "name": "A list of columns",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -96,18 +96,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"key_name\": \"string\",\n    \"type\": \"integer\",\n    \"description\": \"string\",\n    \"hidden\": true,\n    \"created_at\": \"1975-04-16T05:20:35.045Z\",\n    \"updated_at\": \"1960-06-20T19:08:19.917Z\",\n    \"last_written\": \"1960-08-26T02:18:57.363Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"key_name\": \"string\",\n    \"type\": \"float\",\n    \"description\": \"string\",\n    \"hidden\": true,\n    \"created_at\": \"1964-06-13T11:54:11.379Z\",\n    \"updated_at\": \"1949-02-02T06:56:06.421Z\",\n    \"last_written\": \"2017-03-17T19:27:21.887Z\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "65568daa-696a-4f8c-9a92-1b5594ff9adb",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -148,6 +148,55 @@
               "body": "",
               "cookie": [],
               "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34f10023-cf7c-4005-88f1-d3eb66f211ad",
+              "name": "Dataset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -156,18 +205,18 @@
           }
         },
         {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
+          "id": "3db5fec0-bafa-41de-ab8c-f5893fead81e",
+          "name": "Create a column",
           "request": {
-            "name": "Create a marker",
+            "name": "Create a column",
             "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
+              "content": "Creates a new column in the specified dataset.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "columns",
                 ":datasetSlug"
               ],
               "host": [
@@ -198,7 +247,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"key_name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -208,13 +257,13 @@
           },
           "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "f633952f-3eed-4778-b51c-250c836d56ea",
+              "name": "Column created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -248,7 +297,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"key_name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -264,18 +313,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"key_name\": \"string\",\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"hidden\": true,\n  \"created_at\": \"2008-01-10T03:20:41.190Z\",\n  \"updated_at\": \"1982-11-15T17:08:16.595Z\",\n  \"last_written\": \"1990-07-12T14:39:30.379Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
+              "id": "1d937ed3-1a7b-4932-be22-2703bc9ecf34",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug"
                   ],
                   "host": [
@@ -305,207 +354,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
-          "request": {
-            "name": "Update a marker",
-            "description": {
-              "content": "Updates a marker's properties.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "1",
-                "markers",
-                ":datasetSlug",
-                ":markerId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"key_name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +375,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "b1a01d87-12d1-48ed-a685-625b5befc801",
+              "name": "Dataset not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "columns",
+                    ":datasetSlug"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -547,13 +395,6 @@
                       "value": "<string>",
                       "key": "datasetSlug",
                       "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
                     }
                   ]
                 },
@@ -567,10 +408,10 @@
                     "value": "<API Key>"
                   }
                 ],
-                "method": "PUT",
+                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"key_name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +438,20 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "9c0bb974-6388-4208-b2aa-90848bb2977e",
+          "name": "Get a column",
           "request": {
-            "name": "Delete a marker",
+            "name": "Get a column",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Returns a single column by its ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
+                "columns",
                 ":datasetSlug",
-                ":markerId"
+                ":columnId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -628,25 +469,31 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "columnId",
+                  "description": "(Required) The unique identifier for the column."
                 }
               ]
             },
-            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "96eb4101-5120-43fe-b469-717b1aa289e7",
+              "name": "Column details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug",
-                    ":markerId"
+                    ":columnId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -664,8 +511,495 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"key_name\": \"string\",\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"hidden\": true,\n  \"created_at\": \"2008-01-10T03:20:41.190Z\",\n  \"updated_at\": \"1982-11-15T17:08:16.595Z\",\n  \"last_written\": \"1990-07-12T14:39:30.379Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5620ead-428a-441e-bc57-62be9f44ae3d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a355d28-be2b-4203-8c12-b25579d1bf66",
+              "name": "Column not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfd5c25b-cb0a-4f2c-821d-ab8198704aad",
+          "name": "Update a column",
+          "request": {
+            "name": "Update a column",
+            "description": {
+              "content": "Updates the properties of a column in the specified dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "columns",
+                ":datasetSlug",
+                ":columnId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "columnId",
+                  "description": "(Required) The unique identifier for the column."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4da56da5-9313-4ba0-bc7a-1b2be681d6be",
+              "name": "Column updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"key_name\": \"string\",\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"hidden\": true,\n  \"created_at\": \"2008-01-10T03:20:41.190Z\",\n  \"updated_at\": \"1982-11-15T17:08:16.595Z\",\n  \"last_written\": \"1990-07-12T14:39:30.379Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dac4300-6b6f-4126-9033-3525b96433f0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8e190c2-689d-45bf-8e60-8c9fe54a58e6",
+              "name": "Column not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"hidden\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e9b7b19-dc8b-4ad3-9d2a-e0742240656d",
+          "name": "Delete a column",
+          "request": {
+            "name": "Delete a column",
+            "description": {
+              "content": "Deletes a column from the specified dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "columns",
+                ":datasetSlug",
+                ":columnId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "columnId",
+                  "description": "(Required) The unique identifier for the column."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52c357e1-1b00-45d3-be08-e24cc2e4bff6",
+              "name": "Column deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "columns",
+                    ":datasetSlug",
+                    ":columnId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
                     }
                   ]
                 },
@@ -695,15 +1029,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "7be7a428-da03-4e59-8674-7451523b512c",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug",
-                    ":markerId"
+                    ":columnId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -721,8 +1055,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
                     }
                   ]
                 },
@@ -752,15 +1086,15 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "9befb6bc-1912-4b48-b2e0-09ec7f571506",
+              "name": "Column not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
+                    "columns",
                     ":datasetSlug",
-                    ":markerId"
+                    ":columnId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -778,8 +1112,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "columnId",
+                      "description": "(Required) The unique identifier for the column."
                     }
                   ]
                 },
@@ -844,8 +1178,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "d931e89c-13bb-4bdd-9d43-0bd36be2653f",
+    "name": "Honeycomb Auth Columns API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",

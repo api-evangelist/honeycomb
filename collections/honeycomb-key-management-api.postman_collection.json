@@ -1,27 +1,296 @@
 {
   "item": [
     {
-      "id": "7000ccaf-80e4-4f55-b281-c83df8e64498",
-      "name": "Markers",
+      "id": "ddf0ca59-5a92-4195-9b39-e2a3d0341e95",
+      "name": "Key Management",
       "description": {
-        "content": "Manage markers that indicate points in time on graphs where notable events occurred such as deploys or outages.",
+        "content": "Manage API keys for a team, including listing, creating, updating, and deleting keys.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4477ac64-a0f0-4b83-afff-b4f899c4a549",
-          "name": "List all markers",
+          "id": "00916b74-e71a-47bd-b092-933c19cc37d4",
+          "name": "List all API keys",
           "request": {
-            "name": "List all markers",
+            "name": "List all API keys",
             "description": {
-              "content": "Returns a list of all markers for the specified dataset.",
+              "content": "Returns a list of all API keys for the team.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug"
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59ed12c0-bf8d-4437-876b-3b1d1a5bf4d0",
+              "name": "A list of API keys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"ingest\",\n    \"disabled\": false,\n    \"permissions\": {\n      \"key_0\": true\n    },\n    \"environment_id\": \"string\",\n    \"secret\": \"string\",\n    \"created_at\": \"2006-01-26T23:28:47.999Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"ingest\",\n    \"disabled\": false,\n    \"permissions\": {\n      \"key_0\": false\n    },\n    \"environment_id\": \"string\",\n    \"secret\": \"string\",\n    \"created_at\": \"2004-10-17T05:28:17.824Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82cde0fa-0cf6-49fb-88b0-8d94a67ed266",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4938788-bede-47be-83de-2a004d6eabca",
+          "name": "Create an API key",
+          "request": {
+            "name": "Create an API key",
+            "description": {
+              "content": "Creates a new API key for the team with specified permissions and environment scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "api_keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\"\n  },\n  \"environment_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c21045f3-31ed-40d3-9073-3c4b885ff7d8",
+              "name": "API key created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\"\n  },\n  \"environment_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"configuration\",\n  \"disabled\": false,\n  \"permissions\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"environment_id\": \"string\",\n  \"secret\": \"string\",\n  \"created_at\": \"1980-08-15T01:40:37.661Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd7ce42f-88ff-4694-82a5-a862d20ed34c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "api_keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Honeycomb-Team",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\"\n  },\n  \"environment_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5babb765-91ab-4bd4-ae2b-a200bb7a72b4",
+          "name": "Get an API key",
+          "request": {
+            "name": "Get an API key",
+            "description": {
+              "content": "Returns a single API key by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "api_keys",
+                ":keyId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -32,8 +301,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                  "key": "keyId",
+                  "description": "(Required) The unique identifier for the API key."
                 }
               ]
             },
@@ -48,14 +317,14 @@
           },
           "response": [
             {
-              "id": "9d1fbeda-b484-41d0-b66d-8a0fe148374d",
-              "name": "A list of markers",
+              "id": "d9f1c3a8-c1da-487e-ad07-9118795f7c7c",
+              "name": "API key details",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -66,8 +335,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -96,19 +365,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"start_time\": 9283,\n    \"end_time\": 1232,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://LFRciYtgdXCeZmPicvnnCWeIdSKJEZM.gcnNATnC99cLBqxI90q2AA6mXngnfgbey-ERqDV9d2I.0Sv+ZXc7fv4XtD\",\n    \"created_at\": \"1986-02-15T20:25:51.695Z\",\n    \"updated_at\": \"1950-06-30T16:35:07.298Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"start_time\": 5352,\n    \"end_time\": 2297,\n    \"message\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://qRYWvapXTJyQSIEGlsKBWKUPzgORFkQZ.edoHXOUzgFUr95EtQizKaKfvsaBL6Md48bDoxjSYCcg7NJcwvSog.m-ORBxMNoCtgiCQU3\",\n    \"created_at\": \"1951-07-28T11:20:05.919Z\",\n    \"updated_at\": \"2017-01-11T16:46:21.043Z\"\n  }\n]",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"configuration\",\n  \"disabled\": false,\n  \"permissions\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"environment_id\": \"string\",\n  \"secret\": \"string\",\n  \"created_at\": \"1980-08-15T01:40:37.661Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d4907c5e-d932-457d-8ffe-894fd1bfd68b",
+              "id": "74120ab6-1a32-4b61-aed8-49e125725983",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -119,8 +388,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -148,74 +417,16 @@
               "body": "",
               "cookie": [],
               "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8523fe5d-ff2d-4b81-a78c-a3c791cdf660",
-          "name": "Create a marker",
-          "request": {
-            "name": "Create a marker",
-            "description": {
-              "content": "Creates a new marker on the specified dataset to indicate a point in time where a notable event occurred.",
-              "type": "text/plain"
             },
-            "url": {
-              "path": [
-                "1",
-                "markers",
-                ":datasetSlug"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
             {
-              "id": "ac8c374f-8ba7-40e9-a7b8-022367313e91",
-              "name": "Marker created",
+              "id": "5dd04880-7252-4998-b8a8-33c72b65073f",
+              "name": "API key not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -226,69 +437,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-Honeycomb-Team",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8b338b41-ac53-4e90-9e20-697489dcdcdc",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "1",
-                    "markers",
-                    ":datasetSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -302,19 +452,11 @@
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
-              "status": "Unauthorized",
-              "code": 401,
+              "status": "Not Found",
+              "code": 404,
               "header": [
                 {
                   "key": "Content-Type",
@@ -332,20 +474,19 @@
           }
         },
         {
-          "id": "0defd138-0de3-4fd4-b6d8-b10c472065a5",
-          "name": "Update a marker",
+          "id": "7442e4d6-5e8c-46b4-82e9-7da0f1ecd8cf",
+          "name": "Update an API key",
           "request": {
-            "name": "Update a marker",
+            "name": "Update an API key",
             "description": {
-              "content": "Updates a marker's properties.",
+              "content": "Updates an API key's name, permissions, or configuration.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug",
-                ":markerId"
+                "api_keys",
+                ":keyId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -356,15 +497,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "keyId",
+                  "description": "(Required) The unique identifier for the API key."
                 }
               ]
             },
@@ -382,7 +516,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\",\n    \"key_2\": \"<boolean>\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -392,15 +526,14 @@
           },
           "response": [
             {
-              "id": "6525117e-5815-494f-b44b-4be9492fbfa9",
-              "name": "Marker updated",
+              "id": "f013f1b6-70c7-44d3-9ad5-7b3b08376daf",
+              "name": "API key updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -411,15 +544,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -440,7 +566,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -456,20 +582,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"start_time\": 3389,\n  \"end_time\": 9213,\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"url\": \"https://YiQszKLqWJSGbCvQpIVn.pbV9I5a\",\n  \"created_at\": \"1986-12-07T22:04:10.388Z\",\n  \"updated_at\": \"1963-11-19T12:54:21.839Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"configuration\",\n  \"disabled\": false,\n  \"permissions\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"environment_id\": \"string\",\n  \"secret\": \"string\",\n  \"created_at\": \"1980-08-15T01:40:37.661Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b7be8958-ce85-419c-8085-a01b31f36607",
+              "id": "516eed61-6856-42ea-aa57-c97d989585b9",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -480,15 +605,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -505,7 +623,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -526,15 +644,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c11bd23f-98aa-4cff-b822-6d6050b1986d",
-              "name": "Marker not found",
+              "id": "d084cd08-bd71-4189-9ac8-2e518268345a",
+              "name": "API key not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -545,15 +662,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -570,7 +680,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<uri>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"disabled\": \"<boolean>\",\n  \"permissions\": {\n    \"key_0\": \"<boolean>\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -597,20 +707,19 @@
           }
         },
         {
-          "id": "a567b2a7-a5db-49f5-8ec0-902c0e4d77e1",
-          "name": "Delete a marker",
+          "id": "792e08a1-64a4-42f6-9f8e-7edc1340806e",
+          "name": "Delete an API key",
           "request": {
-            "name": "Delete a marker",
+            "name": "Delete an API key",
             "description": {
-              "content": "Deletes a marker from the specified dataset.",
+              "content": "Deletes an API key.",
               "type": "text/plain"
             },
             "url": {
               "path": [
                 "1",
-                "markers",
-                ":datasetSlug",
-                ":markerId"
+                "api_keys",
+                ":keyId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -621,15 +730,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "datasetSlug",
-                  "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "markerId",
-                  "description": "(Required) The unique identifier for the marker."
+                  "key": "keyId",
+                  "description": "(Required) The unique identifier for the API key."
                 }
               ]
             },
@@ -638,15 +740,14 @@
           },
           "response": [
             {
-              "id": "36dc6505-07cc-4504-82b9-9f87c73d4fac",
-              "name": "Marker deleted",
+              "id": "22055797-9d26-4182-ba4b-45f7587ba4db",
+              "name": "API key deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -657,15 +758,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -695,15 +789,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f8936d5f-7a8b-4d8e-8f10-6ea85dca8d63",
+              "id": "8ee6f099-1f30-48d4-8252-49e5e5186094",
               "name": "Unauthorized",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -714,15 +807,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -752,15 +838,14 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c61b35-0e07-4e28-bdaa-d99300667dc6",
-              "name": "Marker not found",
+              "id": "30a8a153-f4fc-41b5-8737-f10644b9a394",
+              "name": "API key not found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "1",
-                    "markers",
-                    ":datasetSlug",
-                    ":markerId"
+                    "api_keys",
+                    ":keyId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -771,15 +856,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "datasetSlug",
-                      "description": "(Required) The slug identifier for the dataset. Dataset names are case insensitive."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "markerId",
-                      "description": "(Required) The unique identifier for the marker."
+                      "key": "keyId",
+                      "description": "(Required) The unique identifier for the API key."
                     }
                   ]
                 },
@@ -844,8 +922,8 @@
     ]
   },
   "info": {
-    "_postman_id": "5845739d-14ba-4d43-ac8a-79fa7b12eb10",
-    "name": "Honeycomb Auth Markers API",
+    "_postman_id": "1ce03f61-0295-4041-8bc2-02f29dfd6993",
+    "name": "Honeycomb Auth Key Management API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.\n\nContact Support:\n Name: Honeycomb Support",
