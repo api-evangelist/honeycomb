@@ -20,6 +20,11 @@ apis:
 - aid: honeycomb:events-api
   name: Honeycomb Events API
   tags:
+  - Event
+  - Ingestion
+  - Observability
+  - Telemetry
+  tags_raw:
   - Events
   - Ingestion
   - Observability
@@ -46,6 +51,11 @@ apis:
   - Analytics
   - Data Analysis
   - Observability
+  - Query
+  tags_raw:
+  - Analytics
+  - Data Analysis
+  - Observability
   - Queries
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.honeycomb.io
@@ -64,6 +74,11 @@ apis:
 - aid: honeycomb:slos-api
   name: Honeycomb SLOs API
   tags:
+  - Observability
+  - Reliability
+  - Service Level Objectives
+  - SLO
+  tags_raw:
   - Observability
   - Reliability
   - Service Level Objectives
@@ -126,6 +141,11 @@ apis:
   name: Honeycomb Markers API
   tags:
   - Annotations
+  - Deployment
+  - Markers
+  - Observability
+  tags_raw:
+  - Annotations
   - Deployments
   - Markers
   - Observability
@@ -146,6 +166,11 @@ apis:
 - aid: honeycomb:triggers-api
   name: Honeycomb Triggers API
   tags:
+  - Alerts
+  - Monitoring
+  - Notification
+  - Observability
+  tags_raw:
   - Alerts
   - Monitoring
   - Notifications
@@ -194,6 +219,8 @@ apis:
   humanURL: https://api-docs.honeycomb.io/api
   baseURL: https://api.honeycomb.io
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
