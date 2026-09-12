@@ -401,6 +401,8 @@ apis:
   - type: Documentation
     url: https://api-docs.honeycomb.io/api
 common:
+  - type: Website
+    url: https://www.honeycomb.io/
   - type: AgenticAccess
     url: agentic-access/honeycomb-agentic-access.yml
   - type: TrustCenter
