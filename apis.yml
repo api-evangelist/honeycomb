@@ -127,7 +127,7 @@ apis:
 - aid: honeycomb:markers-api
   name: Honeycomb Markers API
   tags:
-  - Annotations
+  - Annotation
   - Deployment
   - Markers
   - Observability
@@ -181,6 +181,10 @@ apis:
 - aid: honeycomb:environments-api
   name: Honeycomb Environments API
   tags:
+  - Administration
+  - Environment
+  - Observability
+  tags_raw:
   - Administration
   - Environments
   - Observability
@@ -380,6 +384,8 @@ apis:
   humanURL: https://api-docs.honeycomb.io/api/events
   baseURL: https://api.honeycomb.io
   tags:
+  - SLO
+  tags_raw:
   - SLOs
   properties:
   - type: OpenAPI
