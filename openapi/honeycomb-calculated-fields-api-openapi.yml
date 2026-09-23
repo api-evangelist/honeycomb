@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Honeycomb Auth Calculated Fields API
+  title: Honeycomb Calculated Fields API
   description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
   version: '1.0'
   contact:
@@ -123,37 +123,7 @@ paths:
         '404':
           description: Calculated field not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    calculatedFieldId:
-      name: calculatedFieldId
-      in: path
-      required: true
-      description: The unique identifier for the calculated field.
-      schema:
-        type: string
   schemas:
-    CalculatedFieldCreateRequest:
-      type: object
-      required:
-      - alias
-      - expression
-      properties:
-        alias:
-          type: string
-          description: The alias name for the calculated field.
-        expression:
-          type: string
-          description: The expression to compute the field value.
-        description:
-          type: string
-          description: An optional description for the calculated field.
     CalculatedField:
       type: object
       properties:
@@ -186,6 +156,36 @@ components:
         description:
           type: string
           description: An updated description for the calculated field.
+    CalculatedFieldCreateRequest:
+      type: object
+      required:
+      - alias
+      - expression
+      properties:
+        alias:
+          type: string
+          description: The alias name for the calculated field.
+        expression:
+          type: string
+          description: The expression to compute the field value.
+        description:
+          type: string
+          description: An optional description for the calculated field.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    calculatedFieldId:
+      name: calculatedFieldId
+      in: path
+      required: true
+      description: The unique identifier for the calculated field.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

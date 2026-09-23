@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Honeycomb Auth Columns API
+  title: Honeycomb Columns API
   description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
   version: '1.0'
   contact:
@@ -127,7 +127,57 @@ paths:
         '404':
           description: Column not found
 components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    columnId:
+      name: columnId
+      in: path
+      required: true
+      description: The unique identifier for the column.
+      schema:
+        type: string
   schemas:
+    Column:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the column.
+        key_name:
+          type: string
+          description: The name of the column.
+        type:
+          type: string
+          description: The data type of the column.
+          enum:
+          - string
+          - float
+          - integer
+          - boolean
+        description:
+          type: string
+          description: A description of the column.
+        hidden:
+          type: boolean
+          description: If true, the column is excluded from autocomplete and raw data field lists.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the column was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the column was last updated.
+        last_written:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the column last received event data.
     ColumnCreateRequest:
       type: object
       required:
@@ -167,56 +217,6 @@ components:
         hidden:
           type: boolean
           description: If true, hides the column from autocomplete and raw data field lists.
-    Column:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the column.
-        key_name:
-          type: string
-          description: The name of the column.
-        type:
-          type: string
-          description: The data type of the column.
-          enum:
-          - string
-          - float
-          - integer
-          - boolean
-        description:
-          type: string
-          description: A description of the column.
-        hidden:
-          type: boolean
-          description: If true, the column is excluded from autocomplete and raw data field lists.
-        created_at:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the column was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the column was last updated.
-        last_written:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the column last received event data.
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    columnId:
-      name: columnId
-      in: path
-      required: true
-      description: The unique identifier for the column.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

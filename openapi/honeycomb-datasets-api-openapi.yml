@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Honeycomb Auth Datasets API
+  title: Honeycomb Datasets API
   description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
   version: '1.0'
   contact:
@@ -108,17 +108,15 @@ paths:
           description: Dataset not found
 components:
   schemas:
-    DatasetCreateRequest:
+    DatasetUpdateRequest:
       type: object
-      required:
-      - name
       properties:
-        name:
-          type: string
-          description: The name of the dataset to create.
         description:
           type: string
-          description: An optional description for the dataset.
+          description: An updated description for the dataset.
+        expand_json_depth:
+          type: integer
+          description: The depth to which nested JSON payloads should be unpacked into individual columns.
     Dataset:
       type: object
       properties:
@@ -142,15 +140,17 @@ components:
         regular_columns_count:
           type: integer
           description: The number of regular columns in the dataset.
-    DatasetUpdateRequest:
+    DatasetCreateRequest:
       type: object
+      required:
+      - name
       properties:
+        name:
+          type: string
+          description: The name of the dataset to create.
         description:
           type: string
-          description: An updated description for the dataset.
-        expand_json_depth:
-          type: integer
-          description: The depth to which nested JSON payloads should be unpacked into individual columns.
+          description: An optional description for the dataset.
   parameters:
     datasetSlug:
       name: datasetSlug

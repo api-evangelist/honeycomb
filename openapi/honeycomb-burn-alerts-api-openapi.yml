@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Honeycomb Auth Burn Alerts API
+  title: Honeycomb Burn Alerts API
   description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
   version: '1.0'
   contact:
@@ -124,12 +124,50 @@ paths:
           description: Burn alert not found
 components:
   schemas:
+    BurnAlertCreateRequest:
+      type: object
+      required:
+      - slo_id
+      - alert_type
+      - recipients
+      properties:
+        slo_id:
+          type: string
+          description: The ID of the SLO to monitor.
+        alert_type:
+          type: string
+          enum:
+          - budget_rate
+          - exhaustion_time
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
     RecipientRef:
       type: object
       properties:
         id:
           type: string
           description: The ID of the recipient to notify.
+    BurnAlertUpdateRequest:
+      type: object
+      properties:
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
     BurnAlert:
       type: object
       properties:
@@ -167,44 +205,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the burn alert was last updated.
-    BurnAlertUpdateRequest:
-      type: object
-      properties:
-        exhaustion_minutes:
-          type: integer
-        budget_rate_window_minutes:
-          type: integer
-        budget_rate_decrease_percent:
-          type: number
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientRef'
-    BurnAlertCreateRequest:
-      type: object
-      required:
-      - slo_id
-      - alert_type
-      - recipients
-      properties:
-        slo_id:
-          type: string
-          description: The ID of the SLO to monitor.
-        alert_type:
-          type: string
-          enum:
-          - budget_rate
-          - exhaustion_time
-        exhaustion_minutes:
-          type: integer
-        budget_rate_window_minutes:
-          type: integer
-        budget_rate_decrease_percent:
-          type: number
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientRef'
   parameters:
     datasetSlug:
       name: datasetSlug

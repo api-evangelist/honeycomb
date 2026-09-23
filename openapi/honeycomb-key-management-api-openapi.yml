@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Honeycomb Auth Key Management API
+  title: Honeycomb Key Management API
   description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
   version: '1.0'
   contact:
@@ -116,14 +116,6 @@ paths:
         '404':
           description: API key not found
 components:
-  parameters:
-    keyId:
-      name: keyId
-      in: path
-      required: true
-      description: The unique identifier for the API key.
-      schema:
-        type: string
   schemas:
     ApiKey:
       type: object
@@ -195,6 +187,14 @@ components:
           description: Updated permissions for the API key.
           additionalProperties:
             type: boolean
+  parameters:
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: The unique identifier for the API key.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

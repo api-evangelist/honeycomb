@@ -1,0 +1,37 @@
+generated: '2026-09-20'
+method: probed
+source: https://docs.honeycomb.io/.well-known/agent-card.json
+description: 'A2A Agent Card observed at /.well-known/agent-card.json on docs.honeycomb.io. Provider-published
+  by construction — served from the provider''s own host and saved verbatim; nothing here is derived or
+  generated. RESTORED 2026-09-20: this card was catalogued under the retired slug `honeycomb-io`, which
+  was merged into `honeycomb` on 2026-09-15. The merge did not carry a2a/ across, so the card dropped
+  out of the catalog until it was re-fetched from the provider.'
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: docs.honeycomb.io
+conformance:
+  spec: A2A 1.0.0
+  grade: conformant
+  protocol_version: '0.3'
+  preferred_transport: HTTP+JSON
+  deviations:
+  - supportedInterfaces-instead-of-additionalInterfaces
+card:
+  name: Honeycomb Docs
+  description: null
+  url: https://docs.honeycomb.io/
+  version: 1.0.0
+  documentation_url: https://docs.honeycomb.io/
+  skills: 1
+  file: honeycomb-agent-card.json
+x-evidence:
+  fetched: '2026-09-20'
+  url: https://docs.honeycomb.io/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json
+  note: Verbatim body saved alongside this manifest. No field inferred.
+x-restored-from:
+  retired_slug: honeycomb-io
+  merged: '2026-09-15'
+  previously_fetched: '2026-08-24'
