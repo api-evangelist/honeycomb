@@ -72,15 +72,16 @@ paths:
         '401':
           description: Unauthorized - invalid API key
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes.
-      schema:
-        type: string
   schemas:
+    BatchEventResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code for this individual event. 202 indicates successful queuing for processing.
+        error:
+          type: string
+          description: An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'.
     BatchEvent:
       type: object
       properties:
@@ -98,15 +99,14 @@ components:
           additionalProperties: true
       required:
       - data
-    BatchEventResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code for this individual event. 202 indicates successful queuing for processing.
-        error:
-          type: string
-          description: An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

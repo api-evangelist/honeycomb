@@ -62,6 +62,14 @@ paths:
         '404':
           description: Dataset not found
 components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
   schemas:
     DatasetDefinition:
       type: object
@@ -93,14 +101,6 @@ components:
         user:
           type: string
           description: The column name that represents the user.
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -127,21 +127,6 @@ paths:
         '404':
           description: Column not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    columnId:
-      name: columnId
-      in: path
-      required: true
-      description: The unique identifier for the column.
-      schema:
-        type: string
   schemas:
     Column:
       type: object
@@ -178,6 +163,23 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the column last received event data.
+    ColumnUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: An updated description for the column.
+        type:
+          type: string
+          description: An updated data type for the column.
+          enum:
+          - string
+          - float
+          - integer
+          - boolean
+        hidden:
+          type: boolean
+          description: If true, hides the column from autocomplete and raw data field lists.
     ColumnCreateRequest:
       type: object
       required:
@@ -200,23 +202,21 @@ components:
         hidden:
           type: boolean
           description: If true, hides the column from autocomplete and raw data field lists.
-    ColumnUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-          description: An updated description for the column.
-        type:
-          type: string
-          description: An updated data type for the column.
-          enum:
-          - string
-          - float
-          - integer
-          - boolean
-        hidden:
-          type: boolean
-          description: If true, hides the column from autocomplete and raw data field lists.
+  parameters:
+    columnId:
+      name: columnId
+      in: path
+      required: true
+      description: The unique identifier for the column.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

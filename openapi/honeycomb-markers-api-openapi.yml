@@ -103,21 +103,6 @@ paths:
         '404':
           description: Marker not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    markerId:
-      name: markerId
-      in: path
-      required: true
-      description: The unique identifier for the marker.
-      schema:
-        type: string
   schemas:
     Marker:
       type: object
@@ -187,6 +172,21 @@ components:
           type: string
           format: uri
           description: A URL associated with the marker event.
+  parameters:
+    markerId:
+      name: markerId
+      in: path
+      required: true
+      description: The unique identifier for the marker.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

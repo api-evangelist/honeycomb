@@ -124,29 +124,6 @@ paths:
           description: Calculated field not found
 components:
   schemas:
-    CalculatedField:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the calculated field.
-        alias:
-          type: string
-          description: The alias name used to reference this calculated field in queries.
-        expression:
-          type: string
-          description: The expression used to compute the calculated field value.
-        description:
-          type: string
-          description: A description of the calculated field.
-        created_at:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the calculated field was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the calculated field was last updated.
     CalculatedFieldUpdateRequest:
       type: object
       properties:
@@ -171,6 +148,29 @@ components:
         description:
           type: string
           description: An optional description for the calculated field.
+    CalculatedField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the calculated field.
+        alias:
+          type: string
+          description: The alias name used to reference this calculated field in queries.
+        expression:
+          type: string
+          description: The expression used to compute the calculated field value.
+        description:
+          type: string
+          description: A description of the calculated field.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the calculated field was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the calculated field was last updated.
   parameters:
     datasetSlug:
       name: datasetSlug

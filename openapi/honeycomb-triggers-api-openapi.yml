@@ -123,86 +123,22 @@ paths:
         '404':
           description: Trigger not found
 components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    triggerId:
+      name: triggerId
+      in: path
+      required: true
+      description: The unique identifier for the trigger.
+      schema:
+        type: string
   schemas:
-    TriggerUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the trigger.
-        description:
-          type: string
-          description: An updated description for the trigger.
-        disabled:
-          type: boolean
-          description: Whether the trigger should be disabled.
-        query:
-          $ref: '#/components/schemas/QuerySpec'
-        threshold:
-          type: object
-          properties:
-            op:
-              type: string
-              enum:
-              - '>'
-              - '>='
-              - <
-              - <=
-            value:
-              type: number
-        frequency:
-          type: integer
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientRef'
-    RecipientRef:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the recipient to notify.
-    TriggerCreateRequest:
-      type: object
-      required:
-      - name
-      - query
-      - threshold
-      - recipients
-      properties:
-        name:
-          type: string
-          description: The display name for the trigger.
-        description:
-          type: string
-          description: An optional description for the trigger.
-        disabled:
-          type: boolean
-          description: Whether the trigger should be disabled upon creation.
-        query:
-          $ref: '#/components/schemas/QuerySpec'
-        threshold:
-          type: object
-          required:
-          - op
-          - value
-          properties:
-            op:
-              type: string
-              enum:
-              - '>'
-              - '>='
-              - <
-              - <=
-            value:
-              type: number
-        frequency:
-          type: integer
-          description: How frequently in seconds to evaluate the trigger.
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientRef'
     QuerySpec:
       type: object
       description: A query specification defining what data to retrieve and how to aggregate it.
@@ -305,6 +241,47 @@ components:
         limit:
           type: integer
           description: The maximum number of results to return.
+    TriggerCreateRequest:
+      type: object
+      required:
+      - name
+      - query
+      - threshold
+      - recipients
+      properties:
+        name:
+          type: string
+          description: The display name for the trigger.
+        description:
+          type: string
+          description: An optional description for the trigger.
+        disabled:
+          type: boolean
+          description: Whether the trigger should be disabled upon creation.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          required:
+          - op
+          - value
+          properties:
+            op:
+              type: string
+              enum:
+              - '>'
+              - '>='
+              - <
+              - <=
+            value:
+              type: number
+        frequency:
+          type: integer
+          description: How frequently in seconds to evaluate the trigger.
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
     Trigger:
       type: object
       properties:
@@ -356,21 +333,44 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the trigger was last updated.
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    triggerId:
-      name: triggerId
-      in: path
-      required: true
-      description: The unique identifier for the trigger.
-      schema:
-        type: string
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the recipient to notify.
+    TriggerUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the trigger.
+        description:
+          type: string
+          description: An updated description for the trigger.
+        disabled:
+          type: boolean
+          description: Whether the trigger should be disabled.
+        query:
+          $ref: '#/components/schemas/QuerySpec'
+        threshold:
+          type: object
+          properties:
+            op:
+              type: string
+              enum:
+              - '>'
+              - '>='
+              - <
+              - <=
+            value:
+              type: number
+        frequency:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -117,18 +117,6 @@ paths:
           description: Environment not found
 components:
   schemas:
-    EnvironmentUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the environment.
-        description:
-          type: string
-          description: An updated description for the environment.
-        color:
-          type: string
-          description: An updated color for the environment.
     EnvironmentCreateRequest:
       type: object
       required:
@@ -143,6 +131,18 @@ components:
         color:
           type: string
           description: An optional color for the environment.
+    EnvironmentUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the environment.
+        description:
+          type: string
+          description: An updated description for the environment.
+        color:
+          type: string
+          description: An updated color for the environment.
     Environment:
       type: object
       properties:

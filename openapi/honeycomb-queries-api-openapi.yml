@@ -67,18 +67,18 @@ paths:
           description: Query not found
 components:
   parameters:
-    queryId:
-      name: queryId
-      in: path
-      required: true
-      description: The unique identifier for the query.
-      schema:
-        type: string
     datasetSlug:
       name: datasetSlug
       in: path
       required: true
       description: The slug identifier for the dataset.
+      schema:
+        type: string
+    queryId:
+      name: queryId
+      in: path
+      required: true
+      description: The unique identifier for the query.
       schema:
         type: string
   schemas:

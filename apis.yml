@@ -455,3 +455,12 @@ tags:
 - Telemetry
 - Analytics
 - Data Management
+- Monitoring
+- A2A
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.honeycomb.io/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404

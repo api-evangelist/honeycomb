@@ -38,21 +38,6 @@ paths:
         '404':
           description: SLO not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    sloId:
-      name: sloId
-      in: path
-      required: true
-      description: The unique identifier for the SLO.
-      schema:
-        type: string
   schemas:
     SLOReport:
       type: object
@@ -72,6 +57,21 @@ components:
         time_period_days:
           type: integer
           description: The time period in days for the report.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: The unique identifier for the SLO.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

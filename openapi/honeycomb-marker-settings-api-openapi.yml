@@ -113,6 +113,17 @@ components:
         color:
           type: string
           description: An updated color for the marker setting.
+    MarkerSettingCreateRequest:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: The marker type this setting applies to.
+        color:
+          type: string
+          description: The color used to display markers of this type.
     MarkerSetting:
       type: object
       properties:
@@ -133,17 +144,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the marker setting was last updated.
-    MarkerSettingCreateRequest:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: The marker type this setting applies to.
-        color:
-          type: string
-          description: The color used to display markers of this type.
   parameters:
     datasetSlug:
       name: datasetSlug

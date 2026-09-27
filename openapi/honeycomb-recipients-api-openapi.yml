@@ -117,30 +117,6 @@ paths:
           description: Recipient not found
 components:
   schemas:
-    RecipientUpdateRequest:
-      type: object
-      properties:
-        target:
-          type: string
-          description: An updated target address or identifier for the recipient.
-    RecipientCreateRequest:
-      type: object
-      required:
-      - type
-      - target
-      properties:
-        type:
-          type: string
-          description: The notification channel type.
-          enum:
-          - email
-          - pagerduty
-          - slack
-          - webhook
-          - msteams
-        target:
-          type: string
-          description: The target address or identifier for the recipient.
     Recipient:
       type: object
       properties:
@@ -167,6 +143,30 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the recipient was last updated.
+    RecipientCreateRequest:
+      type: object
+      required:
+      - type
+      - target
+      properties:
+        type:
+          type: string
+          description: The notification channel type.
+          enum:
+          - email
+          - pagerduty
+          - slack
+          - webhook
+          - msteams
+        target:
+          type: string
+          description: The target address or identifier for the recipient.
+    RecipientUpdateRequest:
+      type: object
+      properties:
+        target:
+          type: string
+          description: An updated target address or identifier for the recipient.
   parameters:
     recipientId:
       name: recipientId
