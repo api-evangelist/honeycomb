@@ -45,14 +45,6 @@ paths:
         '404':
           description: Dataset not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset.
-      schema:
-        type: string
   schemas:
     QueryData:
       type: object
@@ -191,6 +183,14 @@ components:
                 type: string
               value:
                 type: number
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

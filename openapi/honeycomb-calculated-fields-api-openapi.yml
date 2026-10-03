@@ -124,15 +124,6 @@ paths:
           description: Calculated field not found
 components:
   schemas:
-    CalculatedFieldUpdateRequest:
-      type: object
-      properties:
-        expression:
-          type: string
-          description: An updated expression for the calculated field.
-        description:
-          type: string
-          description: An updated description for the calculated field.
     CalculatedFieldCreateRequest:
       type: object
       required:
@@ -148,6 +139,15 @@ components:
         description:
           type: string
           description: An optional description for the calculated field.
+    CalculatedFieldUpdateRequest:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: An updated expression for the calculated field.
+        description:
+          type: string
+          description: An updated description for the calculated field.
     CalculatedField:
       type: object
       properties:
@@ -172,18 +172,18 @@ components:
           format: date-time
           description: ISO8601 formatted time the calculated field was last updated.
   parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
     calculatedFieldId:
       name: calculatedFieldId
       in: path
       required: true
       description: The unique identifier for the calculated field.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
       schema:
         type: string
   securitySchemes:

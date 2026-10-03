@@ -128,6 +128,23 @@ paths:
           description: Column not found
 components:
   schemas:
+    ColumnUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          description: An updated description for the column.
+        type:
+          type: string
+          description: An updated data type for the column.
+          enum:
+          - string
+          - float
+          - integer
+          - boolean
+        hidden:
+          type: boolean
+          description: If true, hides the column from autocomplete and raw data field lists.
     Column:
       type: object
       properties:
@@ -163,23 +180,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the column last received event data.
-    ColumnUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-          description: An updated description for the column.
-        type:
-          type: string
-          description: An updated data type for the column.
-          enum:
-          - string
-          - float
-          - integer
-          - boolean
-        hidden:
-          type: boolean
-          description: If true, hides the column from autocomplete and raw data field lists.
     ColumnCreateRequest:
       type: object
       required:

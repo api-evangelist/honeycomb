@@ -104,6 +104,25 @@ paths:
           description: Marker not found
 components:
   schemas:
+    MarkerCreateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          description: Unix timestamp in seconds for the marker start. Defaults to current time if not provided.
+        end_time:
+          type: integer
+          description: Unix timestamp in seconds for the marker end.
+        message:
+          type: string
+          description: A message describing the marker event.
+        type:
+          type: string
+          description: The type of the marker, used to group related markers.
+        url:
+          type: string
+          format: uri
+          description: A URL associated with the marker event.
     Marker:
       type: object
       properties:
@@ -153,25 +172,6 @@ components:
           type: string
           format: uri
           description: An updated URL associated with the marker event.
-    MarkerCreateRequest:
-      type: object
-      properties:
-        start_time:
-          type: integer
-          description: Unix timestamp in seconds for the marker start. Defaults to current time if not provided.
-        end_time:
-          type: integer
-          description: Unix timestamp in seconds for the marker end.
-        message:
-          type: string
-          description: A message describing the marker event.
-        type:
-          type: string
-          description: The type of the marker, used to group related markers.
-        url:
-          type: string
-          format: uri
-          description: A URL associated with the marker event.
   parameters:
     markerId:
       name: markerId

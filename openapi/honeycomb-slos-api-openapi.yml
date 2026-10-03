@@ -124,36 +124,47 @@ paths:
           description: SLO not found
 components:
   schemas:
-    SLO:
+    SLOUpdateRequest:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the SLO.
         name:
           type: string
-          description: The display name of the SLO.
+          description: An updated display name for the SLO.
         description:
           type: string
-          description: A description of the SLO.
+          description: An updated description for the SLO.
         sli:
           $ref: '#/components/schemas/QuerySpec'
         target_percentage:
           type: number
-          description: The target percentage for the SLO, such as 99.9.
           minimum: 0
           maximum: 100
         time_period_days:
           type: integer
-          description: The time period in days over which the SLO is evaluated.
-        created_at:
+    SLOCreateRequest:
+      type: object
+      required:
+      - name
+      - sli
+      - target_percentage
+      - time_period_days
+      properties:
+        name:
           type: string
-          format: date-time
-          description: ISO8601 formatted time the SLO was created.
-        updated_at:
+          description: The display name for the SLO.
+        description:
           type: string
-          format: date-time
-          description: ISO8601 formatted time the SLO was last updated.
+          description: An optional description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: The target percentage for the SLO.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: The time period in days for the SLO.
     QuerySpec:
       type: object
       description: A query specification defining what data to retrieve and how to aggregate it.
@@ -256,47 +267,36 @@ components:
         limit:
           type: integer
           description: The maximum number of results to return.
-    SLOUpdateRequest:
+    SLO:
       type: object
       properties:
+        id:
+          type: string
+          description: Unique identifier for the SLO.
         name:
           type: string
-          description: An updated display name for the SLO.
+          description: The display name of the SLO.
         description:
           type: string
-          description: An updated description for the SLO.
+          description: A description of the SLO.
         sli:
           $ref: '#/components/schemas/QuerySpec'
         target_percentage:
           type: number
+          description: The target percentage for the SLO, such as 99.9.
           minimum: 0
           maximum: 100
         time_period_days:
           type: integer
-    SLOCreateRequest:
-      type: object
-      required:
-      - name
-      - sli
-      - target_percentage
-      - time_period_days
-      properties:
-        name:
+          description: The time period in days over which the SLO is evaluated.
+        created_at:
           type: string
-          description: The display name for the SLO.
-        description:
+          format: date-time
+          description: ISO8601 formatted time the SLO was created.
+        updated_at:
           type: string
-          description: An optional description for the SLO.
-        sli:
-          $ref: '#/components/schemas/QuerySpec'
-        target_percentage:
-          type: number
-          description: The target percentage for the SLO.
-          minimum: 0
-          maximum: 100
-        time_period_days:
-          type: integer
-          description: The time period in days for the SLO.
+          format: date-time
+          description: ISO8601 formatted time the SLO was last updated.
   parameters:
     sloId:
       name: sloId

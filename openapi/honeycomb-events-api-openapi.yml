@@ -73,15 +73,6 @@ paths:
           description: Unauthorized - invalid API key
 components:
   schemas:
-    BatchEventResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: The HTTP status code for this individual event. 202 indicates successful queuing for processing.
-        error:
-          type: string
-          description: An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'.
     BatchEvent:
       type: object
       properties:
@@ -99,6 +90,15 @@ components:
           additionalProperties: true
       required:
       - data
+    BatchEventResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code for this individual event. 202 indicates successful queuing for processing.
+        error:
+          type: string
+          description: An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'.
   parameters:
     datasetSlug:
       name: datasetSlug

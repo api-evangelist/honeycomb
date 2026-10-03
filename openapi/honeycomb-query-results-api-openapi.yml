@@ -78,6 +78,21 @@ paths:
         '404':
           description: Query result not found
 components:
+  parameters:
+    queryResultId:
+      name: queryResultId
+      in: path
+      required: true
+      description: The unique identifier for the query result.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset.
+      schema:
+        type: string
   schemas:
     QueryResult:
       type: object
@@ -119,21 +134,6 @@ components:
               type: string
               format: uri
               description: URL to a rendered graph image of the query result.
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset.
-      schema:
-        type: string
-    queryResultId:
-      name: queryResultId
-      in: path
-      required: true
-      description: The unique identifier for the query result.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

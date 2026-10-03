@@ -108,15 +108,17 @@ paths:
           description: Dataset not found
 components:
   schemas:
-    DatasetUpdateRequest:
+    DatasetCreateRequest:
       type: object
+      required:
+      - name
       properties:
+        name:
+          type: string
+          description: The name of the dataset to create.
         description:
           type: string
-          description: An updated description for the dataset.
-        expand_json_depth:
-          type: integer
-          description: The depth to which nested JSON payloads should be unpacked into individual columns.
+          description: An optional description for the dataset.
     Dataset:
       type: object
       properties:
@@ -140,17 +142,15 @@ components:
         regular_columns_count:
           type: integer
           description: The number of regular columns in the dataset.
-    DatasetCreateRequest:
+    DatasetUpdateRequest:
       type: object
-      required:
-      - name
       properties:
-        name:
-          type: string
-          description: The name of the dataset to create.
         description:
           type: string
-          description: An optional description for the dataset.
+          description: An updated description for the dataset.
+        expand_json_depth:
+          type: integer
+          description: The depth to which nested JSON payloads should be unpacked into individual columns.
   parameters:
     datasetSlug:
       name: datasetSlug

@@ -117,32 +117,6 @@ paths:
           description: Environment not found
 components:
   schemas:
-    EnvironmentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The display name for the environment.
-        description:
-          type: string
-          description: An optional description for the environment.
-        color:
-          type: string
-          description: An optional color for the environment.
-    EnvironmentUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the environment.
-        description:
-          type: string
-          description: An updated description for the environment.
-        color:
-          type: string
-          description: An updated color for the environment.
     Environment:
       type: object
       properties:
@@ -169,6 +143,32 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the environment was last updated.
+    EnvironmentUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the environment.
+        description:
+          type: string
+          description: An updated description for the environment.
+        color:
+          type: string
+          description: An updated color for the environment.
+    EnvironmentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The display name for the environment.
+        description:
+          type: string
+          description: An optional description for the environment.
+        color:
+          type: string
+          description: An optional color for the environment.
   parameters:
     environmentId:
       name: environmentId

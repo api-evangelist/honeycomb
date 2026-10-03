@@ -103,6 +103,21 @@ paths:
         '404':
           description: Marker setting not found
 components:
+  parameters:
+    markerSettingId:
+      name: markerSettingId
+      in: path
+      required: true
+      description: The unique identifier for the marker setting.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
   schemas:
     MarkerSettingUpdateRequest:
       type: object
@@ -144,21 +159,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the marker setting was last updated.
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    markerSettingId:
-      name: markerSettingId
-      in: path
-      required: true
-      description: The unique identifier for the marker setting.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

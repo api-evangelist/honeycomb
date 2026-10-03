@@ -116,6 +116,14 @@ paths:
         '404':
           description: Recipient not found
 components:
+  parameters:
+    recipientId:
+      name: recipientId
+      in: path
+      required: true
+      description: The unique identifier for the recipient.
+      schema:
+        type: string
   schemas:
     Recipient:
       type: object
@@ -167,14 +175,6 @@ components:
         target:
           type: string
           description: An updated target address or identifier for the recipient.
-  parameters:
-    recipientId:
-      name: recipientId
-      in: path
-      required: true
-      description: The unique identifier for the recipient.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
