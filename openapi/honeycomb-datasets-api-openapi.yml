@@ -108,17 +108,6 @@ paths:
           description: Dataset not found
 components:
   schemas:
-    DatasetCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The name of the dataset to create.
-        description:
-          type: string
-          description: An optional description for the dataset.
     Dataset:
       type: object
       properties:
@@ -151,6 +140,17 @@ components:
         expand_json_depth:
           type: integer
           description: The depth to which nested JSON payloads should be unpacked into individual columns.
+    DatasetCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the dataset to create.
+        description:
+          type: string
+          description: An optional description for the dataset.
   parameters:
     datasetSlug:
       name: datasetSlug

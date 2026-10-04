@@ -40,21 +40,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ServiceMapRequest:
-      type: object
-      properties:
-        time_range:
-          type: integer
-          description: The time range in seconds to generate the service map for.
-        start_time:
-          type: integer
-          description: Unix timestamp for the service map start time.
-        end_time:
-          type: integer
-          description: Unix timestamp for the service map end time.
-        dataset:
-          type: string
-          description: The dataset slug to generate the service map from.
     ServiceMapResult:
       type: object
       properties:
@@ -79,6 +64,21 @@ components:
               target:
                 type: string
                 description: The target service name.
+    ServiceMapRequest:
+      type: object
+      properties:
+        time_range:
+          type: integer
+          description: The time range in seconds to generate the service map for.
+        start_time:
+          type: integer
+          description: Unix timestamp for the service map start time.
+        end_time:
+          type: integer
+          description: Unix timestamp for the service map end time.
+        dataset:
+          type: string
+          description: The dataset slug to generate the service map from.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

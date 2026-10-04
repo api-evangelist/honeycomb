@@ -123,6 +123,21 @@ paths:
         '404':
           description: Burn alert not found
 components:
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    burnAlertId:
+      name: burnAlertId
+      in: path
+      required: true
+      description: The unique identifier for the burn alert.
+      schema:
+        type: string
   schemas:
     BurnAlertCreateRequest:
       type: object
@@ -149,6 +164,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RecipientRef'
+    BurnAlertUpdateRequest:
+      type: object
+      properties:
+        exhaustion_minutes:
+          type: integer
+        budget_rate_window_minutes:
+          type: integer
+        budget_rate_decrease_percent:
+          type: number
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientRef'
+    RecipientRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the recipient to notify.
     BurnAlert:
       type: object
       properties:
@@ -186,40 +220,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the burn alert was last updated.
-    RecipientRef:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the recipient to notify.
-    BurnAlertUpdateRequest:
-      type: object
-      properties:
-        exhaustion_minutes:
-          type: integer
-        budget_rate_window_minutes:
-          type: integer
-        budget_rate_decrease_percent:
-          type: number
-        recipients:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientRef'
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
-    burnAlertId:
-      name: burnAlertId
-      in: path
-      required: true
-      description: The unique identifier for the burn alert.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

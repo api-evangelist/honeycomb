@@ -1,0 +1,36 @@
+generated: '2026-10-03'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/honeycomb-datasets-api-openapi.yml
+skills:
+- file: skills/honeycomb-create-and-retrieve-dataset.md
+  name: honeycomb-create-and-retrieve-dataset
+  api: openapi/honeycomb-datasets-api-openapi.yml
+  operations:
+  - createDataset
+  - getDataset
+- file: skills/honeycomb-send-events.md
+  name: honeycomb-send-events
+  api: openapi/honeycomb-events-api-openapi.yml
+  operations:
+  - createEvent
+  - createEvents
+- file: skills/honeycomb-create-and-retrieve-query.md
+  name: honeycomb-create-and-retrieve-query
+  api: openapi/honeycomb-queries-api-openapi.yml
+  operations:
+  - createQuery
+  - getQuery
+- file: skills/honeycomb-create-and-list-boards.md
+  name: honeycomb-create-and-list-boards
+  api: openapi/honeycomb-boards-api-openapi.yml
+  operations:
+  - createBoard
+  - listBoards
+- file: skills/honeycomb-create-trigger.md
+  name: honeycomb-create-trigger
+  api: openapi/honeycomb-triggers-api-openapi.yml
+  operations:
+  - createTrigger
+  - getTrigger
+  - listTriggers

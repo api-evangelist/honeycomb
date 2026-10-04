@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-query-annotation-update-request-schema.json",
+  "title": "QueryAnnotationUpdateRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-query-annotations-api-openapi.yml#/components/schemas/QueryAnnotationUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated name for the query annotation."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the annotation."
+    }
+  }
+}

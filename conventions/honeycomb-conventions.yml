@@ -1,0 +1,24 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.honeycomb.io/get-started/observability/concepts/distributed-tracing.md
+sources:
+- https://docs.honeycomb.io/get-started/observability/concepts/distributed-tracing.md
+- https://docs.honeycomb.io/troubleshoot/product-lifecycle/recommended-migrations/migrate-to-opentelemetry-semantic-conventions.md
+- https://docs.honeycomb.io/troubleshoot/product-lifecycle/recommended-migrations/migrate-to-opentelemetry-semantic-conventions/compatibility.md
+- https://docs.honeycomb.io/api/pagination
+idempotency:
+  coverage: none
+  evidence: The provided documentation does not describe any idempotency key header, the operations it applies to, or a retention window.
+pagination:
+  style: cursor‑based
+  params:
+  - page[size]
+  - page[after]
+  response_fields:
+  - links.next
+  evidence: V2 endpoints use cursor‑based pagination with `page[size]` (default 20, max 100) and `page[after]` cursor parameters; the response
+    includes a `links.next` cursor to retrieve the next page.
+note: All other conventions (versioning, error envelope shape, auth style, request‑id tracing, rate‑limit headers, field expansion/sparse fields)
+  are not described in the supplied pages; they are marked as absent.
+docs: https://docs.honeycomb.io/get-started/observability/concepts/distributed-tracing.md

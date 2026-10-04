@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-batch-event-response-schema.json",
+  "title": "BatchEventResponse",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-events-api-openapi.yml#/components/schemas/BatchEventResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": "The HTTP status code for this individual event. 202 indicates successful queuing for processing."
+    },
+    "error": {
+      "type": "string",
+      "description": "An error message if the event failed processing. Possible values include 'Request body should not be empty', 'Event has too many columns', and 'Request body is malformed and cannot be read'."
+    }
+  }
+}

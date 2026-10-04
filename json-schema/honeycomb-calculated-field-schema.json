@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-calculated-field-schema.json",
+  "title": "CalculatedField",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-calculated-fields-api-openapi.yml#/components/schemas/CalculatedField",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the calculated field."
+    },
+    "alias": {
+      "type": "string",
+      "description": "The alias name used to reference this calculated field in queries."
+    },
+    "expression": {
+      "type": "string",
+      "description": "The expression used to compute the calculated field value."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the calculated field."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the calculated field was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the calculated field was last updated."
+    }
+  }
+}

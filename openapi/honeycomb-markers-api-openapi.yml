@@ -104,25 +104,6 @@ paths:
           description: Marker not found
 components:
   schemas:
-    MarkerCreateRequest:
-      type: object
-      properties:
-        start_time:
-          type: integer
-          description: Unix timestamp in seconds for the marker start. Defaults to current time if not provided.
-        end_time:
-          type: integer
-          description: Unix timestamp in seconds for the marker end.
-        message:
-          type: string
-          description: A message describing the marker event.
-        type:
-          type: string
-          description: The type of the marker, used to group related markers.
-        url:
-          type: string
-          format: uri
-          description: A URL associated with the marker event.
     Marker:
       type: object
       properties:
@@ -153,6 +134,25 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the marker was last updated.
+    MarkerCreateRequest:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          description: Unix timestamp in seconds for the marker start. Defaults to current time if not provided.
+        end_time:
+          type: integer
+          description: Unix timestamp in seconds for the marker end.
+        message:
+          type: string
+          description: A message describing the marker event.
+        type:
+          type: string
+          description: The type of the marker, used to group related markers.
+        url:
+          type: string
+          format: uri
+          description: A URL associated with the marker event.
     MarkerUpdateRequest:
       type: object
       properties:
@@ -173,18 +173,18 @@ components:
           format: uri
           description: An updated URL associated with the marker event.
   parameters:
-    markerId:
-      name: markerId
-      in: path
-      required: true
-      description: The unique identifier for the marker.
-      schema:
-        type: string
     datasetSlug:
       name: datasetSlug
       in: path
       required: true
       description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+    markerId:
+      name: markerId
+      in: path
+      required: true
+      description: The unique identifier for the marker.
       schema:
         type: string
   securitySchemes:

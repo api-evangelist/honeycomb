@@ -1,0 +1,42 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/honeycomb-auth-api-openapi.yml
+- openapi/honeycomb-boards-api-openapi.yml
+- openapi/honeycomb-burn-alerts-api-openapi.yml
+- openapi/honeycomb-calculated-fields-api-openapi.yml
+- openapi/honeycomb-columns-api-openapi.yml
+- openapi/honeycomb-dataset-definitions-api-openapi.yml
+- openapi/honeycomb-datasets-api-openapi.yml
+- openapi/honeycomb-environments-api-openapi.yml
+- openapi/honeycomb-events-api-openapi.yml
+- openapi/honeycomb-key-management-api-openapi.yml
+- openapi/honeycomb-kinesis-events-api-openapi.yml
+- openapi/honeycomb-marker-settings-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 76
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request - malformed event data
+  operations: 6
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 76
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Dataset not found
+  operations: 46
+  media_types: []
+  schema: null

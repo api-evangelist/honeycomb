@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-environment-update-request-schema.json",
+  "title": "EnvironmentUpdateRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-environments-api-openapi.yml#/components/schemas/EnvironmentUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "An updated display name for the environment."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the environment."
+    },
+    "color": {
+      "type": "string",
+      "description": "An updated color for the environment."
+    }
+  }
+}

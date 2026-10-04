@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-marker-setting-schema.json",
+  "title": "MarkerSetting",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-marker-settings-api-openapi.yml#/components/schemas/MarkerSetting",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the marker setting."
+    },
+    "type": {
+      "type": "string",
+      "description": "The marker type this setting applies to."
+    },
+    "color": {
+      "type": "string",
+      "description": "The color used to display markers of this type."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker setting was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 formatted time the marker setting was last updated."
+    }
+  }
+}

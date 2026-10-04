@@ -116,7 +116,27 @@ paths:
         '404':
           description: Environment not found
 components:
+  parameters:
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: The unique identifier for the environment.
+      schema:
+        type: string
   schemas:
+    EnvironmentUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the environment.
+        description:
+          type: string
+          description: An updated description for the environment.
+        color:
+          type: string
+          description: An updated color for the environment.
     Environment:
       type: object
       properties:
@@ -143,18 +163,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the environment was last updated.
-    EnvironmentUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the environment.
-        description:
-          type: string
-          description: An updated description for the environment.
-        color:
-          type: string
-          description: An updated color for the environment.
     EnvironmentCreateRequest:
       type: object
       required:
@@ -169,14 +177,6 @@ components:
         color:
           type: string
           description: An optional color for the environment.
-  parameters:
-    environmentId:
-      name: environmentId
-      in: path
-      required: true
-      description: The unique identifier for the environment.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

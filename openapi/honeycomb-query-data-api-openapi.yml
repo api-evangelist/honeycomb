@@ -46,21 +46,6 @@ paths:
           description: Dataset not found
 components:
   schemas:
-    QueryData:
-      type: object
-      properties:
-        results:
-          type: array
-          description: The aggregated result rows.
-          items:
-            type: object
-            additionalProperties: true
-        series:
-          type: array
-          description: Time series data points.
-          items:
-            type: object
-            additionalProperties: true
     QuerySpec:
       type: object
       description: A query specification defining what data to retrieve and how to aggregate it.
@@ -183,6 +168,21 @@ components:
                 type: string
               value:
                 type: number
+    QueryData:
+      type: object
+      properties:
+        results:
+          type: array
+          description: The aggregated result rows.
+          items:
+            type: object
+            additionalProperties: true
+        series:
+          type: array
+          description: Time series data points.
+          items:
+            type: object
+            additionalProperties: true
   parameters:
     datasetSlug:
       name: datasetSlug

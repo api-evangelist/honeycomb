@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-calculated-field-update-request-schema.json",
+  "title": "CalculatedFieldUpdateRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-calculated-fields-api-openapi.yml#/components/schemas/CalculatedFieldUpdateRequest",
+  "type": "object",
+  "properties": {
+    "expression": {
+      "type": "string",
+      "description": "An updated expression for the calculated field."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description for the calculated field."
+    }
+  }
+}

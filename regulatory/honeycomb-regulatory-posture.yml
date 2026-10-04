@@ -1,0 +1,53 @@
+generated: "2026-10-03"
+method: probed
+source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+signals:
+  data_subject_request:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "To make a GDPR rights request, email support@honeycomb.io."
+      note: "Provides a channel for data subjects to exercise their rights under GDPR."
+  subprocessors:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "To learn about our subprocessors, visit Honeycomb Subprocessors on honeycomb.io."
+      note: "Mentions existence of subprocessors and where to find details."
+  data_residency:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "Customers may choose a US-based or an EU-based location where Honeycomb will store the data they send."
+      note: "Describes data residency options for customers."
+  ai_transparency:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "Unlike some other vendors, Honeycomb only has access to the telemetry data that customers send."
+      note: "States limited access to customer data, relevant to AI transparency."
+  incident_notification:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "Our product and services are vetted by independent security professionals, and we give our customers the right to audit."
+      note: "Indicates audit rights but not explicit incident notification."
+  notice_and_action:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "To learn more about GDPR, visit General Data Protection Regulation on gdpr-info.eu."
+      note: "Provides notice and guidance for GDPR compliance actions."
+  transparency_report:
+    - evidence:
+        - source: "https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md"
+          http_status: 200
+          fetched: true
+          quote: "To view a full list of certifications and compliance, visit our Honeycomb Trust Center."
+      note: "Links to trust center where transparency reports may be available."

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-query-data-schema.json",
+  "title": "QueryData",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-query-data-api-openapi.yml#/components/schemas/QueryData",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "The aggregated result rows.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "series": {
+      "type": "array",
+      "description": "Time series data points.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

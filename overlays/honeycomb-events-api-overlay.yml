@@ -1,0 +1,6 @@
+generated: '2026-10-03'
+method: derived
+source: docs.honeycomb.io/integrations/mcp/tools
+overlay:
+  openapi: "../openapi/honeycomb-events-api-openapi.yml"
+  actions: []

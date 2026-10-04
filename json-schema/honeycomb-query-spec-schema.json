@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-query-spec-schema.json",
+  "title": "QuerySpec",
+  "description": "A query specification defining what data to retrieve and how to aggregate it.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-queries-api-openapi.yml#/components/schemas/QuerySpec",
+  "type": "object",
+  "properties": {
+    "calculations": {
+      "type": "array",
+      "description": "The calculations (aggregations) to perform.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "description": "The aggregation operation.",
+            "enum": [
+              "COUNT",
+              "SUM",
+              "AVG",
+              "COUNT_DISTINCT",
+              "MAX",
+              "MIN",
+              "P001",
+              "P01",
+              "P05",
+              "P10",
+              "P25",
+              "P50",
+              "P75",
+              "P90",
+              "P95",
+              "P99",
+              "P999",
+              "HEATMAP",
+              "RATE_AVG",
+              "RATE_SUM",
+              "RATE_MAX"
+            ]
+          },
+          "column": {
+            "type": "string",
+            "description": "The column to aggregate on."
+          }
+        }
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Filters to apply before aggregation.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "The column to filter on."
+          },
+          "op": {
+            "type": "string",
+            "description": "The filter comparison operator.",
+            "enum": [
+              "=",
+              "!=",
+              ">",
+              ">=",
+              "<",
+              "<=",
+              "starts-with",
+              "does-not-start-with",
+              "contains",
+              "does-not-contain",
+              "exists",
+              "does-not-exist",
+              "in",
+              "not-in"
+            ]
+          },
+          "value": {
+            "description": "The value to compare against."
+          }
+        }
+      }
+    },
+    "filter_combination": {
+      "type": "string",
+      "description": "How to combine filters.",
+      "enum": [
+        "AND",
+        "OR"
+      ]
+    },
+    "breakdowns": {
+      "type": "array",
+      "description": "Columns to group results by.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "orders": {
+      "type": "array",
+      "description": "Ordering rules for the results.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "op": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "ascending",
+              "descending"
+            ]
+          }
+        }
+      }
+    },
+    "time_range": {
+      "type": "integer",
+      "description": "The relative time range in seconds to query over."
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the query start time."
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Unix timestamp for the query end time."
+    },
+    "granularity": {
+      "type": "integer",
+      "description": "The time granularity of results in seconds."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return."
+    },
+    "havings": {
+      "type": "array",
+      "description": "Post-aggregation filters.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "calculate_op": {
+            "type": "string"
+          },
+          "column": {
+            "type": "string"
+          },
+          "op": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

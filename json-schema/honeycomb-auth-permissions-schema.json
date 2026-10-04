@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-auth-permissions-schema.json",
+  "title": "AuthPermissions",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-auth-api-openapi.yml#/components/schemas/AuthPermissions",
+  "type": "object",
+  "properties": {
+    "api_key_access": {
+      "type": "object",
+      "description": "The permissions and access levels granted to the API key.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    }
+  }
+}

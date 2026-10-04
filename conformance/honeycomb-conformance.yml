@@ -1,0 +1,44 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.honeycomb.io/security-compliance.md
+sources:
+- https://docs.honeycomb.io/security-compliance.md
+- https://docs.honeycomb.io/security-compliance/security-data-protection.md
+- https://docs.honeycomb.io/security-compliance/bug-bounty-program.md
+- https://docs.honeycomb.io/security-compliance/compliance-data-privacy.md
+standards:
+- id: gdpr
+  conforms: true
+  evidence: Honeycomb is GDPR compliant, and we offer a standard data processing agreement through our Terms of Service.
+- id: hipaa
+  conforms: true
+  evidence: As defined by the US HIPAA and HITECH legislation, Honeycomb is considered a Business Associate.
+- id: pci-dss
+  conforms: true
+  evidence: Honeycomb is PCI DSS compliant as a merchant.
+- id: soc2
+  conforms: true
+  evidence: Every year, Honeycomb undergoes an independent audit for our SOC 2 Type II report, which verifies our consistent application of the
+    AICPA trust principles.
+- id: csa-star
+  conforms: true
+  evidence: Honeycomb completes a CSA Consensus Assessments Initiative Questionnaire (CAIQ) annually and can provide a copy of our CAIQ to Pro/Enterprise
+    users upon request.
+- id: iso-27001
+  conforms: true
+  evidence: Honeycomb provides its services in ISO/IEC 27001 certified environments, including Amazon Web Services (AWS) and Google Cloud Platform
+    (GCP).
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: ApiKeyAuth (apiKey)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+docs: https://docs.honeycomb.io/security-compliance.md

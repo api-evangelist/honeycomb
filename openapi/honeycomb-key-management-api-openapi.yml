@@ -117,6 +117,20 @@ paths:
           description: API key not found
 components:
   schemas:
+    ApiKeyUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the API key.
+        disabled:
+          type: boolean
+          description: Whether to disable the API key.
+        permissions:
+          type: object
+          description: Updated permissions for the API key.
+          additionalProperties:
+            type: boolean
     ApiKeyCreateRequest:
       type: object
       required:
@@ -173,20 +187,6 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the API key was created.
-    ApiKeyUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the API key.
-        disabled:
-          type: boolean
-          description: Whether to disable the API key.
-        permissions:
-          type: object
-          description: Updated permissions for the API key.
-          additionalProperties:
-            type: boolean
   parameters:
     keyId:
       name: keyId

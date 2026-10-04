@@ -116,15 +116,33 @@ paths:
         '404':
           description: Board not found
 components:
-  parameters:
-    boardId:
-      name: boardId
-      in: path
-      required: true
-      description: The unique identifier for the board.
-      schema:
-        type: string
   schemas:
+    BoardUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the board.
+        description:
+          type: string
+          description: An updated description for the board.
+        style:
+          type: string
+          description: An updated visual layout style.
+          enum:
+          - list
+          - visual
+        column_layout:
+          type: string
+          description: An updated column layout for visual mode.
+          enum:
+          - multi
+          - single
+        queries:
+          type: array
+          description: An updated list of queries to display on the board.
+          items:
+            $ref: '#/components/schemas/BoardQuery'
     BoardCreateRequest:
       type: object
       required:
@@ -153,31 +171,6 @@ components:
           description: The list of queries to display on the board.
           items:
             $ref: '#/components/schemas/BoardQuery'
-    BoardQuery:
-      type: object
-      properties:
-        query_id:
-          type: string
-          description: The ID of the query specification.
-        dataset:
-          type: string
-          description: The dataset slug to run the query against.
-        query_annotation_id:
-          type: string
-          description: The ID of an associated query annotation.
-        caption:
-          type: string
-          description: A display caption for the query on the board.
-        query_style:
-          type: string
-          description: The visualization style for the query.
-          enum:
-          - graph
-          - table
-          - combo
-        graph_settings:
-          type: object
-          description: Settings for graph rendering.
     Board:
       type: object
       properties:
@@ -223,32 +216,39 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the board was last updated.
-    BoardUpdateRequest:
+    BoardQuery:
       type: object
       properties:
-        name:
+        query_id:
           type: string
-          description: An updated display name for the board.
-        description:
+          description: The ID of the query specification.
+        dataset:
           type: string
-          description: An updated description for the board.
-        style:
+          description: The dataset slug to run the query against.
+        query_annotation_id:
           type: string
-          description: An updated visual layout style.
+          description: The ID of an associated query annotation.
+        caption:
+          type: string
+          description: A display caption for the query on the board.
+        query_style:
+          type: string
+          description: The visualization style for the query.
           enum:
-          - list
-          - visual
-        column_layout:
-          type: string
-          description: An updated column layout for visual mode.
-          enum:
-          - multi
-          - single
-        queries:
-          type: array
-          description: An updated list of queries to display on the board.
-          items:
-            $ref: '#/components/schemas/BoardQuery'
+          - graph
+          - table
+          - combo
+        graph_settings:
+          type: object
+          description: Settings for graph rendering.
+  parameters:
+    boardId:
+      name: boardId
+      in: path
+      required: true
+      description: The unique identifier for the board.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-column-update-request-schema.json",
+  "title": "ColumnUpdateRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-columns-api-openapi.yml#/components/schemas/ColumnUpdateRequest",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "An updated description for the column."
+    },
+    "type": {
+      "type": "string",
+      "description": "An updated data type for the column.",
+      "enum": [
+        "string",
+        "float",
+        "integer",
+        "boolean"
+      ]
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "If true, hides the column from autocomplete and raw data field lists."
+    }
+  }
+}

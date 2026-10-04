@@ -1,5 +1,7 @@
 name: Honeycomb
+
 aid: honeycomb
+
 deliveryModel:
   model: unknown
   open_source: false
@@ -11,7 +13,9 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
+
 specificationVersion: '0.23'
+
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -26,373 +30,92 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/honeycomb.png
+
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml
+
 modified: '2026-09-16'
-apis:
-- aid: honeycomb:events-api
-  name: Honeycomb Events API
-  tags:
-  - Event
-  - Ingestion
-  - Observability
-  - Telemetry
-  tags_raw:
-  - Events
-  - Ingestion
-  - Observability
-  - Telemetry
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/events
-  properties:
-  - url: https://api-docs.honeycomb.io/api/events
-    type: Documentation
-  - url: openapi/honeycomb-events-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/honeycomb-streaming-asyncapi.yml
-    type: AsyncAPI
-  description: >-
-    The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb. It supports
-    both single event creation and batch event submission, allowing developers to send structured telemetry
-    data directly to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or Beeline SDKs
-    for most instrumentation use cases, the Events API provides direct control for custom integrations
-    and specialized data pipelines.
-- aid: honeycomb:queries-api
-  name: Honeycomb Queries API
-  tags:
-  - Analytics
-  - Data Analysis
-  - Observability
-  - Query
-  tags_raw:
-  - Analytics
-  - Data Analysis
-  - Observability
-  - Queries
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/queries
-  properties:
-  - url: https://api-docs.honeycomb.io/api/queries
-    type: Documentation
-  - url: openapi/honeycomb-queries-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Honeycomb Queries API allows developers to programmatically create and manage query specifications
-    within Honeycomb. Queries are used to identify and reference queries across other parts of the API,
-    including boards, triggers, and query annotations. Developers can run queries asynchronously by creating
-    a Query Result that references a Query ID, then polling the query result endpoint until the data is
-    ready. The Query Data API complements this by providing access to query results.
-- aid: honeycomb:datasets-api
-  name: Honeycomb Datasets API
-  tags:
-  - Data Management
-  - Datasets
-  - Observability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/datasets
-  properties:
-  - url: https://api-docs.honeycomb.io/api/datasets
-    type: Documentation
-  - url: openapi/honeycomb-datasets-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Honeycomb Datasets API provides management capabilities for datasets, which represent collections
-    of related events from the same source. It allows developers to list, create, and update datasets
-    programmatically. The related Columns API enables management of fields within datasets, including
-    listing, creating, updating, and deleting columns that define the structure of event data stored in
-    Honeycomb.
-- aid: honeycomb:boards-api
-  name: Honeycomb Boards API
-  tags:
-  - Dashboards
-  - Observability
-  - Visualization
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/boards
-  properties:
-  - url: https://api-docs.honeycomb.io/api/boards
-    type: Documentation
-  - url: openapi/honeycomb-boards-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Honeycomb Boards API allows developers to programmatically create and manage boards, which are
-    collections of queries displayed together as a dashboard-like view. Boards provide a way to organize
-    and share related queries for monitoring and debugging workflows. The API supports listing, creating,
-    updating, and deleting boards, making it possible to automate the setup of observability dashboards
-    across environments.
-- aid: honeycomb:markers-api
-  name: Honeycomb Markers API
-  tags:
-  - Annotation
-  - Deployment
-  - Markers
-  - Observability
-  tags_raw:
-  - Annotations
-  - Deployments
-  - Markers
-  - Observability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/marker-settings
-  properties:
-  - url: https://api-docs.honeycomb.io/api/marker-settings
-    type: Documentation
-  - url: openapi/honeycomb-markers-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Honeycomb Markers API enables developers to create and manage markers that indicate points in
-    time on graphs where notable events occurred, such as deploys, configuration changes, or outages.
-    Marker Settings allow grouping similar markers together with consistent visual styling. The API supports
-    listing, creating, updating, and deleting both markers and marker settings, making it straightforward
-    to integrate deployment pipelines and incident workflows with Honeycomb visualizations.
-- aid: honeycomb:triggers-api
-  name: Honeycomb Triggers API
-  tags:
-  - Alerts
-  - Monitoring
-  - Notification
-  - Observability
-  tags_raw:
-  - Alerts
-  - Monitoring
-  - Notifications
-  - Observability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/triggers
-  properties:
-  - url: https://api-docs.honeycomb.io/api/triggers
-    type: Documentation
-  - url: openapi/honeycomb-triggers-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/honeycomb-streaming-asyncapi.yml
-    type: AsyncAPI
-  description: >-
-    The Honeycomb Triggers API allows developers to programmatically configure alerting rules that fire
-    when query results meet specified conditions. Triggers work in conjunction with the Recipients API,
-    which manages notification destinations including PagerDuty, Email, Webhook, Microsoft Teams, and
-    Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated setup
-    of alerting workflows for production observability.
-- aid: honeycomb:environments-api
-  name: Honeycomb Environments API
-  tags:
-  - Administration
-  - Environment
-  - Observability
-  tags_raw:
-  - Administration
-  - Environments
-  - Observability
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.honeycomb.io
-  humanURL: https://api-docs.honeycomb.io/api/environments
-  properties:
-  - url: https://api-docs.honeycomb.io/api/environments
-    type: Documentation
-  - url: openapi/honeycomb-environments-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Honeycomb Environments API provides administrative capabilities for managing environments within
-    a Honeycomb team. Environments allow organizations to separate telemetry data across different stages
-    such as development, staging, and production. The API supports listing, creating, updating, and deleting
-    environments, along with the Auth API for validating API keys and determining their associated team
-    and environment permissions.
-- aid: honeycomb:honeycomb-auth-api
-  name: honeycomb Auth API
-  description: >-
-    Validate authentication for a key, determine what authorizations have been granted to a key, and determine
-    the Team and Environment it belongs to.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Authentication
-  tags_raw:
-  - Auth
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-auth-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-burn-alerts-api
-  name: honeycomb Burn Alerts API
-  description: Manage burn alerts that notify you when issues impact your SLO budget.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Burn Alerts
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-burn-alerts-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-calculated-fields-api
-  name: honeycomb Calculated Fields API
-  description: >-
-    Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Calculated Fields
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-calculated-fields-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-columns-api
-  name: honeycomb Columns API
-  description: Manage columns (fields) in the events you send to Honeycomb datasets.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Columns
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-columns-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-dataset-definitions-api
-  name: honeycomb Dataset Definitions API
-  description: Manage dataset definitions that configure how columns are interpreted and displayed.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Dataset Definitions
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-dataset-definitions-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-key-management-api
-  name: honeycomb Key Management API
-  description: Manage API keys for a team, including listing, creating, updating, and deleting keys.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Key Management
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-key-management-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-kinesis-events-api
-  name: honeycomb Kinesis Events API
-  description: Process streaming events from Amazon Kinesis into Honeycomb.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Kinesis Events
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-kinesis-events-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-marker-settings-api
-  name: honeycomb Marker Settings API
-  description: >-
-    Manage marker settings that group similar markers together with consistent visual styling.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Marker Settings
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-marker-settings-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-query-annotations-api
-  name: honeycomb Query Annotations API
-  description: Associate names and descriptions to queries for collaboration features.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Query Annotations
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-query-annotations-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-query-data-api
-  name: honeycomb Query Data API
-  description: Access completed query result data.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Query Data
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-query-data-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-query-results-api
-  name: honeycomb Query Results API
-  description: Create and poll for asynchronous query results.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Query Results
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-query-results-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-recipients-api
-  name: honeycomb Recipients API
-  description: >-
-    Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook,
-    Microsoft Teams, and Slack.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Recipients
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-recipients-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-reporting-api
-  name: honeycomb Reporting API
-  description: Access historical SLO performance reporting data.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Reporting
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-reporting-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-service-maps-api
-  name: honeycomb Service Maps API
-  description: Visualize relationships between services using dependency requests.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Service Maps
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-service-maps-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-- aid: honeycomb:honeycomb-slos-api
-  name: Honeycomb SL Os API
-  description: Define and monitor Service Level Objectives for your organization.
-  humanURL: https://api-docs.honeycomb.io/api/events
-  baseURL: https://api.honeycomb.io
-  tags:
-  - SLO
-  tags_raw:
-  - SLOs
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-slos-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api/slos
+
+description: Honeycomb provides an observability platform that gives engineering teams real‑time visibility into distributed tracing, log analytics,
+  metrics, and AI agent workflows. The platform supports OpenTelemetry, private‑cloud deployments, and telemetry pipelines for enterprises, AI
+  startups, financial services, retail and other software‑focused organizations.
+
+tags:
+- Observability
+- Telemetry
+- Analytics
+- Data Management
+- Monitoring
+- A2A
+
 common:
+- type: FinOps
+  url: finops/honeycomb-finops.yml
+- type: RateLimits
+  url: rate-limits/honeycomb-rate-limits.yml
+- type: Plans
+  url: plans/honeycomb-plans-pricing.yml
+- type: Spectral
+  url: rules/honeycomb-rules.yml
+- type: Spectral
+  url: rules/honeycomb-jsonschema-spectral-rules.yml
+- type: Spectral
+  url: rules/honeycomb-asyncapi-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/honeycomb-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/honeycomb-data-model.yml
+- type: ChangeLog
+  url: changelog/honeycomb-changelog.yml
+- type: Conventions
+  url: conventions/honeycomb-conventions.yml
+- type: Compliance
+  url: https://trust.honeycomb.io/
+- type: ErrorCatalog
+  url: errors/honeycomb-problem-types.yml
+- type: Conformance
+  url: conformance/honeycomb-conformance.yml
+- type: Overlay
+  url: overlays/honeycomb-events-api-overlay.yml
+- type: LLMsTxt
+  url: llms/honeycomb-llms.txt
+- type: MCPServer
+  url: mcp/honeycomb-mcp.yml
+- type: WellKnown
+  url: well-known/honeycomb-well-known.yml
+- type: Hosts
+  url: hosts/honeycomb-hosts.yml
+- type: Vendors
+  url: vendors/honeycomb-vendors.yml
+- type: TermsOfService
+  url: https://www.honeycomb.io/terms
+- type: Support
+  url: https://support.honeycomb.io/
+- type: StatusPage
+  url: https://status.honeycomb.io/
+- type: SignUp
+  url: https://ui.honeycomb.io/signup
+- type: Sandbox
+  url: https://play.honeycomb.io/sandbox/tours
+- type: PrivacyPolicy
+  url: https://www.honeycomb.io/privacy
+- type: Pricing
+  url: https://www.honeycomb.io/pricing
+- type: Newsroom
+  url: https://www.honeycomb.io/news
+- type: Leadership
+  url: https://www.honeycomb.io/about/team
+- type: GettingStarted
+  url: https://docs.honeycomb.io/get-started
+- type: Documentation
+  url: https://api-docs.honeycomb.io/
+- type: DeveloperPortal
+  url: https://docs.honeycomb.io\
+- type: APIReference
+  url: https://docs.honeycomb.io/api/introduction
 - type: AgentCard
   url: a2a/honeycomb-a2a.yml
   name: A2A Agent Card
@@ -446,21 +169,468 @@ common:
   url: https://docs.honeycomb.io/llms.txt
 - url: https://www.honeycomb.io/feed/
   type: Blog
-description: Build integrations and automate workflows with the Honeycomb API. Programmatically manage
-  datasets, queries, triggers, SLOs, environments, API keys, and more.
+
+apis:
+- aid: honeycomb:events-api
+  name: Honeycomb Events API
+  tags:
+  - Event
+  - Ingestion
+  - Observability
+  - Telemetry
+  tags_raw:
+  - Events
+  - Ingestion
+  - Observability
+  - Telemetry
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/events
+  properties:
+  - url: https://api-docs.honeycomb.io/api/events
+    type: Documentation
+  - url: openapi/honeycomb-events-api-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/honeycomb-streaming-asyncapi.yml
+    type: AsyncAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-batch-event-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-batch-event-response-schema.json
+  description: The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb. It supports both single event creation
+    and batch event submission, allowing developers to send structured telemetry data directly to Honeycomb datasets. While Honeycomb recommends
+    using OpenTelemetry or Beeline SDKs for most instrumentation use cases, the Events API provides direct control for custom integrations and
+    specialized data pipelines.
+- aid: honeycomb:queries-api
+  name: Honeycomb Queries API
+  tags:
+  - Analytics
+  - Data Analysis
+  - Observability
+  - Query
+  tags_raw:
+  - Analytics
+  - Data Analysis
+  - Observability
+  - Queries
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/queries
+  properties:
+  - url: https://api-docs.honeycomb.io/api/queries
+    type: Documentation
+  - url: openapi/honeycomb-queries-api-openapi.yml
+    type: OpenAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-spec-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-schema.json
+  description: The Honeycomb Queries API allows developers to programmatically create and manage query specifications within Honeycomb. Queries
+    are used to identify and reference queries across other parts of the API, including boards, triggers, and query annotations. Developers can
+    run queries asynchronously by creating a Query Result that references a Query ID, then polling the query result endpoint until the data is
+    ready. The Query Data API complements this by providing access to query results.
+- aid: honeycomb:datasets-api
+  name: Honeycomb Datasets API
+  tags:
+  - Data Management
+  - Datasets
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/datasets
+  properties:
+  - url: https://api-docs.honeycomb.io/api/datasets
+    type: Documentation
+  - url: openapi/honeycomb-datasets-api-openapi.yml
+    type: OpenAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-dataset-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-dataset-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-dataset-create-request-schema.json
+  description: The Honeycomb Datasets API provides management capabilities for datasets, which represent collections of related events from the
+    same source. It allows developers to list, create, and update datasets programmatically. The related Columns API enables management of fields
+    within datasets, including listing, creating, updating, and deleting columns that define the structure of event data stored in Honeycomb.
+- aid: honeycomb:boards-api
+  name: Honeycomb Boards API
+  tags:
+  - Dashboards
+  - Observability
+  - Visualization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/boards
+  properties:
+  - url: https://api-docs.honeycomb.io/api/boards
+    type: Documentation
+  - url: openapi/honeycomb-boards-api-openapi.yml
+    type: OpenAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-board-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-board-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-board-create-request-schema.json
+  description: The Honeycomb Boards API allows developers to programmatically create and manage boards, which are collections of queries displayed
+    together as a dashboard-like view. Boards provide a way to organize and share related queries for monitoring and debugging workflows. The
+    API supports listing, creating, updating, and deleting boards, making it possible to automate the setup of observability dashboards across
+    environments.
+- aid: honeycomb:markers-api
+  name: Honeycomb Markers API
+  tags:
+  - Annotation
+  - Deployment
+  - Markers
+  - Observability
+  tags_raw:
+  - Annotations
+  - Deployments
+  - Markers
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/marker-settings
+  properties:
+  - url: https://api-docs.honeycomb.io/api/marker-settings
+    type: Documentation
+  - url: openapi/honeycomb-markers-api-openapi.yml
+    type: OpenAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-update-request-schema.json
+  description: The Honeycomb Markers API enables developers to create and manage markers that indicate points in time on graphs where notable
+    events occurred, such as deploys, configuration changes, or outages. Marker Settings allow grouping similar markers together with consistent
+    visual styling. The API supports listing, creating, updating, and deleting both markers and marker settings, making it straightforward to
+    integrate deployment pipelines and incident workflows with Honeycomb visualizations.
+- aid: honeycomb:triggers-api
+  name: Honeycomb Triggers API
+  tags:
+  - Alerts
+  - Monitoring
+  - Notification
+  - Observability
+  tags_raw:
+  - Alerts
+  - Monitoring
+  - Notifications
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/triggers
+  properties:
+  - url: https://api-docs.honeycomb.io/api/triggers
+    type: Documentation
+  - url: openapi/honeycomb-triggers-api-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/honeycomb-streaming-asyncapi.yml
+    type: AsyncAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-trigger-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-trigger-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-trigger-update-request-schema.json
+  description: The Honeycomb Triggers API allows developers to programmatically configure alerting rules that fire when query results meet specified
+    conditions. Triggers work in conjunction with the Recipients API, which manages notification destinations including PagerDuty, Email, Webhook,
+    Microsoft Teams, and Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated setup of alerting workflows
+    for production observability.
+- aid: honeycomb:environments-api
+  name: Honeycomb Environments API
+  tags:
+  - Administration
+  - Environment
+  - Observability
+  tags_raw:
+  - Administration
+  - Environments
+  - Observability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://api.honeycomb.io
+  humanURL: https://api-docs.honeycomb.io/api/environments
+  properties:
+  - url: https://api-docs.honeycomb.io/api/environments
+    type: Documentation
+  - url: openapi/honeycomb-environments-api-openapi.yml
+    type: OpenAPI
+  - type: JSONSchema
+    url: json-schema/honeycomb-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-environment-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-environment-update-request-schema.json
+  description: The Honeycomb Environments API provides administrative capabilities for managing environments within a Honeycomb team. Environments
+    allow organizations to separate telemetry data across different stages such as development, staging, and production. The API supports listing,
+    creating, updating, and deleting environments, along with the Auth API for validating API keys and determining their associated team and environment
+    permissions.
+- aid: honeycomb:honeycomb-auth-api
+  name: honeycomb Auth API
+  description: Validate authentication for a key, determine what authorizations have been granted to a key, and determine the Team and Environment
+    it belongs to.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Authentication
+  tags_raw:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-auth-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-auth-info-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-auth-permissions-schema.json
+- aid: honeycomb:honeycomb-burn-alerts-api
+  name: honeycomb Burn Alerts API
+  description: Manage burn alerts that notify you when issues impact your SLO budget.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Burn Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-burn-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-burn-alert-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-burn-alert-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-burn-alert-update-request-schema.json
+- aid: honeycomb:honeycomb-calculated-fields-api
+  name: honeycomb Calculated Fields API
+  description: Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Calculated Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-calculated-fields-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-calculated-field-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-calculated-field-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-calculated-field-update-request-schema.json
+- aid: honeycomb:honeycomb-columns-api
+  name: honeycomb Columns API
+  description: Manage columns (fields) in the events you send to Honeycomb datasets.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Columns
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-columns-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-column-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-column-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-column-update-request-schema.json
+- aid: honeycomb:honeycomb-dataset-definitions-api
+  name: honeycomb Dataset Definitions API
+  description: Manage dataset definitions that configure how columns are interpreted and displayed.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Dataset Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-dataset-definitions-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-dataset-definition-schema.json
+- aid: honeycomb:honeycomb-key-management-api
+  name: honeycomb Key Management API
+  description: Manage API keys for a team, including listing, creating, updating, and deleting keys.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Key Management
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-key-management-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-api-key-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-api-key-update-request-schema.json
+- aid: honeycomb:honeycomb-kinesis-events-api
+  name: honeycomb Kinesis Events API
+  description: Process streaming events from Amazon Kinesis into Honeycomb.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Kinesis Events
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-kinesis-events-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+- aid: honeycomb:honeycomb-marker-settings-api
+  name: honeycomb Marker Settings API
+  description: Manage marker settings that group similar markers together with consistent visual styling.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Marker Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-marker-settings-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-setting-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-setting-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-marker-setting-update-request-schema.json
+- aid: honeycomb:honeycomb-query-annotations-api
+  name: honeycomb Query Annotations API
+  description: Associate names and descriptions to queries for collaboration features.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Query Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-query-annotations-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-annotation-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-annotation-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-annotation-update-request-schema.json
+- aid: honeycomb:honeycomb-query-data-api
+  name: honeycomb Query Data API
+  description: Access completed query result data.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Query Data
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-query-data-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-spec-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-data-schema.json
+- aid: honeycomb:honeycomb-query-results-api
+  name: honeycomb Query Results API
+  description: Create and poll for asynchronous query results.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Query Results
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-query-results-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-result-schema.json
+- aid: honeycomb:honeycomb-recipients-api
+  name: honeycomb Recipients API
+  description: Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-recipient-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-recipient-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-recipient-update-request-schema.json
+- aid: honeycomb:honeycomb-reporting-api
+  name: honeycomb Reporting API
+  description: Access historical SLO performance reporting data.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-sloreport-schema.json
+- aid: honeycomb:honeycomb-service-maps-api
+  name: honeycomb Service Maps API
+  description: Visualize relationships between services using dependency requests.
+  humanURL: https://api-docs.honeycomb.io/api
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Service Maps
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-service-maps-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-service-map-result-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-service-map-request-schema.json
+- aid: honeycomb:honeycomb-slos-api
+  name: Honeycomb SL Os API
+  description: Define and monitor Service Level Objectives for your organization.
+  humanURL: https://api-docs.honeycomb.io/api/events
+  baseURL: https://api.honeycomb.io
+  tags:
+  - SLO
+  tags_raw:
+  - SLOs
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-slos-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api/slos
+  - type: JSONSchema
+    url: json-schema/honeycomb-slo-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-slocreate-request-schema.json
+  - type: JSONSchema
+    url: json-schema/honeycomb-sloupdate-request-schema.json
+
 integrations:
 - name: Honeycomb MCP
-tags:
-- Observability
-- Telemetry
-- Analytics
-- Data Management
-- Monitoring
-- A2A
+
 x-a2a:
   verified: true
   probed: '2026-09-26'
-  url: "https://docs.honeycomb.io/.well-known/agent-card.json"
-  grade: "conformant"
-  protocol_version: "0.3"
+  url: https://docs.honeycomb.io/.well-known/agent-card.json
+  grade: conformant
+  protocol_version: '0.3'
   control: 404
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 58
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

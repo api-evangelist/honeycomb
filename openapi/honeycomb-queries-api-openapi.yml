@@ -66,65 +66,7 @@ paths:
         '404':
           description: Query not found
 components:
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset.
-      schema:
-        type: string
-    queryId:
-      name: queryId
-      in: path
-      required: true
-      description: The unique identifier for the query.
-      schema:
-        type: string
   schemas:
-    Query:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the query.
-        calculations:
-          type: array
-          items:
-            type: object
-            properties:
-              op:
-                type: string
-              column:
-                type: string
-        filters:
-          type: array
-          items:
-            type: object
-            properties:
-              column:
-                type: string
-              op:
-                type: string
-              value: {}
-        breakdowns:
-          type: array
-          items:
-            type: string
-        orders:
-          type: array
-          items:
-            type: object
-        time_range:
-          type: integer
-        granularity:
-          type: integer
-        limit:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-          description: ISO8601 formatted time the query was created.
     QuerySpec:
       type: object
       description: A query specification defining what data to retrieve and how to aggregate it.
@@ -247,6 +189,64 @@ components:
                 type: string
               value:
                 type: number
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the query.
+        calculations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+              column:
+                type: string
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              value: {}
+        breakdowns:
+          type: array
+          items:
+            type: string
+        orders:
+          type: array
+          items:
+            type: object
+        time_range:
+          type: integer
+        granularity:
+          type: integer
+        limit:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the query was created.
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset.
+      schema:
+        type: string
+    queryId:
+      name: queryId
+      in: path
+      required: true
+      description: The unique identifier for the query.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

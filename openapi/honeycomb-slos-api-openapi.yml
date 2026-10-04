@@ -123,48 +123,22 @@ paths:
         '404':
           description: SLO not found
 components:
+  parameters:
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: The unique identifier for the SLO.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
   schemas:
-    SLOUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: An updated display name for the SLO.
-        description:
-          type: string
-          description: An updated description for the SLO.
-        sli:
-          $ref: '#/components/schemas/QuerySpec'
-        target_percentage:
-          type: number
-          minimum: 0
-          maximum: 100
-        time_period_days:
-          type: integer
-    SLOCreateRequest:
-      type: object
-      required:
-      - name
-      - sli
-      - target_percentage
-      - time_period_days
-      properties:
-        name:
-          type: string
-          description: The display name for the SLO.
-        description:
-          type: string
-          description: An optional description for the SLO.
-        sli:
-          $ref: '#/components/schemas/QuerySpec'
-        target_percentage:
-          type: number
-          description: The target percentage for the SLO.
-          minimum: 0
-          maximum: 100
-        time_period_days:
-          type: integer
-          description: The time period in days for the SLO.
     QuerySpec:
       type: object
       description: A query specification defining what data to retrieve and how to aggregate it.
@@ -297,21 +271,47 @@ components:
           type: string
           format: date-time
           description: ISO8601 formatted time the SLO was last updated.
-  parameters:
-    sloId:
-      name: sloId
-      in: path
-      required: true
-      description: The unique identifier for the SLO.
-      schema:
-        type: string
-    datasetSlug:
-      name: datasetSlug
-      in: path
-      required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
-      schema:
-        type: string
+    SLOCreateRequest:
+      type: object
+      required:
+      - name
+      - sli
+      - target_percentage
+      - time_period_days
+      properties:
+        name:
+          type: string
+          description: The display name for the SLO.
+        description:
+          type: string
+          description: An optional description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: The target percentage for the SLO.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: The time period in days for the SLO.
+    SLOUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the SLO.
+        description:
+          type: string
+          description: An updated description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

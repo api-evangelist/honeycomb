@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb/main/json-schema/honeycomb-batch-event-schema.json",
+  "title": "BatchEvent",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/honeycomb-events-api-openapi.yml#/components/schemas/BatchEvent",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The event's timestamp in ISO8601 or RFC3339 format. Defaults to server time if not provided."
+    },
+    "samplerate": {
+      "type": "integer",
+      "description": "An integer representing the sampling denominator. For example, a value of 10 means one in ten events was kept.",
+      "minimum": 1
+    },
+    "data": {
+      "type": "object",
+      "description": "The event's custom fields as a JSON object.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

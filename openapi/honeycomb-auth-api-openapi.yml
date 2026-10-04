@@ -50,6 +50,14 @@ paths:
           description: Unauthorized - invalid API key
 components:
   schemas:
+    AuthPermissions:
+      type: object
+      properties:
+        api_key_access:
+          type: object
+          description: The permissions and access levels granted to the API key.
+          additionalProperties:
+            type: boolean
     AuthInfo:
       type: object
       properties:
@@ -73,14 +81,6 @@ components:
             name:
               type: string
               description: The display name of the environment.
-    AuthPermissions:
-      type: object
-      properties:
-        api_key_access:
-          type: object
-          description: The permissions and access levels granted to the API key.
-          additionalProperties:
-            type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

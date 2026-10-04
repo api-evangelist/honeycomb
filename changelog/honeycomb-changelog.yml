@@ -1,0 +1,68 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://changelog.honeycomb.io/
+sources:
+- https://changelog.honeycomb.io/
+- https://api-changelog.honeycomb.io/
+- https://docs.honeycomb.io/troubleshoot/product-lifecycle/migration-process.md
+- https://docs.honeycomb.io/troubleshoot/product-lifecycle/recommended-migrations.md
+entries:
+- breaking: false
+  highlights:
+  - Agents can now create and update SLO Burn Alerts through the Honeycomb MCP.
+  - They can also reset SLO budgets.
+  - These tools allow agents to create full observability-driven monitoring and alerting loops with Honeycomb SLOs.
+- breaking: false
+  highlights:
+  - By default, a grouped trigger sends no resolution notification until every group clears, and uses the same set of recipients regardless of
+    which group fired.
+  - Per‑group resolution. Each group resolves independently when it drops below threshold, and the notification names the group that recovered.
+  - Per‑group recipient routing. Each recipient can filter which groups it hears about.
+- breaking: false
+  highlights:
+  - We've refreshed the visual design across the Honeycomb UI.
+  - Rounder, softer UI. Inputs, buttons, cards, menus, and modals are easier to tell apart.
+  - Canvas is easier to reach. Canvas moved up in the sidebar, next to Query and Boards.
+- breaking: false
+  highlights:
+  - Canvas Connectors are in public beta.
+  - Canvas Agents already connect to GitHub and Linear.
+  - They now also connect to Amplitude, Atlassian, Braintrust, Checkly, incident.io, Notion, Pylon, and Sentry.
+- breaking: false
+  highlights:
+  - Anomaly Detection is now in open beta, and it's on for your team today.
+  - Anomaly Detection establishes a statistical baseline of normal behavior for each of your services, then notifies you when something deviates
+    from it.
+  - 'The beta covers two signals: Error rate and Presence.'
+- breaking: false
+  highlights:
+  - Signals detect anomalies in your services.
+  - You can now assign a set of Recipients to as many as 100 Signals in a single call.
+  - 'Every Signal in your request comes back in one of three buckets: succeeded, unchanged, and failed.'
+- breaking: false
+  highlights:
+  - Previously, any Configuration API Key could update its datasets' properties in the environment where it's enabled.
+  - Now, the Update Dataset endpoint requires the create_datasets permission.
+- breaking: false
+  highlights:
+  - The Key Management API has been updated to fully support Configuration key management.
+  - See https://api-docs.honeycomb.io/api/key-management for full documentation.
+- breaking: false
+  highlights:
+  - We added support for preset filters in the Boards public API.
+  - You can now create/read and update your board preset filters via the public API.
+- breaking: false
+  highlights:
+  - The List Columns endpoint now supports retrieving all Columns for a given environment — no need to specify an individual dataset.
+  - Use the special __all__ parameter to fetch all Columns in that environment.
+- breaking: false
+  highlights:
+  - You're now able to define a time range comparison for a query via the Queries API.
+  - compare_time_offset_seconds can be included when creating a Query.
+- breaking: false
+  highlights:
+  - The Boards API now supports adding Text Panels to flexible boards.
+  - Text Panels make it easy to add context, explanations, or runbook links directly alongside your charts and SLOs.
+note: The changelog pages do not provide explicit version numbers or dates, so those fields are null. No entries were marked as breaking changes.
+docs: https://changelog.honeycomb.io/
