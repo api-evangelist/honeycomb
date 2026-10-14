@@ -38,3 +38,27 @@
     detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
+- slug: honeycomb-github-marketplace-apps
+  label: GitHub Marketplace (apps)
+  partner: github
+  partner_name: GitHub Marketplace (apps)
+  type: marketplace
+  marketplace: github-apps
+  channel: partner-built
+  evidence: https://github.com/marketplace/honeycomb-io
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: honeycomb-github-marketplace-actions
+  label: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_name: GitHub Marketplace (actions)
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  evidence: https://github.com/marketplace/actions/honeycomb-buildevents
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
