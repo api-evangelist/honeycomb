@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.honeycomb.io/api/openapi-public.yaml",
+ "final": "https://docs.honeycomb.io/api/openapi-public.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 337176,
+ "sha256": "d78041d2dfd34bc6eba54bd4651e8692f4d7df861d1f15c06f7296f228ab4c5e",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

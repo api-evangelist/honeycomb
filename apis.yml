@@ -191,10 +191,11 @@ apis:
     url: json-schema/honeycomb-batch-event-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-batch-event-response-schema.json
-  description: The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb.
-    It supports both single event creation and batch event submission, allowing developers to send structured
-    telemetry data directly to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or Beeline
-    SDKs for most instrumentation use cases, the Events API provides direct control for custom integrations
+  description: >-
+    The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb. It supports
+    both single event creation and batch event submission, allowing developers to send structured telemetry
+    data directly to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or Beeline SDKs
+    for most instrumentation use cases, the Events API provides direct control for custom integrations
     and specialized data pipelines.
 - aid: honeycomb:queries-api
   name: Honeycomb Queries API
@@ -220,11 +221,12 @@ apis:
     url: json-schema/honeycomb-query-spec-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-query-schema.json
-  description: The Honeycomb Queries API allows developers to programmatically create and manage query
-    specifications within Honeycomb. Queries are used to identify and reference queries across other parts
-    of the API, including boards, triggers, and query annotations. Developers can run queries asynchronously
-    by creating a Query Result that references a Query ID, then polling the query result endpoint until
-    the data is ready. The Query Data API complements this by providing access to query results.
+  description: >-
+    The Honeycomb Queries API allows developers to programmatically create and manage query specifications
+    within Honeycomb. Queries are used to identify and reference queries across other parts of the API,
+    including boards, triggers, and query annotations. Developers can run queries asynchronously by creating
+    a Query Result that references a Query ID, then polling the query result endpoint until the data is
+    ready. The Query Data API complements this by providing access to query results.
 - aid: honeycomb:datasets-api
   name: Honeycomb Datasets API
   tags:
@@ -245,9 +247,10 @@ apis:
     url: json-schema/honeycomb-dataset-update-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-dataset-create-request-schema.json
-  description: The Honeycomb Datasets API provides management capabilities for datasets, which represent
-    collections of related events from the same source. It allows developers to list, create, and update
-    datasets programmatically. The related Columns API enables management of fields within datasets, including
+  description: >-
+    The Honeycomb Datasets API provides management capabilities for datasets, which represent collections
+    of related events from the same source. It allows developers to list, create, and update datasets
+    programmatically. The related Columns API enables management of fields within datasets, including
     listing, creating, updating, and deleting columns that define the structure of event data stored in
     Honeycomb.
 - aid: honeycomb:boards-api
@@ -270,11 +273,12 @@ apis:
     url: json-schema/honeycomb-board-update-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-board-create-request-schema.json
-  description: The Honeycomb Boards API allows developers to programmatically create and manage boards,
-    which are collections of queries displayed together as a dashboard-like view. Boards provide a way
-    to organize and share related queries for monitoring and debugging workflows. The API supports listing,
-    creating, updating, and deleting boards, making it possible to automate the setup of observability
-    dashboards across environments.
+  description: >-
+    The Honeycomb Boards API allows developers to programmatically create and manage boards, which are
+    collections of queries displayed together as a dashboard-like view. Boards provide a way to organize
+    and share related queries for monitoring and debugging workflows. The API supports listing, creating,
+    updating, and deleting boards, making it possible to automate the setup of observability dashboards
+    across environments.
 - aid: honeycomb:markers-api
   name: Honeycomb Markers API
   tags:
@@ -301,11 +305,12 @@ apis:
     url: json-schema/honeycomb-marker-create-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-marker-update-request-schema.json
-  description: The Honeycomb Markers API enables developers to create and manage markers that indicate
-    points in time on graphs where notable events occurred, such as deploys, configuration changes, or
-    outages. Marker Settings allow grouping similar markers together with consistent visual styling. The
-    API supports listing, creating, updating, and deleting both markers and marker settings, making it
-    straightforward to integrate deployment pipelines and incident workflows with Honeycomb visualizations.
+  description: >-
+    The Honeycomb Markers API enables developers to create and manage markers that indicate points in
+    time on graphs where notable events occurred, such as deploys, configuration changes, or outages.
+    Marker Settings allow grouping similar markers together with consistent visual styling. The API supports
+    listing, creating, updating, and deleting both markers and marker settings, making it straightforward
+    to integrate deployment pipelines and incident workflows with Honeycomb visualizations.
 - aid: honeycomb:triggers-api
   name: Honeycomb Triggers API
   tags:
@@ -334,11 +339,12 @@ apis:
     url: json-schema/honeycomb-trigger-create-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-trigger-update-request-schema.json
-  description: The Honeycomb Triggers API allows developers to programmatically configure alerting rules
-    that fire when query results meet specified conditions. Triggers work in conjunction with the Recipients
-    API, which manages notification destinations including PagerDuty, Email, Webhook, Microsoft Teams,
-    and Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated
-    setup of alerting workflows for production observability.
+  description: >-
+    The Honeycomb Triggers API allows developers to programmatically configure alerting rules that fire
+    when query results meet specified conditions. Triggers work in conjunction with the Recipients API,
+    which manages notification destinations including PagerDuty, Email, Webhook, Microsoft Teams, and
+    Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated setup
+    of alerting workflows for production observability.
 - aid: honeycomb:environments-api
   name: Honeycomb Environments API
   tags:
@@ -363,15 +369,17 @@ apis:
     url: json-schema/honeycomb-environment-create-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-environment-update-request-schema.json
-  description: The Honeycomb Environments API provides administrative capabilities for managing environments
-    within a Honeycomb team. Environments allow organizations to separate telemetry data across different
-    stages such as development, staging, and production. The API supports listing, creating, updating,
-    and deleting environments, along with the Auth API for validating API keys and determining their associated
-    team and environment permissions.
+  description: >-
+    The Honeycomb Environments API provides administrative capabilities for managing environments within
+    a Honeycomb team. Environments allow organizations to separate telemetry data across different stages
+    such as development, staging, and production. The API supports listing, creating, updating, and deleting
+    environments, along with the Auth API for validating API keys and determining their associated team
+    and environment permissions.
 - aid: honeycomb:honeycomb-auth-api
   name: honeycomb Auth API
-  description: Validate authentication for a key, determine what authorizations have been granted to a
-    key, and determine the Team and Environment it belongs to.
+  description: >-
+    Validate authentication for a key, determine what authorizations have been granted to a key, and determine
+    the Team and Environment it belongs to.
   humanURL: https://api-docs.honeycomb.io/api
   baseURL: https://api.honeycomb.io
   tags:
@@ -407,8 +415,8 @@ apis:
     url: json-schema/honeycomb-burn-alert-update-request-schema.json
 - aid: honeycomb:honeycomb-calculated-fields-api
   name: honeycomb Calculated Fields API
-  description: Manage calculated fields (derived columns) that compute values from expressions applied
-    to event fields.
+  description: >-
+    Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
   humanURL: https://api-docs.honeycomb.io/api
   baseURL: https://api.honeycomb.io
   tags:
@@ -488,7 +496,8 @@ apis:
     url: https://api-docs.honeycomb.io/api
 - aid: honeycomb:honeycomb-marker-settings-api
   name: honeycomb Marker Settings API
-  description: Manage marker settings that group similar markers together with consistent visual styling.
+  description: >-
+    Manage marker settings that group similar markers together with consistent visual styling.
   humanURL: https://api-docs.honeycomb.io/api
   baseURL: https://api.honeycomb.io
   tags:
@@ -538,24 +547,11 @@ apis:
     url: json-schema/honeycomb-query-spec-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-query-data-schema.json
-- aid: honeycomb:honeycomb-query-results-api
-  name: honeycomb Query Results API
-  description: Create and poll for asynchronous query results.
-  humanURL: https://api-docs.honeycomb.io/api
-  baseURL: https://api.honeycomb.io
-  tags:
-  - Query Results
-  properties:
-  - type: OpenAPI
-    url: openapi/honeycomb-query-results-api-openapi.yml
-  - type: Documentation
-    url: https://api-docs.honeycomb.io/api
-  - type: JSONSchema
-    url: json-schema/honeycomb-query-result-schema.json
 - aid: honeycomb:honeycomb-recipients-api
   name: honeycomb Recipients API
-  description: Manage notification destinations for triggers and burn alerts including PagerDuty, Email,
-    Webhook, Microsoft Teams, and Slack.
+  description: >-
+    Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook,
+    Microsoft Teams, and Slack.
   humanURL: https://api-docs.honeycomb.io/api
   baseURL: https://api.honeycomb.io
   tags:
@@ -621,6 +617,52 @@ apis:
     url: json-schema/honeycomb-slocreate-request-schema.json
   - type: JSONSchema
     url: json-schema/honeycomb-sloupdate-request-schema.json
+- aid: honeycomb:honeycomb-anomaly-detection-api
+  name: Honeycomb Anomaly Detection API
+  description: >-
+    Anomaly Detection identifies Signals - patterns in your services that deviate from their historical
+    baseline - and can notify Recipients when a Signal turns anomalous.
+
+    Each Signal is scoped to a service in a dataset and monitors one of the following:
+
+    - **`error_rate`**: The fraction of erroring requests, compared to a trained normal band.
+
+    - **`presence`**: Whether the service is emitting spans at all.
+
+
+    Signals progress through the following statuses:
+
+    - **`onboarding`**: The Signal has been created but does not yet have enough data to train.
+
+    - **`normal`**: The Signal is trained and monitoring for anomalies.
+
+    - **`anomalous`**: The Signal has detected an anomaly.
+
+    - **`off`**: The Signal has been disabled and will not fire.
+
+    - **`ineligible`**: The Signal cannot train because its service is not sending enough traffic to establish
+    a reliable baseline.
+
+
+    This API allows you to list Signals, retrieve a Signal with its assigned Recipients, page through
+    a Signal's historical anomalies, and update a Signal's enabled state, sensitivity, and Recipient assignments.
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage Signals** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+  humanURL: https://api-docs.honeycomb.io/api/events
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Anomaly Detection
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-anomaly-detection-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.honeycomb.io/api
+  - type: JSONSchema
+    url: json-schema/honeycomb-query-result-schema.json
 integrations:
 - name: Honeycomb MCP
 x-a2a:

@@ -1,92 +1,565 @@
 openapi: 3.2.0
 info:
   title: Honeycomb Auth API
-  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
-  version: '1.0'
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   contact:
-    name: Honeycomb Support
-    url: https://support.honeycomb.io
-  termsOfService: https://www.honeycomb.io/terms-of-service
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in Pollinators Slack or to Honeycomb Support.'
 servers:
 - url: https://api.honeycomb.io
-  description: Honeycomb Production API
-security:
-- ApiKeyAuth: []
+- url: https://api.eu1.honeycomb.io
 tags:
 - name: Auth
-  description: Validate authentication for a key, determine what authorizations have been granted to a key, and determine the Team and Environment it belongs to.
+  description: 'API Keys have various scopes permissions and belong to a specific Team or Environment.
+
+
+    Any valid Honeycomb ingest or configuration API Key will work with this endpoint. Learn more about API keys.
+
+
+    These endpoints can be used to validate authentication for a key, to determine what authorizations have been granted
+
+    to a key, and to determine the Team and Environment that a key belongs to.'
 paths:
   /1/auth:
     get:
+      security:
+      - configuration_key: []
+      - ingest_key: []
+      summary: List Authorizations
+      description: 'Returns metadata about the API Key used to call the API.
+
+        Note: a Honeycomb Classic API key will return an empty string for both of the `environment` values.'
+      tags:
+      - Auth
       operationId: getAuth
-      summary: Authenticate API key
-      description: Validates authentication for a key and returns the team and environment that the key belongs to.
-      tags:
-      - Auth
       responses:
         '200':
-          description: Successful authentication
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthInfo'
+                $ref: '#/components/schemas/Auth'
+              examples:
+                environment:
+                  description: Environment API Key
+                  value:
+                    id: FL_xMM5LapLC
+                    type: configuration
+                    api_key_access:
+                      events: true
+                      markers: true
+                      triggers: false
+                      boards: false
+                      queries: false
+                      columns: false
+                      createDatasets: true
+                      slos: false
+                      recipients: false
+                      privateBoards: false
+                    environment:
+                      name: Production
+                      slug: production
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
+                classic:
+                  description: Classic Environment API Key
+                  value:
+                    id: A3jatwoWSxA
+                    type: configuration
+                    api_key_access:
+                      events: true
+                      markers: true
+                      triggers: false
+                      boards: false
+                      queries: false
+                      columns: false
+                      createDatasets: false
+                      slos: false
+                      recipients: false
+                      privateBoards: false
+                    environment:
+                      name: ''
+                      slug: ''
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
+                ingest:
+                  description: Ingest API Key
+                  value:
+                    id: hcxik_01j1824es7n4evcmv81cn392jb
+                    type: ingest
+                    api_key_access:
+                      createDatasets: true
+                    environment:
+                      name: Production
+                      slug: production
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
         '401':
-          description: Unauthorized - invalid API key
-  /1/auth/permissions:
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /2/auth:
     get:
-      operationId: listAuthorizations
-      summary: List authorizations
-      description: Determines what authorizations have been granted to the API key.
+      security:
+      - bearerAuth: []
+      summary: List Authorizations V2
+      description: Returns metadata about the Management API Key used to call the API.
       tags:
       - Auth
+      operationId: getV2Auth
       responses:
         '200':
-          description: List of authorizations for the key
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
           content:
-            application/json:
+            application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/AuthPermissions'
+                $ref: '#/components/schemas/AuthV2Response'
         '401':
-          description: Unauthorized - invalid API key
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
 components:
   schemas:
-    AuthPermissions:
+    Error:
+      x-tags:
+      - Errors
       type: object
+      description: A legacy error, containing only a textual description.
       properties:
-        api_key_access:
-          type: object
-          description: The permissions and access levels granted to the API key.
-          additionalProperties:
-            type: boolean
-    AuthInfo:
+        error:
+          type: string
+          readOnly: true
+    TeamRelationship:
       type: object
+      required:
+      - team
       properties:
         team:
           type: object
-          description: The team associated with the API key.
+          required:
+          - data
           properties:
-            slug:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  description: The ID of the Team this object is associated with
+                  example: hxctm_12345678901234567890123456
+                type:
+                  type: string
+                  enum:
+                  - teams
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    AuthV2Response:
+      type: object
+      required:
+      - data
+      properties:
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncludedResource'
+          example:
+          - id: hcxtm_12345678901234567890123456
+            type: teams
+            attributes:
+              name: My Team
+              slug: my-team
+        data:
+          type: object
+          required:
+          - id
+          - type
+          - attributes
+          properties:
+            id:
               type: string
-              description: The slug identifier for the team.
-            name:
+              readOnly: true
+              description: The unique identifier of the API Key making the request
+              example: hcxik_12345678901234567890123456
+            type:
               type: string
-              description: The display name of the team.
+              readOnly: true
+              enum:
+              - api-keys
+            relationships:
+              type: object
+              readOnly: true
+              allOf:
+              - $ref: '#/components/schemas/TeamRelationship'
+            attributes:
+              type: object
+              readOnly: true
+              properties:
+                name:
+                  type: string
+                  description: A human-readable name for the API Key
+                  example: mgmt write key
+                key_type:
+                  type: string
+                  description: The type of API Key
+                  enum:
+                  - management
+                disabled:
+                  type: boolean
+                  description: Whether the API Key is disabled
+                  default: false
+                scopes:
+                  type: array
+                  description: The scopes assigned to this API Key
+                  example:
+                  - api-keys:write
+                timestamps:
+                  type: object
+                  properties:
+                    created:
+                      type: string
+                      format: date-time
+                      description: The ISO8601-formatted time when the API Key was created.
+                      readOnly: true
+                      example: '2022-09-22T17:32:11Z'
+                    updated:
+                      type: string
+                      format: date-time
+                      description: The ISO8601-formatted time when the API Key was updated.
+                      readOnly: true
+                      example: '2022-10-31T15:08:11Z'
+    IncludedResource:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: The unique identifier of the resource
+          example: hcxen_01hznmeqrcq8rz533xrvtc6mk0
+        type:
+          type: string
+          readOnly: true
+          example: environments
+        attributes:
+          type: object
+          readOnly: true
+          example:
+            name: Production
+            slug: production
+    Auth:
+      type: object
+      required:
+      - id
+      - type
+      - api_key_access
+      - environment
+      - team
+      properties:
+        id:
+          type: string
+          description: Unique identifier (ID) of the API Key.
+        type:
+          type: string
+          enum:
+          - configuration
+          - ingest
+          description: The type of API Key.
+        api_key_access:
+          type: object
+          properties:
+            events:
+              type: boolean
+              default: false
+            markers:
+              type: boolean
+              default: false
+            triggers:
+              type: boolean
+              default: false
+            boards:
+              type: boolean
+              default: false
+            queries:
+              type: boolean
+              default: false
+            columns:
+              type: boolean
+              default: false
+            createDatasets:
+              type: boolean
+              default: false
+            slos:
+              type: boolean
+              default: false
+            recipients:
+              type: boolean
+              default: false
+            privateBoards:
+              type: boolean
+              default: false
         environment:
           type: object
-          description: The environment associated with the API key, if applicable.
           properties:
-            slug:
-              type: string
-              description: The slug identifier for the environment.
             name:
               type: string
-              description: The display name of the environment.
+              description: The name of the Environment. Will be empty for Classic environments.
+            slug:
+              type: string
+              description: The slug of the Environment. Will be empty for Classic environments.
+        team:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+  responses:
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+  headers:
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
   securitySchemes:
-    ApiKeyAuth:
+    configuration_key:
       type: apiKey
-      in: header
       name: X-Honeycomb-Team
-      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+      in: header
+      description: 'Authenticate using a Honeycomb Configuration Key.
+
+
+        Pass the **Token** in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: 1234567890123456789012
+
+        ```
+
+
+        If you created your key using the API, use `data.attributes.secret`; this is the same value as the **Token** in the UI.
+
+
+        To learn how to create a Configuration Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    ingest_key:
+      type: apiKey
+      name: X-Honeycomb-Team
+      in: header
+      description: 'Authenticate using a Honeycomb Ingest Key.
+
+
+        Pass the Ingest Key in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: hc[x]ik_1234567890123456789012345612345678901234567890123456789012
+
+        ```
+
+
+        The key value is the key ID and key secret concatenated with no separator:
+
+        - If you created your key through the UI, Honeycomb provides the complete value as the **Ingest Key**.
+
+        - If you created your key using the API, construct the key value by concatenating `data.id` and `data.attributes.secret` with no separator.
+
+
+        To learn how to create an Ingest Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    firehose_access_key:
+      type: apiKey
+      name: X-Amz-Firehose-Access-Key
+      in: header
+      description: 'We recommend using a Honeycomb Ingest Key to authenticate, though a Configuration Key will work.
+
+
+        To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Authenticate using a Honeycomb Management Key.
+
+
+        Pass the Management Key as a Bearer token in the `Authorization` header:
+
+        ```http
+
+        Authorization: Bearer hcxmk_12345678901234567890123456:12345678901234567890123456789012
+
+        ```
+
+
+        Construct the key value by joining the **Key ID** and **Secret** with a colon (`:`).
+
+
+        To learn how to create a Management Key, visit [Manage Team API Keys](/configure/teams/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+      bearerFormat: HONEYCOMB_KEY_ID:HONEYCOMB_KEY_SECRET
 externalDocs:
-  description: Honeycomb API Documentation
-  url: https://api-docs.honeycomb.io/api
+  url: https://docs.honeycomb.io

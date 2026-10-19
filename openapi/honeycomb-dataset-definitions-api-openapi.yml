@@ -1,112 +1,505 @@
 openapi: 3.2.0
 info:
   title: Honeycomb Dataset Definitions API
-  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
-  version: '1.0'
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   contact:
-    name: Honeycomb Support
-    url: https://support.honeycomb.io
-  termsOfService: https://www.honeycomb.io/terms-of-service
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in Pollinators Slack or to Honeycomb Support.'
 servers:
 - url: https://api.honeycomb.io
-  description: Honeycomb Production API
-security:
-- ApiKeyAuth: []
+- url: https://api.eu1.honeycomb.io
 tags:
 - name: Dataset Definitions
-  description: Manage dataset definitions that configure how columns are interpreted and displayed.
+  description: 'Dataset definitions describe the fields with special meaning in the Dataset.
+
+
+    Refer to the Dataset Definitions documentation for more information.
+
+
+    **Honeycomb automatically creates these Dataset definition fields when the Dataset is created.**
+
+    Manual creation of Dataset definitions is **not** needed.
+
+
+    ## Authorization
+
+
+    The API key must have the **Create Datasets** permission. Learn more about API keys here.'
 paths:
   /1/dataset_definitions/{datasetSlug}:
-    get:
-      operationId: getDatasetDefinition
-      summary: Get dataset definition
-      description: Returns the dataset definition for the specified dataset, which configures how columns are interpreted and displayed.
+    parameters:
+    - $ref: '#/components/parameters/datasetSlug'
+    patch:
+      security:
+      - configuration_key: []
+      summary: Set or Update Dataset Definitions
+      description: 'Set or update one or more definitions for a Dataset.
+
+        **Note**: While the PATCH payload can include the `column_type`, Honeycomb does not use this field when updating Dataset Definitions.'
       tags:
       - Dataset Definitions
-      parameters:
-      - $ref: '#/components/parameters/datasetSlug'
-      responses:
-        '200':
-          description: Dataset definition details
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DatasetDefinition'
-        '401':
-          description: Unauthorized
-        '404':
-          description: Dataset not found
-    put:
-      operationId: updateDatasetDefinition
-      summary: Update dataset definition
-      description: Updates the dataset definition for the specified dataset.
-      tags:
-      - Dataset Definitions
-      parameters:
-      - $ref: '#/components/parameters/datasetSlug'
+      operationId: patchDatasetDefinitions
       requestBody:
-        required: true
+        description: 'The PATCH payload takes a map of Dataset definition type to Dataset definition. Fields not defined in the request are not modified on the server.
+
+          **Note**: In order to **CLEAR** a column of a Dataset definition set the column’s name field to an empty string.
+
+          '
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DatasetDefinition'
+              $ref: '#/components/schemas/DatasetDefinitions'
+            examples:
+              setting:
+                description: Set the duration_ms definition.
+                value:
+                  duration_ms:
+                    name: duration_we_send
+                    column_type: derived_column
+              clearing:
+                description: Clear the definitions.
+                value:
+                  error:
+                    name: ''
+                  link_trace_id:
+                    name: ''
+        required: true
       responses:
         '200':
-          description: Dataset definition updated
+          description: Dataset Definitions have been updated
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DatasetDefinition'
+                $ref: '#/components/schemas/DatasetDefinitions'
+              example:
+                duration_ms:
+                  name: duration_ms
+                  column_type: column
+                error: null
+                name: null
+                parent_id: null
+                route: null
+                service_name: null
+                span_id:
+                  name: my_span_id
+                  column_type: column
+                span_kind: null
+                annotation_type: null
+                link_trace_id: null
+                link_span_id: null
+                status: null
+                trace_id: null
+                user: null
+                log_severity: null
+                log_message: null
+        '400':
+          description: Bad Request
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedError'
+              example:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                detail: could not parse request body
+                error: could not parse request body
         '401':
-          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
         '404':
-          description: Dataset not found
+          $ref: '#/components/responses/NotFound'
+        '422':
+          description: 422 Unprocessable Entity
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: 'The following columns were not found: duration_we_send'
+    get:
+      security:
+      - configuration_key: []
+      summary: Get all Dataset Definitions
+      description: 'Get all definitions for a Dataset.
+
+        The response returns an object with a Dataset Definition for each set Dataset Definition type.'
+      tags:
+      - Dataset Definitions
+      operationId: listDatasetDefinitions
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDefinitions'
+              example:
+                duration_ms:
+                  name: duration_ms
+                  column_type: column
+                error: null
+                name: null
+                parent_id: null
+                route: null
+                service_name: null
+                span_id:
+                  name: my_span_id
+                  column_type: column
+                span_kind: null
+                annotation_type: null
+                link_trace_id: null
+                link_span_id: null
+                status: null
+                trace_id: null
+                user: null
+                log_severity: null
+                log_message: null
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
   schemas:
-    DatasetDefinition:
+    Error:
+      x-tags:
+      - Errors
       type: object
+      description: A legacy error, containing only a textual description.
       properties:
-        duration_ms:
-          type: string
-          description: The column name that represents duration in milliseconds.
         error:
           type: string
-          description: The column name that represents errors.
+          readOnly: true
+    DatasetDefinition:
+      type:
+      - 'null'
+      - object
+      required:
+      - name
+      properties:
         name:
           type: string
-          description: The column name that represents the event name.
-        parent_id:
+          description: The name of the Column or of the Calculated Field (also called Derived Column) to map to this Dataset Definition Type. An empty string clears the mapping, potentially reverting to a default mapping.
+          minLength: 0
+          maxLength: 255
+        column_type:
           type: string
-          description: The column name used for parent span ID in tracing.
-        route:
+          readOnly: true
+          description: 'Optional: `column` for regular columns and `derived_column` for Calculated Fields (also called Derived Columns) when setting Dataset Definitions. Honeycomb does not use this field when updating Dataset definitions.'
+          enum:
+          - column
+          - derived_column
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
           type: string
-          description: The column name that represents the route.
-        service_name:
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
           type: string
-          description: The column name that represents the service name.
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    DatasetDefinitions:
+      type: object
+      description: 'Dataset Definitions describe the fields with special meaning in the Dataset.
+
+        '
+      properties:
         span_id:
-          type: string
-          description: The column name used for span ID in tracing.
+          description: The unique identifier (ID) for each span.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
         trace_id:
-          type: string
-          description: The column name used for trace ID in tracing.
+          description: The ID of the trace this span belongs to.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        parent_id:
+          description: The Parent Span ID - The ID of this span's parent span, the call location the current span was called from.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        name:
+          description: The name of the function or method where the span was created.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        service_name:
+          description: The name of the instrumented service.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        duration_ms:
+          description: Span Duration - How much time the span took, in milliseconds.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        span_kind:
+          description: 'Metadata: Kind - The kind of Span. For example, `client` or `server`. The use of this field to identify Span Events and Links is deprecated. Use the field Metadata: Annotation Type.'
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        annotation_type:
+          description: 'Metadata: Annotation Type - The type of span annotation. For example, `span_event` or `link`. This lets Honeycomb visualize this type of event differently in a trace. Do not use this field for other purposes.'
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        link_span_id:
+          description: 'Metadata: Link Span ID - Links let you tie traces and spans to one another. The Link Span ID lets you link to a different span (when used with Link Trace ID).'
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        link_trace_id:
+          description: 'Metadata: Link Trace ID - Links let you tie traces and spans to one another. The Link Trace Id lets you link to a different trace or a different span in the same trace (when used with Link Span ID).'
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        error:
+          description: Use a Boolean or String to indicate error.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        status:
+          description: Indicates the success, failure, or other status of a request.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        route:
+          description: The HTTP URL or equivalent route processed by the request.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
         user:
-          type: string
-          description: The column name that represents the user.
+          description: The user making the request in the system.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        log_severity:
+          description: 'Severity level of the event (also known as log level). Supported values: trace, debug, info, warn, error, fatal, unspecified.'
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
+        log_message:
+          description: A value containing the log event message. Can be a human-readable string message (including multi-line) describing the event in a free form.
+          allOf:
+          - $ref: '#/components/schemas/DatasetDefinition'
   parameters:
     datasetSlug:
       name: datasetSlug
+      description: 'The dataset slug.
+
+        '
       in: path
       required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive.
       schema:
         type: string
+  headers:
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
   securitySchemes:
-    ApiKeyAuth:
+    configuration_key:
       type: apiKey
-      in: header
       name: X-Honeycomb-Team
-      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+      in: header
+      description: 'Authenticate using a Honeycomb Configuration Key.
+
+
+        Pass the **Token** in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: 1234567890123456789012
+
+        ```
+
+
+        If you created your key using the API, use `data.attributes.secret`; this is the same value as the **Token** in the UI.
+
+
+        To learn how to create a Configuration Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    ingest_key:
+      type: apiKey
+      name: X-Honeycomb-Team
+      in: header
+      description: 'Authenticate using a Honeycomb Ingest Key.
+
+
+        Pass the Ingest Key in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: hc[x]ik_1234567890123456789012345612345678901234567890123456789012
+
+        ```
+
+
+        The key value is the key ID and key secret concatenated with no separator:
+
+        - If you created your key through the UI, Honeycomb provides the complete value as the **Ingest Key**.
+
+        - If you created your key using the API, construct the key value by concatenating `data.id` and `data.attributes.secret` with no separator.
+
+
+        To learn how to create an Ingest Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    firehose_access_key:
+      type: apiKey
+      name: X-Amz-Firehose-Access-Key
+      in: header
+      description: 'We recommend using a Honeycomb Ingest Key to authenticate, though a Configuration Key will work.
+
+
+        To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Authenticate using a Honeycomb Management Key.
+
+
+        Pass the Management Key as a Bearer token in the `Authorization` header:
+
+        ```http
+
+        Authorization: Bearer hcxmk_12345678901234567890123456:12345678901234567890123456789012
+
+        ```
+
+
+        Construct the key value by joining the **Key ID** and **Secret** with a colon (`:`).
+
+
+        To learn how to create a Management Key, visit [Manage Team API Keys](/configure/teams/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+      bearerFormat: HONEYCOMB_KEY_ID:HONEYCOMB_KEY_SECRET
 externalDocs:
-  description: Honeycomb API Documentation
-  url: https://api-docs.honeycomb.io/api
+  url: https://docs.honeycomb.io

@@ -1,69 +1,265 @@
 openapi: 3.2.0
 info:
-  title: Honeycomb Auth Kinesis Events API
-  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
-  version: '1.0'
+  title: Honeycomb Kinesis Events API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   contact:
-    name: Honeycomb Support
-    url: https://support.honeycomb.io
-  termsOfService: https://www.honeycomb.io/terms-of-service
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in Pollinators Slack or to Honeycomb Support.'
 servers:
 - url: https://api.honeycomb.io
-  description: Honeycomb Production API
-security:
-- ApiKeyAuth: []
+- url: https://api.eu1.honeycomb.io
 tags:
 - name: Kinesis Events
-  description: Process streaming events from Amazon Kinesis into Honeycomb.
+  description: 'The Kinesis Events API endpoints allow Honeycomb to process streaming events from Amazon Kinesis.
+
+
+    Refer to the Honeycomb AWS integrations documentation for more information.
+
+
+    ## Authorization
+
+
+    It is recommended that an Ingest API key is used for sending events.
+
+
+    A Configuration API key will work, and must have the **Send Events** permission.
+
+    Learn more about API keys here.'
 paths:
   /1/kinesis_events/{datasetSlug}:
+    parameters:
+    - in: header
+      name: X-Amz-Firehose-Request-Id
+      description: 'AWS Request ID associated with the Kinesis Firehose.
+
+        '
+      schema:
+        type: string
+      required: true
+      example: 33658b45-a8f1-4007-92e8-f601ae33db14
+    - $ref: '#/components/parameters/datasetSlug'
     post:
-      operationId: createKinesisEvents
-      summary: Create Kinesis events
-      description: Processes streaming events from Amazon Kinesis into the specified Honeycomb dataset.
+      summary: Create Kinesis Events
+      description: This endpoint processes events and metrics coming from AWS through Kinesis Firehose.
       tags:
       - Kinesis Events
-      parameters:
-      - $ref: '#/components/parameters/datasetSlug'
+      operationId: createKinesisEvents
+      security:
+      - firehose_access_key: []
       requestBody:
-        required: true
+        description: 'The request body expected from Amazon Kinesis Firehose. Events and metrics have the same shape but the base64 encoded data blob for metrics is expected to be Protowire-encoded as well. CloudWatch Logs data coming through Amazon Kinesis Firehose is expected to have a gzip Content-Encoding.
+
+          '
         content:
           application/json:
             schema:
-              type: object
-              description: Kinesis event data in the expected format.
-              properties:
-                records:
-                  type: array
-                  description: Array of Kinesis records to process.
-                  items:
-                    type: object
-                    properties:
-                      data:
-                        type: string
-                        description: Base64-encoded event data.
+              $ref: '#/components/schemas/KinesisEvent'
+        required: true
       responses:
         '200':
-          description: Kinesis events processed
-        '400':
-          description: Bad request - malformed Kinesis data
+          description: Events queued for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KinesisResponse'
         '401':
-          description: Unauthorized - invalid API key
+          $ref: '#/components/responses/Unauthorized'
+        default:
+          $ref: '#/components/responses/GenericError'
 components:
+  schemas:
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    KinesisEventRecord:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64 encoded Kinesis record from AWS
+    KinesisResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+        errorMessage:
+          type: string
+    KinesisEvent:
+      type: object
+      properties:
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/KinesisEventRecord'
   parameters:
     datasetSlug:
       name: datasetSlug
+      description: 'The dataset slug.
+
+        '
       in: path
       required: true
-      description: The slug identifier for the dataset. Dataset names are case insensitive and may contain URL-encoded spaces or special characters but not URL-encoded slashes.
       schema:
         type: string
+  responses:
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
   securitySchemes:
-    ApiKeyAuth:
+    configuration_key:
       type: apiKey
-      in: header
       name: X-Honeycomb-Team
-      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+      in: header
+      description: 'Authenticate using a Honeycomb Configuration Key.
+
+
+        Pass the **Token** in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: 1234567890123456789012
+
+        ```
+
+
+        If you created your key using the API, use `data.attributes.secret`; this is the same value as the **Token** in the UI.
+
+
+        To learn how to create a Configuration Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    ingest_key:
+      type: apiKey
+      name: X-Honeycomb-Team
+      in: header
+      description: 'Authenticate using a Honeycomb Ingest Key.
+
+
+        Pass the Ingest Key in the `X-Honeycomb-Team` header:
+
+        ```http
+
+        X-Honeycomb-Team: hc[x]ik_1234567890123456789012345612345678901234567890123456789012
+
+        ```
+
+
+        The key value is the key ID and key secret concatenated with no separator:
+
+        - If you created your key through the UI, Honeycomb provides the complete value as the **Ingest Key**.
+
+        - If you created your key using the API, construct the key value by concatenating `data.id` and `data.attributes.secret` with no separator.
+
+
+        To learn how to create an Ingest Key, visit [Manage Environment API Keys](/configure/environments/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    firehose_access_key:
+      type: apiKey
+      name: X-Amz-Firehose-Access-Key
+      in: header
+      description: 'We recommend using a Honeycomb Ingest Key to authenticate, though a Configuration Key will work.
+
+
+        To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Authenticate using a Honeycomb Management Key.
+
+
+        Pass the Management Key as a Bearer token in the `Authorization` header:
+
+        ```http
+
+        Authorization: Bearer hcxmk_12345678901234567890123456:12345678901234567890123456789012
+
+        ```
+
+
+        Construct the key value by joining the **Key ID** and **Secret** with a colon (`:`).
+
+
+        To learn how to create a Management Key, visit [Manage Team API Keys](/configure/teams/manage-api-keys). To learn more about authenticating requests, visit [API Authentication](/api/authentication).
+
+        '
+      bearerFormat: HONEYCOMB_KEY_ID:HONEYCOMB_KEY_SECRET
 externalDocs:
-  description: Honeycomb API Documentation
-  url: https://api-docs.honeycomb.io/api
+  url: https://docs.honeycomb.io

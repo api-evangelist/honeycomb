@@ -1,0 +1,188 @@
+openapi: 3.2.0
+info:
+  title: Honeycomb Environments API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Environments
+  description: Manage environments within a Honeycomb team for separating telemetry data across stages.
+paths:
+  /1/environments:
+    get:
+      operationId: listEnvironments
+      summary: List all environments
+      description: Returns a list of all environments within the team.
+      tags:
+      - Environments
+      responses:
+        '200':
+          description: A list of environments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createEnvironment
+      summary: Create an environment
+      description: Creates a new environment for separating telemetry data across stages such as development, staging, and production.
+      tags:
+      - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentCreateRequest'
+      responses:
+        '201':
+          description: Environment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+  /1/environments/{environmentId}:
+    get:
+      operationId: getEnvironment
+      summary: Get an environment
+      description: Returns a single environment by its ID.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/environmentId'
+      responses:
+        '200':
+          description: Environment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+    put:
+      operationId: updateEnvironment
+      summary: Update an environment
+      description: Updates an environment's properties.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/environmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentUpdateRequest'
+      responses:
+        '200':
+          description: Environment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete an environment
+      description: Deletes an environment.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/environmentId'
+      responses:
+        '204':
+          description: Environment deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Environment not found
+components:
+  parameters:
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: The unique identifier for the environment.
+      schema:
+        type: string
+  schemas:
+    EnvironmentUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the environment.
+        description:
+          type: string
+          description: An updated description for the environment.
+        color:
+          type: string
+          description: An updated color for the environment.
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the environment.
+        name:
+          type: string
+          description: The display name of the environment.
+        slug:
+          type: string
+          description: The URL-safe slug identifier for the environment.
+        description:
+          type: string
+          description: A description of the environment.
+        color:
+          type: string
+          description: A color associated with the environment for UI display.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the environment was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the environment was last updated.
+    EnvironmentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The display name for the environment.
+        description:
+          type: string
+          description: An optional description for the environment.
+        color:
+          type: string
+          description: An optional color for the environment.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api

@@ -1,0 +1,323 @@
+openapi: 3.2.0
+info:
+  title: Honeycomb SLOs API
+  description: The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to manage datasets and columns, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, administer environments, API keys, and access auth, query annotations, calculated fields, marker settings, reporting, dataset definitions, and service maps.
+  version: '1.0'
+  contact:
+    name: Honeycomb Support
+    url: https://support.honeycomb.io
+  termsOfService: https://www.honeycomb.io/terms-of-service
+servers:
+- url: https://api.honeycomb.io
+  description: Honeycomb Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: SLOs
+  description: Define and monitor Service Level Objectives for your organization.
+paths:
+  /1/slos/{datasetSlug}:
+    get:
+      operationId: listSLOs
+      summary: List all SLOs
+      description: Returns a list of all Service Level Objectives for the specified dataset.
+      tags:
+      - SLOs
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      responses:
+        '200':
+          description: A list of SLOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSLO
+      summary: Create an SLO
+      description: Creates a new Service Level Objective for the specified dataset.
+      tags:
+      - SLOs
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCreateRequest'
+      responses:
+        '201':
+          description: SLO created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+  /1/slos/{datasetSlug}/{sloId}:
+    get:
+      operationId: getSLO
+      summary: Get an SLO
+      description: Returns a single SLO by its ID.
+      tags:
+      - SLOs
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/sloId'
+      responses:
+        '200':
+          description: SLO details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    put:
+      operationId: updateSLO
+      summary: Update an SLO
+      description: Updates an SLO's target percentage, time period, or associated query.
+      tags:
+      - SLOs
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/sloId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOUpdateRequest'
+      responses:
+        '200':
+          description: SLO updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+    delete:
+      operationId: deleteSLO
+      summary: Delete an SLO
+      description: Deletes a Service Level Objective.
+      tags:
+      - SLOs
+      parameters:
+      - $ref: '#/components/parameters/datasetSlug'
+      - $ref: '#/components/parameters/sloId'
+      responses:
+        '204':
+          description: SLO deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: SLO not found
+components:
+  parameters:
+    sloId:
+      name: sloId
+      in: path
+      required: true
+      description: The unique identifier for the SLO.
+      schema:
+        type: string
+    datasetSlug:
+      name: datasetSlug
+      in: path
+      required: true
+      description: The slug identifier for the dataset. Dataset names are case insensitive.
+      schema:
+        type: string
+  schemas:
+    QuerySpec:
+      type: object
+      description: A query specification defining what data to retrieve and how to aggregate it.
+      properties:
+        calculations:
+          type: array
+          description: The calculations to perform on the query data.
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                description: The aggregation operation.
+                enum:
+                - COUNT
+                - SUM
+                - AVG
+                - COUNT_DISTINCT
+                - MAX
+                - MIN
+                - P001
+                - P01
+                - P05
+                - P10
+                - P25
+                - P50
+                - P75
+                - P90
+                - P95
+                - P99
+                - P999
+                - HEATMAP
+                - RATE_AVG
+                - RATE_SUM
+                - RATE_MAX
+              column:
+                type: string
+                description: The column to perform the calculation on.
+        filters:
+          type: array
+          description: Filters to apply to the query.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+                description: The column to filter on.
+              op:
+                type: string
+                description: The filter operator.
+                enum:
+                - '='
+                - '!='
+                - '>'
+                - '>='
+                - <
+                - <=
+                - starts-with
+                - does-not-start-with
+                - contains
+                - does-not-contain
+                - exists
+                - does-not-exist
+                - in
+                - not-in
+              value:
+                description: The value to compare against.
+        breakdowns:
+          type: array
+          description: Columns to group results by.
+          items:
+            type: string
+        orders:
+          type: array
+          description: Ordering for the results.
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                type: string
+              order:
+                type: string
+                enum:
+                - ascending
+                - descending
+        time_range:
+          type: integer
+          description: The time range in seconds to query over.
+        start_time:
+          type: integer
+          description: Unix timestamp for the query start time.
+        end_time:
+          type: integer
+          description: Unix timestamp for the query end time.
+        granularity:
+          type: integer
+          description: The granularity of results in seconds.
+        limit:
+          type: integer
+          description: The maximum number of results to return.
+    SLO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the SLO.
+        name:
+          type: string
+          description: The display name of the SLO.
+        description:
+          type: string
+          description: A description of the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: The target percentage for the SLO, such as 99.9.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: The time period in days over which the SLO is evaluated.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the SLO was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the SLO was last updated.
+    SLOCreateRequest:
+      type: object
+      required:
+      - name
+      - sli
+      - target_percentage
+      - time_period_days
+      properties:
+        name:
+          type: string
+          description: The display name for the SLO.
+        description:
+          type: string
+          description: An optional description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          description: The target percentage for the SLO.
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+          description: The time period in days for the SLO.
+    SLOUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: An updated display name for the SLO.
+        description:
+          type: string
+          description: An updated description for the SLO.
+        sli:
+          $ref: '#/components/schemas/QuerySpec'
+        target_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+        time_period_days:
+          type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Honeycomb-Team
+      description: Honeycomb Configuration API key. Must have appropriate permissions for the endpoint being called.
+externalDocs:
+  description: Honeycomb API Documentation
+  url: https://api-docs.honeycomb.io/api
