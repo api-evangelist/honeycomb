@@ -464,3 +464,9 @@ components:
       bearerFormat: HONEYCOMB_KEY_ID:HONEYCOMB_KEY_SECRET
 externalDocs:
   url: https://docs.honeycomb.io
+x-provenance:
+  method: harvested
+  publisher: Honeycomb
+  source: https://docs.honeycomb.io/api/openapi-public.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
