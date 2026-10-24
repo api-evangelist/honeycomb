@@ -18,6 +18,12 @@ artifacts:
   authentication/honeycomb-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  capabilities/honeycomb-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  changelog/honeycomb-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/honeycomb-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -121,11 +127,11 @@ artifacts:
     method: derived
     evidence: openapi/honeycomb-query-data-api
   collections/honeycomb-query-results-api.opencollection.json:
-    method: derived
-    evidence: openapi/honeycomb-query-results-api
+    method: unknown
+    evidence: no authorship recorded
   collections/honeycomb-query-results-api.postman_collection.json:
-    method: derived
-    evidence: openapi/honeycomb-query-results-api
+    method: unknown
+    evidence: no authorship recorded
   collections/honeycomb-recipients-api.opencollection.json:
     method: derived
     evidence: openapi/honeycomb-recipients-api
@@ -156,13 +162,43 @@ artifacts:
   collections/honeycomb-triggers-api.postman_collection.json:
     method: derived
     evidence: openapi/honeycomb-triggers-api
+  conformance/honeycomb-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/honeycomb-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/honeycomb-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/honeycomb-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/honeycomb-finops.yml:
     method: generated
     evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/honeycomb-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/honeycomb-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/honeycomb-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-api-key-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-api-key-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-api-key-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-apikey-schema.json:
@@ -174,10 +210,22 @@ artifacts:
   json-schema/honeycomb-apikeyupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-auth-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-auth-permissions-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-authinfo-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-authpermissions-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-batch-event-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-batch-event-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-batchevent-schema.json:
@@ -186,7 +234,13 @@ artifacts:
   json-schema/honeycomb-batcheventresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-board-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-board-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-board-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-boardcreaterequest-schema.json:
@@ -198,6 +252,15 @@ artifacts:
   json-schema/honeycomb-boardupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-burn-alert-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-burn-alert-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-burn-alert-update-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-burnalert-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -205,6 +268,15 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-burnalertupdaterequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-calculated-field-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-calculated-field-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-calculated-field-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-calculatedfield-schema.json:
@@ -216,7 +288,13 @@ artifacts:
   json-schema/honeycomb-calculatedfieldupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-column-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-column-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-column-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-columncreaterequest-schema.json:
@@ -225,7 +303,16 @@ artifacts:
   json-schema/honeycomb-columnupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-dataset-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-dataset-definition-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-dataset-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-dataset-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-datasetcreaterequest-schema.json:
@@ -237,7 +324,13 @@ artifacts:
   json-schema/honeycomb-datasetupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-environment-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-environment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-environment-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-environmentcreaterequest-schema.json:
@@ -249,7 +342,22 @@ artifacts:
   json-schema/honeycomb-event-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-marker-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-marker-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-marker-setting-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-marker-setting-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-marker-setting-update-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-marker-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-markercreaterequest-schema.json:
@@ -267,7 +375,25 @@ artifacts:
   json-schema/honeycomb-markerupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-query-annotation-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-query-annotation-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-query-annotation-update-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-query-data-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-query-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-query-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-query-spec-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-queryannotation-schema.json:
@@ -288,7 +414,13 @@ artifacts:
   json-schema/honeycomb-queryspec-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-recipient-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-recipient-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-recipient-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-recipientcreaterequest-schema.json:
@@ -300,6 +432,12 @@ artifacts:
   json-schema/honeycomb-recipientupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-service-map-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-service-map-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-servicemaprequest-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -309,16 +447,28 @@ artifacts:
   json-schema/honeycomb-slo-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-slocreate-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-slocreaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-sloreport-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-sloupdate-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-sloupdaterequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/honeycomb-trigger-create-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/honeycomb-trigger-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/honeycomb-trigger-update-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/honeycomb-triggercreaterequest-schema.json:
@@ -330,127 +480,7 @@ artifacts:
   json-structure/honeycomb-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -534,16 +564,37 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/honeycomb-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/honeycomb-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
   mcp/honeycomb-mcp.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/_original/honeycomb-api-openapi.yml:
+  openapi/_original/honeycomb-openapi.yml:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://docs.honeycomb.io/api/openapi-public.yaml (sha256 d78041d2dfd3,
+      fetched 2026-10-19)
+  openapi/honeycomb-anomaly-detection-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-auth-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -569,14 +620,14 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-events-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-key-management-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-kinesis-events-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-marker-settings-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -584,15 +635,12 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-queries-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-query-annotations-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/honeycomb-query-data-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/honeycomb-query-results-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/honeycomb-recipients-api-openapi.yml:
@@ -610,16 +658,25 @@ artifacts:
   openapi/honeycomb-triggers-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/honeycomb-events-api-overlay.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/honeycomb-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
   rate-limits/honeycomb-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
+  regulatory/honeycomb-regulatory-posture.yml:
+    method: unknown
+    evidence: no authorship recorded
   rules/honeycomb-asyncapi-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/honeycomb-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/honeycomb-rules.yml:
     method: generated
     evidence: declared in the artifact
   security/honeycomb-domain-security.yml:
@@ -628,6 +685,27 @@ artifacts:
   security/honeycomb-trust-center.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/honeycomb-create-and-list-boards.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/honeycomb-create-and-retrieve-dataset.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/honeycomb-create-and-retrieve-query.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/honeycomb-create-trigger.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/honeycomb-send-events.md:
+    method: generated
+    evidence: declared in the artifact
+  vendors/honeycomb-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/honeycomb-vocabulary.yml:
     method: unknown
     evidence: no authorship recorded
