@@ -1,4 +1,4 @@
-# honeycomb (honeycomb)
+# Honeycomb
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,211 +64,261 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Build integrations and automate workflows with the Honeycomb API. Programmatically manage datasets, queries, triggers, SLOs, environments, API keys, and more.
+Honeycomb provides an observability platform that gives engineering teams real‑time visibility into distributed tracing, log analytics, metrics, and AI agent workflows. The platform supports OpenTelemetry, private‑cloud deployments, and telemetry pipelines for enterprises, AI startups, financial services, retail and other software‑focused organizations.
+
+**Areas:** Observability · Telemetry · Analytics · Data Management · Monitoring · A2A
+
+## Honeycomb on APIs.io
+
+Everything profiled for Honeycomb is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/honeycomb/](https://apis.io/providers/honeycomb/)** — or go straight to one of the APIs or properties below.
+
+### APIs (22)
+
+- [Honeycomb Events API](https://apis.io/apis/honeycomb/events-api/) — The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb. It supports both single event creation and batch event…
+- [Honeycomb Queries API](https://apis.io/apis/honeycomb/queries-api/) — The Honeycomb Queries API allows developers to programmatically create and manage query specifications within Honeycomb. Queries are used to identify and…
+- [Honeycomb Datasets API](https://apis.io/apis/honeycomb/datasets-api/) — The Honeycomb Datasets API provides management capabilities for datasets, which represent collections of related events from the same source. It allows…
+- [Honeycomb Boards API](https://apis.io/apis/honeycomb/boards-api/) — The Honeycomb Boards API allows developers to programmatically create and manage boards, which are collections of queries displayed together as a…
+- [Honeycomb Markers API](https://apis.io/apis/honeycomb/markers-api/) — The Honeycomb Markers API enables developers to create and manage markers that indicate points in time on graphs where notable events occurred, such as…
+- [Honeycomb Triggers API](https://apis.io/apis/honeycomb/triggers-api/) — The Honeycomb Triggers API allows developers to programmatically configure alerting rules that fire when query results meet specified conditions. Triggers…
+- [Honeycomb Environments API](https://apis.io/apis/honeycomb/environments-api/) — The Honeycomb Environments API provides administrative capabilities for managing environments within a Honeycomb team. Environments allow organizations to…
+- [honeycomb Auth API](https://apis.io/apis/honeycomb/honeycomb-auth-api/) — Validate authentication for a key, determine what authorizations have been granted to a key, and determine the Team and Environment it belongs to.
+- [honeycomb Burn Alerts API](https://apis.io/apis/honeycomb/honeycomb-burn-alerts-api/) — Manage burn alerts that notify you when issues impact your SLO budget.
+- [honeycomb Calculated Fields API](https://apis.io/apis/honeycomb/honeycomb-calculated-fields-api/) — Manage calculated fields (derived columns) that compute values from expressions applied to event fields.
+- [honeycomb Columns API](https://apis.io/apis/honeycomb/honeycomb-columns-api/) — Manage columns (fields) in the events you send to Honeycomb datasets.
+- [honeycomb Dataset Definitions API](https://apis.io/apis/honeycomb/honeycomb-dataset-definitions-api/) — Manage dataset definitions that configure how columns are interpreted and displayed.
+- [honeycomb Key Management API](https://apis.io/apis/honeycomb/honeycomb-key-management-api/) — Manage API keys for a team, including listing, creating, updating, and deleting keys.
+- [honeycomb Kinesis Events API](https://apis.io/apis/honeycomb/honeycomb-kinesis-events-api/) — Process streaming events from Amazon Kinesis into Honeycomb.
+- [honeycomb Marker Settings API](https://apis.io/apis/honeycomb/honeycomb-marker-settings-api/) — Manage marker settings that group similar markers together with consistent visual styling.
+- [honeycomb Query Annotations API](https://apis.io/apis/honeycomb/honeycomb-query-annotations-api/) — Associate names and descriptions to queries for collaboration features.
+- [honeycomb Query Data API](https://apis.io/apis/honeycomb/honeycomb-query-data-api/) — Access completed query result data.
+- [honeycomb Query Results API](https://apis.io/apis/honeycomb/honeycomb-query-results-api/) — Create and poll for asynchronous query results.
+- [honeycomb Recipients API](https://apis.io/apis/honeycomb/honeycomb-recipients-api/) — Manage notification destinations for triggers and burn alerts including PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+- [honeycomb Reporting API](https://apis.io/apis/honeycomb/honeycomb-reporting-api/) — Access historical SLO performance reporting data.
+- [honeycomb Service Maps API](https://apis.io/apis/honeycomb/honeycomb-service-maps-api/) — Visualize relationships between services using dependency requests.
+- [Honeycomb SL Os API](https://apis.io/apis/honeycomb/honeycomb-slos-api/) — Define and monitor Service Level Objectives for your organization.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/honeycomb/refs/heads/main/apis.yml)
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Modified:** 2026-05-30
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Honeycomb Streaming, OTLP Ingest & Trigger Webhooks](https://apis.io/asyncapis/honeycomb/honeycomb-streaming-asyncapi/)
+
+#### Event channels (9)
+
+Individual events and webhooks the provider emits.
+
+- [opentelemetry.proto.collector.logs.v1.LogsService/Export](https://apis.io/channels/honeycomb/opentelemetry-proto-collector-logs-v1-logsservice-export/)
+- [opentelemetry.proto.collector.metrics.v1.MetricsService/Export](https://apis.io/channels/honeycomb/opentelemetry-proto-collector-metrics-v1-metricsservice-export/)
+- [opentelemetry.proto.collector.trace.v1.TraceService/Export](https://apis.io/channels/honeycomb/opentelemetry-proto-collector-trace-v1-traceservice-export/)
+- [slo.burn_alert.budget_rate](https://apis.io/channels/honeycomb/slo-burn-alert-budget-rate/)
+- [slo.burn_alert.exhaustion_time](https://apis.io/channels/honeycomb/slo-burn-alert-exhaustion-time/)
+- [trigger.fired](https://apis.io/channels/honeycomb/trigger-fired/)
+- [v1/logs](https://apis.io/channels/honeycomb/v1-logs/)
+- [v1/metrics](https://apis.io/channels/honeycomb/v1-metrics/)
+- [v1/traces](https://apis.io/channels/honeycomb/v1-traces/)
 
-## APIs
+#### MCP servers (1)
 
-### Honeycomb API
+Model Context Protocol servers that expose the API to agents.
 
-The Honeycomb API is a REST API that provides programmatic access to the Honeycomb observability platform. It enables developers to send events, manage datasets and columns, create and run queries, configure SLOs and burn alerts, set up triggers and recipients, manage boards and markers, and administer environments and API keys.
+- [honeycomb](https://apis.io/servers/honeycomb/honeycomb/)
 
-- **Human URL:** [https://api-docs.honeycomb.io/api](https://api-docs.honeycomb.io/api)
-- **Base URL:** `https://api.honeycomb.io`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Debugging
-- Monitoring
-- Observability
-- Telemetry
-- Tracing
+- [Honeycomb Agentic Access](https://apis.io/agentic-access/honeycomb/honeycomb-agentic-access/)
 
-#### Properties
+#### JSON Schema (95)
 
-- [Documentation](https://api-docs.honeycomb.io/api)
-- [OpenAPI](openapi/honeycomb-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Honeycomb Events API
+- [ApiKey](https://apis.io/schemas/honeycomb/honeycomb-api-key/)
+- [ApiKeyCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-api-key-create-request/)
+- [ApiKeyUpdateRequest](https://apis.io/schemas/honeycomb/honeycomb-api-key-update-request/)
+- [ApiKey](https://apis.io/schemas/honeycomb/honeycomb-apikey/)
+- [ApiKeyCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-apikeycreaterequest/)
+- [ApiKeyUpdateRequest](https://apis.io/schemas/honeycomb/honeycomb-apikeyupdaterequest/)
+- [AuthInfo](https://apis.io/schemas/honeycomb/honeycomb-auth-info/)
+- [AuthPermissions](https://apis.io/schemas/honeycomb/honeycomb-auth-permissions/)
+- [AuthInfo](https://apis.io/schemas/honeycomb/honeycomb-authinfo/)
+- [AuthPermissions](https://apis.io/schemas/honeycomb/honeycomb-authpermissions/)
+- [BatchEvent](https://apis.io/schemas/honeycomb/honeycomb-batch-event/)
+- [BatchEventResponse](https://apis.io/schemas/honeycomb/honeycomb-batch-event-response/)
+- [BatchEvent](https://apis.io/schemas/honeycomb/honeycomb-batchevent/)
+- [BatchEventResponse](https://apis.io/schemas/honeycomb/honeycomb-batcheventresponse/)
+- [Board](https://apis.io/schemas/honeycomb/honeycomb-board/)
+- [BoardCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-board-create-request/)
+- [BoardUpdateRequest](https://apis.io/schemas/honeycomb/honeycomb-board-update-request/)
+- [BoardCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-boardcreaterequest/)
+- [BoardQuery](https://apis.io/schemas/honeycomb/honeycomb-boardquery/)
+- [BoardUpdateRequest](https://apis.io/schemas/honeycomb/honeycomb-boardupdaterequest/)
+- [BurnAlert](https://apis.io/schemas/honeycomb/honeycomb-burn-alert/)
+- [BurnAlertCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-burn-alert-create-request/)
+- [BurnAlertUpdateRequest](https://apis.io/schemas/honeycomb/honeycomb-burn-alert-update-request/)
+- [BurnAlert](https://apis.io/schemas/honeycomb/honeycomb-burnalert/)
+- [BurnAlertCreateRequest](https://apis.io/schemas/honeycomb/honeycomb-burnalertcreaterequest/)
+- …and 70 more published on APIs.io
 
-The Honeycomb Events API is the lowest-level interface for sending event data to Honeycomb. It supports both single event creation and batch event submission, allowing developers to send structured telemetry data directly to Honeycomb datasets. While Honeycomb recommends using OpenTelemetry or Beeline SDKs for most instrumentation use cases, the Events API provides direct control for custom integrations and specialized data pipelines.
+#### JSON Structure (1)
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/events](https://api-docs.honeycomb.io/api/events)
-- **Base URL:** `https://api.honeycomb.io`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Honeycomb Structure](https://apis.io/json-structure/honeycomb/honeycomb-structure/)
 
-- Events
-- Ingestion
-- Observability
-- Telemetry
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://api-docs.honeycomb.io/api/events)
-- [OpenAPI](openapi/honeycomb-events-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/honeycomb-streaming-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [Honeycomb Context](https://apis.io/jsonld/honeycomb/honeycomb-context/)
 
-### Honeycomb Queries API
+#### Vocabulary (1)
 
-The Honeycomb Queries API allows developers to programmatically create and manage query specifications within Honeycomb. Queries are used to identify and reference queries across other parts of the API, including boards, triggers, and query annotations. Developers can run queries asynchronously by creating a Query Result that references a Query ID, then polling the query result endpoint until the data is ready. The Query Data API complements this by providing access to query results.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/queries](https://api-docs.honeycomb.io/api/queries)
-- **Base URL:** `https://api.honeycomb.io`
+- [Honeycomb Domain Vocabulary](https://apis.io/vocabularies/honeycomb/honeycomb-vocabulary/)
 
-#### Tags
+#### Collections (23)
 
-- Analytics
-- Data Analysis
-- Observability
-- Queries
+Postman and Open Collection request collections.
 
-#### Properties
+- [Honeycomb API](https://apis.io/collections/honeycomb/open-honeycomb-api/)
+- [Honeycomb Auth API](https://apis.io/collections/honeycomb/open-honeycomb-auth-api/)
+- [Honeycomb Auth Boards API](https://apis.io/collections/honeycomb/open-honeycomb-boards-api/)
+- [Honeycomb Auth Burn Alerts API](https://apis.io/collections/honeycomb/open-honeycomb-burn-alerts-api/)
+- [Honeycomb Auth Calculated Fields API](https://apis.io/collections/honeycomb/open-honeycomb-calculated-fields-api/)
+- [Honeycomb Auth Columns API](https://apis.io/collections/honeycomb/open-honeycomb-columns-api/)
+- [Honeycomb Auth Dataset Definitions API](https://apis.io/collections/honeycomb/open-honeycomb-dataset-definitions-api/)
+- [Honeycomb Auth Datasets API](https://apis.io/collections/honeycomb/open-honeycomb-datasets-api/)
+- [Honeycomb Auth Environments API](https://apis.io/collections/honeycomb/open-honeycomb-environments-api/)
+- [Honeycomb Auth Events API](https://apis.io/collections/honeycomb/open-honeycomb-events-api/)
+- [Honeycomb Auth Key Management API](https://apis.io/collections/honeycomb/open-honeycomb-key-management-api/)
+- [Honeycomb Auth Kinesis Events API](https://apis.io/collections/honeycomb/open-honeycomb-kinesis-events-api/)
+- [Honeycomb Auth Marker Settings API](https://apis.io/collections/honeycomb/open-honeycomb-marker-settings-api/)
+- [Honeycomb Auth Markers API](https://apis.io/collections/honeycomb/open-honeycomb-markers-api/)
+- [Honeycomb Auth Queries API](https://apis.io/collections/honeycomb/open-honeycomb-queries-api/)
+- [Honeycomb Auth Query Annotations API](https://apis.io/collections/honeycomb/open-honeycomb-query-annotations-api/)
+- [Honeycomb Auth Query Data API](https://apis.io/collections/honeycomb/open-honeycomb-query-data-api/)
+- [Honeycomb Auth Query Results API](https://apis.io/collections/honeycomb/open-honeycomb-query-results-api/)
+- [Honeycomb Auth Recipients API](https://apis.io/collections/honeycomb/open-honeycomb-recipients-api/)
+- [Honeycomb Auth Reporting API](https://apis.io/collections/honeycomb/open-honeycomb-reporting-api/)
+- [Honeycomb Auth Service Maps API](https://apis.io/collections/honeycomb/open-honeycomb-service-maps-api/)
+- [Honeycomb Auth SLOs API](https://apis.io/collections/honeycomb/open-honeycomb-slos-api/)
+- [Honeycomb Auth Triggers API](https://apis.io/collections/honeycomb/open-honeycomb-triggers-api/)
 
-- [Documentation](https://api-docs.honeycomb.io/api/queries)
-- [OpenAPI](openapi/honeycomb-queries-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-queries-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-queries-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (1)
 
-### Honeycomb SLOs API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-The Honeycomb SLOs API enables developers to define and monitor Service Level Objectives programmatically. It supports creating, listing, updating, and deleting SLO objects for an organization. Combined with the Burn Alerts API for notifications and the Reporting API for historical SLO performance analysis, it provides a complete interface for managing reliability targets and tracking error budgets over time.
+- [Honeycomb Events Api Overlay](https://apis.io/overlays/honeycomb/honeycomb-events-api-overlay/)
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/slos](https://api-docs.honeycomb.io/api/slos)
-- **Base URL:** `https://api.honeycomb.io`
+#### Governance rules (3)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Observability
-- Reliability
-- Service Level Objectives
-- SLOs
+- [Honeycomb — asyncapi rules](https://apis.io/rules/honeycomb/honeycomb-asyncapi-spectral-rules/)
+- [Honeycomb — jsonschema rules](https://apis.io/rules/honeycomb/honeycomb-jsonschema-spectral-rules/)
+- [Honeycomb API Rules](https://apis.io/rules/honeycomb/honeycomb-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://api-docs.honeycomb.io/api/slos)
-- [OpenAPI](openapi/honeycomb-slos-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-slos-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-slos-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Honeycomb Datasets API
+- [Honeycomb Authentication](https://apis.io/security/honeycomb/honeycomb-authentication/)
+- [Honeycomb Domain Security](https://apis.io/security/honeycomb/honeycomb-domain-security/)
+- [Honeycomb Trust Center](https://apis.io/security/honeycomb/honeycomb-trust-center/)
 
-The Honeycomb Datasets API provides management capabilities for datasets, which represent collections of related events from the same source. It allows developers to list, create, and update datasets programmatically. The related Columns API enables management of fields within datasets, including listing, creating, updating, and deleting columns that define the structure of event data stored in Honeycomb.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/datasets](https://api-docs.honeycomb.io/api/datasets)
-- **Base URL:** `https://api.honeycomb.io`
+Published plans, tiers and prices.
 
-#### Tags
+- [Honeycomb Plans Pricing](https://apis.io/plans/honeycomb/honeycomb-plans-pricing/)
 
-- Data Management
-- Datasets
-- Observability
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://api-docs.honeycomb.io/api/datasets)
-- [OpenAPI](openapi/honeycomb-datasets-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-datasets-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-datasets-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Honeycomb Rate Limits](https://apis.io/rate-limits/honeycomb/honeycomb-rate-limits/)
 
-### Honeycomb Boards API
+#### FinOps (1)
 
-The Honeycomb Boards API allows developers to programmatically create and manage boards, which are collections of queries displayed together as a dashboard-like view. Boards provide a way to organize and share related queries for monitoring and debugging workflows. The API supports listing, creating, updating, and deleting boards, making it possible to automate the setup of observability dashboards across environments.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/boards](https://api-docs.honeycomb.io/api/boards)
-- **Base URL:** `https://api.honeycomb.io`
+- [Honeycomb Finops](https://apis.io/finops/honeycomb/honeycomb-finops/)
 
-#### Tags
+## Where to find this API
 
-- Dashboards
-- Observability
-- Visualization
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
+- [Website](https://www.honeycomb.io/)
+- [Documentation](https://api-docs.honeycomb.io/)
+- [Getting started](https://docs.honeycomb.io/get-started)
+- [API reference](https://docs.honeycomb.io/api/introduction)
+- [Pricing](https://www.honeycomb.io/pricing)
+- [Sign up](https://ui.honeycomb.io/signup)
+- [Support](https://support.honeycomb.io/)
+- [Blog](https://www.honeycomb.io/feed/)
+- [Compliance](https://trust.honeycomb.io/)
+- [Terms of service](https://www.honeycomb.io/terms)
+- [Privacy policy](https://www.honeycomb.io/privacy)
+- [GitHub](https://github.com/honeycombio)
+- [Status](https://status.honeycomb.io/)
 
-- [Documentation](https://api-docs.honeycomb.io/api/boards)
-- [OpenAPI](openapi/honeycomb-boards-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-boards-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-boards-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## API Evangelist rating
 
-### Honeycomb Markers API
+**Kin Score 65.0** — strong · rubric 0.25.0 · scored 2026-10-23
 
-The Honeycomb Markers API enables developers to create and manage markers that indicate points in time on graphs where notable events occurred, such as deploys, configuration changes, or outages. Marker Settings allow grouping similar markers together with consistent visual styling. The API supports listing, creating, updating, and deleting both markers and marker settings, making it straightforward to integrate deployment pipelines and incident workflows with Honeycomb visualizations.
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 73.6 |
+| Contract governance | 45.5 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 68.4 |
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/marker-settings](https://api-docs.honeycomb.io/api/marker-settings)
-- **Base URL:** `https://api.honeycomb.io`
+**Agent readiness 45.0** — agent-ready (gated down from agent-native)
 
-#### Tags
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
 
-- Annotations
-- Deployments
-- Markers
-- Observability
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
 
-#### Properties
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/honeycomb/](https://apis.io/providers/honeycomb/).
 
-- [Documentation](https://api-docs.honeycomb.io/api/marker-settings)
-- [OpenAPI](openapi/honeycomb-markers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-markers-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-markers-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## How this profile is made
 
-### Honeycomb Triggers API
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-The Honeycomb Triggers API allows developers to programmatically configure alerting rules that fire when query results meet specified conditions. Triggers work in conjunction with the Recipients API, which manages notification destinations including PagerDuty, Email, Webhook, Microsoft Teams, and Slack. The API supports listing, creating, updating, and deleting triggers, enabling automated setup of alerting workflows for production observability.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Honeycomb: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-- **Human URL:** [https://api-docs.honeycomb.io/api/triggers](https://api-docs.honeycomb.io/api/triggers)
-- **Base URL:** `https://api.honeycomb.io`
+## Open an issue
 
-#### Tags
-
-- Alerts
-- Monitoring
-- Notifications
-- Observability
-
-#### Properties
-
-- [Documentation](https://api-docs.honeycomb.io/api/triggers)
-- [OpenAPI](openapi/honeycomb-triggers-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](asyncapi/honeycomb-streaming-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-
-### Honeycomb Environments API
-
-The Honeycomb Environments API provides administrative capabilities for managing environments within a Honeycomb team. Environments allow organizations to separate telemetry data across different stages such as development, staging, and production. The API supports listing, creating, updating, and deleting environments, along with the Auth API for validating API keys and determining their associated team and environment permissions.
-
-- **Human URL:** [https://api-docs.honeycomb.io/api/environments](https://api-docs.honeycomb.io/api/environments)
-- **Base URL:** `https://api.honeycomb.io`
-
-#### Tags
-
-- Administration
-- Environments
-- Observability
-
-#### Properties
-
-- [Documentation](https://api-docs.honeycomb.io/api/environments)
-- [OpenAPI](openapi/honeycomb-environments-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/honeycomb-environments-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/honeycomb-environments-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/honeycombio)
-- [JSON-LD](json-ld/honeycomb-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/honeycomb-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/honeycomb-query-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/honeycomb-slo-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/honeycomb-trigger-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Features](undefined)
-- [Integrations](https://docs.honeycomb.io/integrations)
-- [L L Ms Txt](https://docs.honeycomb.io/llms.txt)
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/honeycomb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
